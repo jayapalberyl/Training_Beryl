@@ -1,0 +1,84 @@
+
+ PULL REQUESTS
+
+1. creating and deleting branches within your repository
+ creating branches
+. On GitHub.com, navigate to the main page of the repository.
+. Optionally, if you want to create your new branch from a branch other than the default branch for the repository, click  NUMBER branches then choose another branch
+. Click the branch selector menu.
+. Type a unique name for your new branch, then select Create branch.
+  deleting branches
+. On GitHub.com, navigate to the main page of the repository.
+. Above the list of files, click  NUMBER branches.
+. Scroll to the branch that you want to delete, then click delete sign.
+
+2. Pull request
+How to create a pull request:
+a. firstly one branch have some changes. then these changes can be invoked in other branch also. so that changes push in remote branch 
+b. after pushing changes then click on compare and pull request
+c. after opening the dialog box having commit message showed then click on create pull request, we can write review also.
+d. after clicking create pull click on merge pull request 
+and then click on confirm merge
+e. we can take the latest pull by switching branch by git pull origin master
+f. so that the latest changes merges and reflect back into local repository also.
+
+
+
+3. changing the stage of a pull request
+ you can mark a draft pull request as ready for review or convert a pull request to a draft.
+ Marking a pull request as ready for review
+. Under your repository name, click  Pull requests.
+. In the "Pull requests" list, click the pull request you'd like to mark as ready for review.
+. In the merge box, click Ready for review.
+  
+converted a pull request to a draft
+. Under your repository name, click  Pull requests.
+. In the "Pull requests" list, click the pull request you'd like to convert to a draft.
+. In the right sidebar, under "Reviewers," click Convert to draft.
+. Click Convert to draft.
+
+4.Requesting a pull request review
+After you create a pull request, you can ask a specific person to review the changes you've proposed. If you're an organization member, you can also request a specific team to review your changes.
+a. Under your repository name, click  Pull requests.
+b. under the list of pull request,click on the pull request you did like to ask a specific person or team to review.
+c. navigate the reviewers in right side
+d. To request a review from a suggested person under Reviewers, next to their username, click Request.
+
+5. fork
+it means if you want to receive any project then search the project and click on fork option 
+
+6 Incorporate changes
+merging a pull request
+  .Under your repository name, click  Pull requests.
+  .In the "Pull Requests" list, click the pull request you'd like to merge.
+  .Merge all of the commits into the base branch by clicking Merge pull request. If the Merge pull request option is not shown, then click the merge drop down menu      select Create a merge commit.
+  .Squash the commits into one commit by clicking the merge drop down menu, selecting Squash and merge and then clicking the Squash and merge button.
+  . If prompted, type a commit message, or accept the default message
+  . Click Confirm merge, Confirm squash and merge, or Confirm rebase and merge.
+
+7. Enable auto merge
+  . On GitHub.com, navigate to the main page of the repository.
+  . Under your repository name, click  Pull requests.
+  . in the "Pull Requests" list, click the pull request you'd like to auto-merge.
+  . Optionally, to choose a merge method, select the Enable auto-merge drop-down menu, then click a merge method. For more information, see "About pull request merges."
+  . click on enable auto merge
+  . type a commit message and description and choose the email address you want to author the merge commit.
+  . click on confirm auto merge
+
+8. Disabled auto merge
+   its process is same as enabled auto merge but we click on disabled auto merge.
+
+9. closing a pull request
+  . Under your repository name, click  Pull requests.
+  . In the "Pull Requests" list, click the pull request you'd like to close
+  . At the bottom of the pull request, below the comment box, click Close pull request.
+
+10. reverting a pull request
+  . Under your repository name, click  Pull requests.
+  . In the "Pull Requests" list, click the pull request you'd like to revert.
+  . Near the bottom of the pull request, click Revert. If the Revert option isn't displayed, you'll need to ask the repository administrator for write permissions.
+  . Merging the requesting pull request
+
+
+ 
+
