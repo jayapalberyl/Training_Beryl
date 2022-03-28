@@ -1,0 +1,1010 @@
+  
+ PostgreSQL
+
+ version :10.19  latest version : PostgreSQL 14 
+
+PostgreSQL (pronounced as post-gress-Q-L) is an open source relational database management system (DBMS) developed by a worldwide team of volunteers. PostgreSQL is not controlled by any corporation or other private entity and the source code is available free of charge.
+Features:
+1. run on all major operating system like linux,unix,mac-os etc. it supports texts,images , sounds and videos and including programming interface like c/c++,java,perl,python
+and odbc.
+2. foreign key
+3. trigger
+4. views
+5. PostgreSQL can be extended by the user in many ways. For example by adding new features:
+
+Data types
+Functions
+Operators
+Aggregate functions
+Index methods
+
+6. Support 4 standard procedural language like
+PL/pgSQL, PL/Tcl, PL/Perl and PL/Python. 
+
+ Environment setup
+steps:
+1. sudo apt install postgresql
+2. systemctl status postgresql
+3. sudo -u postgres psql
+4. ALTER USER postgres WITH PASSWORD 'root';
+5. ALTER USER postgres WITH SUPERUSER;
+6. \q [for quit]
+7.  psql -U postgres -h localhost
+8. for check the version :  psql --version
+
+ Create a database syntax:
+1. sudo -u postgres psql
+2. create database 
+   postgres=# CREATE DATABASE javatpoint;
+CREATE DATABASE
+postgres=# \l // To get the all databases created earlier used \l
+                             List of databases
+    Name    |  Owner   | Encoding | Collate | Ctype |   Access privileges   
+------------+----------+----------+---------+-------+-----------------------
+ javatpoint | postgres | UTF8     | en_IN   | en_IN | 
+ postgres   | postgres | UTF8     | en_IN   | en_IN | 
+ template0  | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+            |          |          |         |       | postgres=CTc/postgres
+ template1  | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+            |          |          |         |       | postgres=CTc/postgres
+(4 rows)
+
+3. connect to database
+\c database_name , \dt to show all tables in the current database,\d describe the table like column typeetc.
+
+  Postgresql select syntax:
+1. \l to show the list in database 
+2. \c database_name;
+  then database is selected
+
+  Postgresql drop syntax:
+  drop database database_name;
+  
+  Postgresql create table:
+ syntax   CREATE TABLE table_name(column1 datatype,column2 datatype, column3 datatype, columnN datatype, PRIMARY KEY(one or more columns));  
+      
+   javarun=# create table Department (depno int constraint dep_details_pk primary key,dep_name text not null,location varchar(15));
+CREATE TABLE
+javarun=# select * from Department;
+ depno | dep_name | location 
+-------+----------+----------
+(0 rows)
+ 
+Drop table
+drop table table_name;
+
+Alter table
+alter table table_name action;
+1 add column:
+mytest=# alter table Student add column Pincode int;
+ALTER TABLE
+mytest=# \d Student
+ id      | integer       |           |          | 
+ name    | text          |           |          | 
+ age     | integer       |           |          | 
+ address | character(30) |           |          | 
+ pincode | integer       |           |          | 
+
+2. Rename table
+mytest=# alter table Student rename name To Stu_name;
+ALTER TABLE
+
+3. changing the column datatype
+mytest=# alter table Student alter column address type varchar;
+ALTER TABLE
+
+4 add not null constraint
+alter table table_name alter column column_name set not null;
+
+5 remove not null constraint
+alter table table_name alter column column_name drop not null;
+
+6 add primary key constraint
+alter table table_name add primary key(stu_id);
+
+7 rename tablename
+alter table table_name rename to newname;
+
+8 drop column
+alter table tablename drop column column_name ;
+
+9 truncate table 
+If we delete all records in the table we used truncate command
+truncate table table_name;
+
+* delete all data from multiple tables
+ truncate table tablename_1,tablename_2.... n times;
+* remove all records from a table which has foreign key reference
+bydefault the truncate table command will not delete any record from table with foreign key reference we use cascade
+syntax truncate table table_name cascade;
+
+Insert value in table
+1.\l [to show the list of databases]
+2. \c javarun [connect to databases]
+3.\d department [to show the details of department table like rows,primarykey]
+4. then insert values
+javarun=# insert into department(depno,dep_name,location)values(11,'computer','faridabad'),(12,'electrical','delhi'),(13,'computer','faridabad'),(14,'biology','punjab');
+INSERT 0 4
+javarun=# select * from department;
+ depno |  dep_name  | location  
+-------+------------+-----------
+    11 | computer   | faridabad
+    12 | electrical | delhi
+    13 | computer   | faridabad
+    14 | biology    | punjab
+(4 rows)
+
+create temporary table
+A temporary table is a brief table;its name means it is present at the time of database session.and automatically drops the temporary tables at the end of the operation.
+
+Postgresql column alias
+used to give a shortname to the column in the select list 
+select column_name as alias name from tablename;
+like javarun=# select location as place from department;
+   place   
+-----------
+ faridabad
+ delhi
+ faridabad
+ punjab
+
+Postgresql update command
+javarun=# update department set dep_name='chemical' where depno=11;
+UPDATE 1
+javarun=# select * from department;
+ depno |  dep_name  | location  
+-------+------------+-----------
+    12 | electrical | delhi
+    13 | computer   | faridabad
+    14 | biology    | punjab
+    11 | chemical   | faridabad
+(4 rows)
+
+Datatypes in Postgresql:
+
+1. Numeric types
+integer 4 bytes
+bigint 8 bytes
+small int 2 bytes
+real 4 bytes
+
+2. character types
+varchar [variable length with limit]
+char [fixed length]
+text [variable unlimited length]
+
+3 Date/time types
+date 4 bytes[both date and time with time zone]
+
+4 Enumerated types
+this type comprises a static ordered set of values.
+like
+CREATE TYPE week AS ENUM ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+
+Postgresql Constraints:
+
+1. not null
+2. primary key
+3. foreign key
+4. unique key
+5 check constraints
+
+1. not null
+By default, a column can hold NULL values. If you do not want a column to have a NULL value, then you need to define such constraint on this column specifying that NULL is now not allowed for that column. 
+
+javarun=# create table company1(Id int primary key not null,Name text not null,Age varchar not null, Address char(50), Salary real);
+
+javarun=# insert into company1(Id,Name,Age,Address,Salary)values(11,'Jaya',22,'Faridabad',15000),(12,'shivam',22,'palwal',20000),(13,'shalu',23,'ballabgarh',20000);
+output:-
+
+ id |  name  | age |                      address                       | salary 
+----+--------+-----+----------------------------------------------------+--------
+ 11 | Jaya   | 22  | Faridabad                                          |  15000
+ 12 | shivam | 22  | palwal                                             |  20000
+ 13 | shalu  | 23  | ballabgarh                                         |  20000
+(3 rows)
+
+2. unique
+
+javarun=# CREATE TABLE COMPANY3(
+javarun(#    ID INT PRIMARY KEY     NOT NULL,
+javarun(#    NAME           TEXT    NOT NULL,
+javarun(#    AGE            INT     NOT NULL UNIQUE,
+javarun(#    ADDRESS        CHAR(50),
+javarun(#    SALARY         REAL    DEFAULT 50000.00
+javarun(# );
+CREATE TABLE
+
+3.Primary key
+The Primary key constraint uniquely identifies each record in a database table. 
+* A table can have only one primary key, which may consist of single or multiple fields. When multiple fields are used as a primary key, they are called a composite 
+
+key.javarun=# create table company4(id int primary key not null,name text not null,age int not null,address char(10),salary real);
+CREATE TABLE
+javarun=# insert into company4(id,name,age,address,salary)values(1,'jayanti',22,'faridabad',10000),(1,'jayanti',23,'delhi',20000);
+ERROR:  duplicate key value violates unique constraint "company4_pkey"
+DETAIL:  Key (id)=(1) already exists.
+javarun=# insert into company4(id,name,age,address,salary)values(1,'jayanti',22,'faridabad',10000),(2,'jayanti', ,'delhi',20000);
+ERROR:  syntax error at or near ","
+LINE 1: ...s(1,'jayanti',22,'faridabad',10000),(2,'jayanti', ,'delhi',2...
+
+4.Foreign key
+A foreign key constraint specifies that the values in a column (or a group of columns) must match the values appearing in some row of another table. 
+
+javarun=# create table department4(id int primary key not null,dept char(10) not null,Emp_id int references company4(id));
+CREATE TABLE
+
+5. check constraints
+The CHECK Constraint enables a condition to check the value being entered into a record. If the condition evaluates to false, the record violates the constraint and is not entered into the table.
+
+javarun=# create table checkone(id int primary key not null,age int check(age>10));
+CREATE TABLE
+javarun=# insert into checkone(id,age)values(01,9);
+ERROR:  new row for relation "checkone" violates check constraint "checkone_age_check"
+DETAIL:  Failing row contains (1, 9).
+
+Postgresql operators:
+
+1. Arthimetic operator
++,-,*,/,%,^(power operator),!(factoriol operator),|/(square root operator).
+
+javarun=# select 11 / 121;
+ ?column? 
+----------
+       11
+(1 row)
+
+javarun=# select 5-0;
+ ?column? 
+----------
+        5
+(1 row)
+
+2.Comparison operator
+=,!=,<>(not equal to operator),>,<,>=,<=
+
+3 logical operator
+And[this operator allow the existence of multiple operator]
+or[this operator combines the multiple conditions]
+,not[oposite of value]
+
+this is the table of employee:
+emp_id | emp_name | age | designation 
+--------+----------+-----+-------------
+     11 | raman    |  20 | banglore  
+     12 | kajal    |  10 | kolkata   
+     13 | nisha    |  18 | kolkata   
+     14 | raman    |  18 | kolkata   
+     15 | jaya     |  10 | patna     
+     16 | seema    |  12 | lucknow   
+(6 rows)
+
+ Or operator
+mytest=# select emp_name,age from employee where designation='kolkata' or age=10;
+ emp_name | age 
+----------+-----
+ kajal    |  10
+ nisha    |  18
+ raman    |  18
+ jaya     |  10
+(4 rows)
+ And operator
+mytest=# select emp_name,age from employee where designation='kolkata' and age=10;
+ emp_name | age 
+----------+-----
+ kajal    |  10
+(1 row)
+
+Not operator
+mytest=# select emp_id from employee where age!=10;
+ emp_id 
+--------
+     11
+     13
+     14
+     16
+(4 rows)
+
+Between operator
+mytest=# select * from employee where age between 20 and 30;
+ emp_id | emp_name | age | designation 
+--------+----------+-----+-------------
+     11 | raman    |  20 | banglore  
+(1 row)
+
+In operator
+mytest=# select * from employee where emp_name IN('raman' , 'kajal');
+ emp_id | emp_name | age | designation 
+--------+----------+-----+-------------
+     11 | raman    |  20 | banglore  
+     12 | kajal    |  10 | kolkata   
+     14 | raman    |  18 | kolkata   
+(3 rows)
+
+like syntax
+mytest=# select emp_name from employee where designation like '__l%';
+ emp_name 
+----------
+ kajal
+ nisha
+ raman
+(3 rows)
+
+not like syntax
+                                                        
+mytest=# select emp_name from employee where designation not like '__l%';
+ emp_name 
+----------
+ raman
+ jaya
+ seema
+(3 rows)
+
+Bitwise operator
+mytest=# select 30 & 2; // bitwise and operator
+ ?column? 
+----------
+        2
+(1 row)
+
+mytest=# select 20 | 4; // bitwise or operator 
+ ?column? 
+----------
+       20
+(1 row)
+
+mytest=# select 40 >> 3; // bitwise rightshift operator  40\2^3
+ ?column? 
+----------
+        5
+(1 row)
+
+mytest=# select 30 # 6; // xor operator 30=11110,6=00110 xor=[same value become 0 and different value become 1]
+ ?column? 
+----------
+       24
+(1 row)
+
+Retrievel of records
+
+1. update command
+
+update table_name set columname=new_value where condition;
+mytest=# update student1 set stu_name='raman' where marks between 20 and 23;
+UPDATE 2
+mytest=# select * from student1;
+ id | stu_name |  address  | pincode | marks 
+----+----------+-----------+---------+-------
+  2 | shyam    | delhi     |  121001 |    30
+  3 | koyal    | punjab    |  121001 |    90
+  1 | raman    | faridabad |  121001 |    20
+  4 | raman    | jharkhand |   12387 |    23
+(4 rows)
+
+2. Delete command
+
+mytest=# delete from student1 where id=1;
+DELETE 1
+
+3. limit is used only with offset
+limit used to show only particular records which are given inside the limit
+offset used to show after particular record which are given in offset 
+mytest=# select * from employee limit 2 offset 1;
+     12 | kajal    |  10 | kolkata   
+     13 | nisha    |  18 | kolkata   
+
+like in this example we can give limit 2 so that it shows only 2 records and then offset is given 1 also so that after ist records left it shows the next 2 reords
+
+4. order by
+
+javarun=# select * from company_table order by age,name;// bydefault it is in ascending order
+ id | name  | age |  address   | salary 
+----+-------+-----+------------+--------
+  6 | Kim   |  22 | South-Hall |  45000
+  3 | Teddy |  23 | norway     |  20000
+  7 | james |  24 | Houston    |  10000
+  2 | Allen |  25 | Texas      |  15000
+  4 | Mark  |  25 | Rich-Mond  |  65000
+  5 | David |  27 | Texas      |  85000
+  1 | paul  |  32 | california |  20000
+(7 rows)
+
+By desc[in descending order]
+javarun=# select * from company_table order by salary desc;
+ id | name  | age |  address   | salary 
+----+-------+-----+------------+--------
+  5 | David |  27 | Texas      |  85000
+  4 | Mark  |  25 | Rich-Mond  |  65000
+  6 | Kim   |  22 | South-Hall |  45000
+  3 | Teddy |  23 | norway     |  20000
+  1 | paul  |  32 | california |  20000
+  2 | Allen |  25 | Texas      |  15000
+  7 | james |  24 | Houston    |  10000
+(7 rows)
+
+5. Group by
+ empid | empname |     empemail     | phno  | salary |    city    
+-------+---------+------------------+-------+--------+------------
+     1 | nidhi   | nidhi@sample.com |  2222 |  50000 | Mumbai    
+     2 | Anay    | anay@sample.com  |  3456 |  55000 | Pune      
+     3 | Rahul   | Rahul@sample.com | 67122 |  35000 | Delhi     
+     4 | Sonia   | sonia@sample.com | 90872 |  35000 | Delhi     
+     5 | Akash   | akash@gmail.com  | 89109 |  25000 | Mumbai    
+(5 rows)
+* to retrieve the no. of employee in each city,sorted in descending order
+
+javarun=# select city,count(empid) from employee_details group by city order by count(empid) desc; 
+    city    | count 
+------------+-------
+ Mumbai     |     2
+ Delhi      |     2
+ Pune       |     1
+(3 rows)
+
+* to retrieve the no. of employees having different salary in each city
+ 
+javarun=# select city,empname,count(*) from employee_details group by city,empname order by city desc;
+    city    | empname | count 
+------------+---------+-------
+ Pune       | Anay    |     1
+ Mumbai     | nidhi   |     1
+ Mumbai     | Akash   |     1
+ Delhi      | Rahul   |     1
+ Delhi      | Sonia   |     1
+(5 rows)
+
+6.Having clause
+this clause is used when filtering is based on aggregate function. but where clause is based on sigle row level
+syntax:
+SELECT column1, column2
+FROM table1, table2
+WHERE [ conditions ]
+GROUP BY column1, column2
+HAVING [ conditions ]
+ORDER BY column1, column2
+
+  Aggregate function in Psql:
+1. max()
+2. count()
+3. sum()
+4. min()
+5. average()
+
+count():
+The PostgreSQL COUNT function counts a number of rows or non-NULL values against a specific column from a table. When an asterisk(*) is used with count function the total number of rows returns. 
+
+sum():
+The SUM function in PostgreSQL returns the sum of values for the list of selected columns.
+
+max():
+The PostgreSQL MAX function returns the maximum value, specified by expression in a set of aggregated rows
+
+min():
+The MIN function determines the smallest of all selected values of a column.
+
+avg():
+The AVG function determines the average of all selected values of a column.
+
+ emp_id | emp_name | age | designation 
+--------+----------+-----+-------------
+     11 | raman    |  20 | banglore  
+     12 | kajal    |  10 | kolkata   
+     13 | nisha    |  18 | kolkata   
+     14 | raman    |  18 | kolkata   
+     15 | jaya     |  10 | patna     
+     16 | seema    |  12 | lucknow   
+(6 rows)
+
+mytest=# select avg(age) from employee;
+         avg         
+---------------------
+ 14.6666666666666667
+(1 row)
+
+mytest=# select min(emp_id) from employee;
+ min 
+-----
+  11
+(1 row)
+
+mytest=# select max(age) from employee;
+ max 
+-----
+  20
+(1 row)
+
+mytest=# select count(emp_name) from employee;
+ count 
+-------
+     6
+(1 row)
+
+mytest=# select sum(age) from employee;
+ sum 
+-----
+  88
+(1 row)
+
+ Date Function in Postgresql:
+1. The AGE() function accepts two TIMESTAMP values. It subtracts the second argument from the first one and returns an interval as a result.
+
+mytest=# select age(timestamp '1970-04-20');
+           age            
+--------------------------
+ 51 years 10 mons 27 days
+(1 row)
+
+mytest=# select age(timestamp '2022-03-17',timestamp '1999-01-18');
+          age           
+------------------------
+ 23 years 1 mon 30 days
+(1 row)
+
+mytest=# select current_time; // current time function
+     current_time      
+-----------------------
+ 11:58:31.401522+05:30
+(1 row)
+
+mytest=# select current_date; // current date function
+ current_date 
+--------------
+ 2022-03-17
+(1 row)
+
+mytest=# select current_timestamp;// current timestamp
+        current_timestamp         
+----------------------------------
+ 2022-03-17 11:59:17.356896+05:30
+(1 row)
+
+mytest=# select localtimestamp; // local timestamp
+       localtimestamp       
+----------------------------
+ 2022-03-17 12:02:00.914989
+(1 row)
+
+JUSTIFY_DAYS(interval), JUSTIFY_HOURS(interval), JUSTIFY_INTERVAL(interval)
+
+1. mytest=# select justify_days(interval '90 days');
+ justify_days 
+--------------
+ 3 mons
+(1 row)
+
+2. mytest=# select justify_hours(interval '45 hour');
+ justify_hours  
+----------------
+ 1 day 21:00:00
+(1 row)
+
+3. mytest=# select justify_interval(interval '1 mon -2 hour');
+ justify_interval 
+------------------
+ 29 days 22:00:00
+(1 row)
+
+ Joins in Postgresql:
+The PostgreSQL Joins clause is used to combine records from two or more tables in a database. A JOIN is a means for combining fields from two tables.
+types:
+1.inner join
+2. cross join
+3. left outer join
+4. right outer join
+5. full outer join
+
+1. cross join
+sybtax:
+ SELECT ... FROM table1 CROSS JOIN table2 ...
+with example we can understand this:
+mytest=# select * from company;
+ id | name  | age |  address   | salary | join_date  
+----+-------+-----+------------+--------+------------
+  1 | paul  |  32 | California |  20000 | 2001-07-13
+  3 | teddy |  23 | norway     |  20000 |  
+  4 | mark  |  25 | rich-mond  |  65000 | 2007-12-13
+  5 | david |  27 | texas      |  85000 | 2007-12-13
+  2 | allen |  25 | texas      |  85000 | 2007-12-13
+  8 | paul  |  24 | houston    |  20000 | 2005-07-13
+  9 | james |  44 | norway     |   5000 | 2005-07-13
+ 10 | james |  45 | texas      |   5000 | 2005-07-13
+(8 rows)
+
+mytest=# select * from department;
+ id |    dept     | emp_id 
+----+-------------+--------
+  1 | it billing  |      1
+  2 | engineering |      2
+  3 | finance     |      7
+(3 rows)
+
+
+
+select emp_id,name,dept from company cross join department; 
+     emp_id | name  |    dept     
+--------+-------+-------------
+      1 | paul  | it billing
+      1 | teddy | it billing
+      1 | mark  | it billing
+      1 | david | it billing
+      1 | allen | it billing
+      1 | paul  | it billing
+      1 | james | it billing
+      1 | james | it billing
+      2 | paul  | engineering
+      2 | teddy | engineering
+      2 | mark  | engineering
+      2 | david | engineering
+      2 | allen | engineering
+      2 | paul  | engineering
+      2 | james | engineering
+      2 | james | engineering
+      7 | paul  | finance
+      7 | teddy | finance
+      7 | mark  | finance
+      7 | david | finance
+      7 | allen | finance
+
+2. inner join
+ syntax:
+SELECT table1.column1, table2.column2... FROM table1 INNER JOIN table2
+ON table1.common_filed = table2.common_field;
+mytest=# select emp_id,name,dept from company  inner join department on company.id=department.emp_id; 
+ emp_id | name  |    dept     
+--------+-------+-------------
+      1 | paul  | it billing
+      2 | allen | engineering
+(2 rows)
+
+3. Left outer join
+syntax:
+select column_name from table1 left join table2 on table1.column_name=table2.column_name;
+
+mytest=# select emp_id,name,dept from company left join department on company.id=department.emp_id;
+ emp_id | name  |    dept     
+--------+-------+-------------
+      1 | paul  | it billing
+      2 | allen | engineering
+        | james | 
+        | david | 
+        | paul  | 
+        | mark  | 
+        | teddy | 
+        | james | 
+(8 rows)
+
+
+4. Right outer join
+select column_name from table1 right join table2 on table1.column_name=table2.column_name;
+mytest=# select emp_id,name,dept from company right join department on company.id=department.emp_id;
+
+ emp_id | name  |    dept     
+--------+-------+-------------
+      1 | paul  | it billing
+      2 | allen | engineering
+      7 |       | finance
+(3 rows)
+
+5. full outer join
+
+mytest=# select emp_id,name,dept from company full join department on company.id=department.emp_id;
+ emp_id | name  |    dept     
+--------+-------+-------------
+      1 | paul  | it billing
+      2 | allen | engineering
+      7 |       | finance
+        | james | 
+        | david | 
+        | paul  | 
+        | mark  | 
+        | teddy | 
+        | james | 
+(9 rows
+
+  Normalization:
+
+normalization is used to minimize the redundancy from a relation or set of relations.It is also used to eliminate the undesirable characterstics like insertion,deletion,update anomalies.
+types:
+1. 1NF: A relation is in 1 nf if it contains an atomic values
+like sam 9862667117,
+         8972728292
+this is not in 1 NF form because multivalued attributes finds in phno. of sam
+to make this in 1 nf form decompose the tables
+like sam 9862667117
+     sam 8972728292
+
+2. 2NF: * a relation is in 1 NF form 
+        * all non key attributes fully functional dependent on primary key
+like
+TEACHER_Id    SUBJECT	  TEACHER_AGE
+25	      Chemistry	    30
+25	      Biology	    30
+this table is not in 2nf form because teacher age is not depend on primarykey(teacher_id)
+TEACHER_ID	TEACHER_AGE
+25	         30
+
+TEACHER_ID	SUBJECT
+25	        Chemistry
+
+we can decompose the table to make this table in 2nf form(in 2nf key tootni nhi chaiyh)
+
+3. 3nf: * a relation is in 2 nf form
+        * x->y then x is a super key and y is a prime attributes[A relation is in third normal form if it holds atleast one of the following conditions for every non-trivial function dependency X → Y.]
+* Prime attributes: the attributes of the candidate key which show the uniqueness
+* Non Prime attributes: except the Prime attributes which doesnot show the uniqueness
+
+4. BCNF(Boyce codd normal form)
+ * a relation is in 3 nf form
+ * x->y then x is a super key or y is a prime attributes
+
+ Postgresql substring function
+ 1. postgres=# select substring('Mynameis',4,2);
+ substring 
+-----------
+ am
+(1 row)
+
+postgres=# select substring('Mynameis',4,7);
+ substring 
+-----------
+ ameis
+(1 row)
+
+postgres=# select substring('Mynameis',1,7);
+ substring 
+-----------
+ Mynamei
+(1 row)
+
+ 2. Lower()
+postgres=# select lower('JAYAPAL') as "upper to lower";
+ upper to lower 
+----------------
+ jayapal
+(1 row)
+
+3.postgres=# select substring('JAYAPAL',1,4),lower('JAYAPAL') as "Upper to lower";
+ substring | Upper to lower 
+-----------+----------------
+ JAYA      | jayapal
+(1 row)
+
+4. Upper()
+
+postgres=# select substring('JAYAPAL',1,4),upper('jayapal') as "lower to upper";
+ substring | lower to upper 
+-----------+----------------
+ JAYA      | JAYAPAL
+(1 row)
+
+5. length() 
+
+postgres=# select length('i am jayapal');
+ length 
+--------
+     12
+(1 row)
+
+6.postgres=# select overlay('jayapal' placing 'pannu' from 4);
+ overlay  
+----------
+ jaypannu
+(1 row)
+
+7. postgres=# select position('ay' in 'jayapal');
+ position 
+----------
+        2
+8. postgres=# select ascii('arem') as "Ascii value of first character";
+ Ascii value of first character 
+--------------------------------
+                             97
+(1 row)
+
+9.postgres=# select reverse('pooja');
+ reverse 
+---------
+ ajoop
+(1 row)
+
+10.  postgres=# select concat('ram','is','a','good','boy');
+    concat     
+---------------
+ ramisagoodboy
+(1 row)
+
+
+
+  ---------------------------   Library management system  ------------------------------------------
+
+1.student table
+jit=# create table student(stu_id varchar primary key,stu_name varchar,gender char,date_of_birth date,ph_no int,borrower_id int,department varchar);
+CREATE TABLE
+jit=# insert into student(stu_id,stu_name,gender,date_of_birth,ph_no,borrower_id,department)values('1323059','Ahmedali','M','05-oct-1995','121345',1,'CSE');
+INSERT 0 1
+insert into student(stu_id,stu_name,gender,date_of_birth,ph_no,borrower_id,department)values('1323060','Akash','M','06-oct-1995','121002',2,'CIVIL');
+INSERT 0 1
+insert into student(stu_id,stu_name,gender,date_of_birth,ph_no,borrower_id,department)values('1323061','Maya','F','16-jan-2001','798202',3,'MECHANICAL'),('1323062','Shivani','F','26-feb-2002','120945',4,'MECHANICAL');
+INSERT 0 2
+select * from student;
+ stu_id  | stu_name | gender | date_of_birth | ph_no  | borrower_id | department 
+---------+----------+--------+---------------+--------+-------------+------------
+ 1323059 | Ahmedali | M      | 1995-10-05    | 121345 |           11 | CSE
+ 1323060 | Akash    | M      | 1995-10-06    | 121002 |           12 | CIVIL
+ 1323061 | Maya     | F      | 2001-01-16    | 798202 |           13 | MECHANICAL
+ 1323062 | Shivani  | F      | 2002-02-26    | 120945 |           14 | MECHANICAL
+(4 rows)
+jit=# alter table student add constraint Borrower_id_fk Foreign key(borrower_id) references Borrower_Details(borrower_id);
+ALTER TABLE
+
+
+2. staff_details table
+create table staff_details(staff_id int primary key,name varchar,Ph_no int,designation varchar);
+CREATE TABLE
+jit=# insert into staff_details(staff_id,name,ph_no,designation)values(1,'Tarek Hossain','123451','Lib_manager'),(2,'Md.kishor Morol','876123','Lib_clerk'),(3,'ShyamNath','971156','Lib_manager'),(4,'Anand Gupta','908976','Lib_clerk');
+INSERT 0 4
+jit=# select * from staff_details;
+ staff_id |      name       | ph_no  | designation 
+----------+-----------------+--------+-------------
+        1 | Tarek Hossain   | 123451 | Lib_manager
+        2 | Md.kishor Morol | 876123 | Lib_clerk
+        3 | ShyamNath       | 971156 | Lib_manager
+        4 | Anand Gupta     | 908976 | Lib_clerk
+(4 rows)
+3. Book table
+create table Book(book_id int primary key,author_name text, No_of_copies int,Title text);
+CREATE TABLE
+        
+jit=# alter table Book add column publish_date date;
+ALTER TABLE
+jit=# insert into Book(book_id,author_name,No_of_copies,Title,publish_date)values('0006','Yashavant Kanetkar',10,'Let us see','12-jan-1999'); 
+INSERT 0 1
+jit=#  insert into Book(book_id,author_name,No_of_copies,Title,publish_date)values('0007','S.Sudarshan',50,'Dbms','19-mar-1981'),('0008','John-Milton',89,'English','23-dec-2002'),('0009','S.Sudarshan',20,'English-Poem','09-mar-1970');
+INSERT 0 3
+jit=# select * from Book;
+ book_id |    author_name     | no_of_copies |    title     | publish_date 
+---------+--------------------+--------------+--------------+--------------
+       6 | Yashavant Kanetkar |           10 | Let us see   | 1999-01-12
+       7 | S.Sudarshan        |           50 | Dbms         | 1981-03-19
+       8 | John-Milton        |           89 | English      | 2002-12-23
+       9 | S.Sudarshan        |           20 | English-Poem | 1970-03-09
+(4 rows)
+
+4. Borrower_Details
+jit=# create table Borrower_Details(borrower_id int primary key,book_id int references Book(book_id),Borrowed_from date,Borrowed_to date,Issued_by int);
+CREATE TABLE
+jit=# alter table Borrower_Details add constraint Book_is_FK Foreign key(Issued_by) references staff_details(staff_id);
+ALTER TABLE
+jit=# insert into Borrower_Details(borrower_id,book_id,borrowed_from,borrowed_to,issued_by)values(11,6,'01-aug-2000','07-aug-2000',1),(12,7,'10-mar-2022','17-mar-2022',2);
+
+jit=# insert into Borrower_Details(borrower_id,book_id,borrowed_from,borrowed_to,issued_by)values(13,8,'2022-05-10','2022-05-17',3),(14,9,'2022-05-21','2022-05-27',4);
+INSERT 0 2
+jit=# select * from Borrower_details;
+ borrower_id | book_id | borrowed_from | borrowed_to | issued_by 
+-------------+---------+---------------+-------------+-----------
+          11 |       6 | 2000-08-01    | 2000-08-07  |         1
+          12 |       7 | 2022-03-10    | 2022-03-17  |         2
+          13 |       8 | 2022-05-10    | 2022-05-17  |         3
+          14 |       9 | 2022-05-21    | 2022-05-27  |         4
+(4 rows)
+
+5. Transaction_details
+jit=# create table transaction(trans_id int primary key,trans_name varchar,borrower_id int references Borrower_Details(borrower_id),stu_id int,trans_date date);
+CREATE TABLE
+alter table transaction add constraint student_fk Foreign key(student_id)  references student(stu_id);
+jit=# insert into transaction(trans_id,trans_name,borrower_id,student_id,trans_date)values(121,'let us see',11,'1323059','2000-08-01');
+INSERT 0 1
+jit=# insert into transaction(trans_id,trans_name,borrower_id,student_id,trans_date)values(122,'Dbms',12,'1323060','2022-03-10');
+INSERT 0 1
+jit=# select * from transaction;
+ trans_id | trans_name | borrower_id | student_id | trans_date 
+----------+------------+-------------+------------+------------
+      121 | let us see |          11 | 1323059    | 2000-08-01
+      122 | Dbms       |          12 | 1323060    | 2022-03-10
+(2 rows)
+
+
+----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
+
+
+1. write a sql query to fetch details trans_id,trans_name from transaction.
+
+jit=# select trans_id,trans_name from transaction left join Borrower_Details on transaction.borrower_id=Borrower_Details.borrower_id;
+ trans_id | trans_name 
+----------+------------
+      121 | let us see
+      122 | Dbms
+(2 rows)
+
+2. write a sql query to fetch details stu_name,gender,department,student_id of transaction_table from student table
+jit=# select stu_name,gender,department,student_id from transaction right join student on transaction.student_id=student.stu_id;
+ stu_name | gender | department | student_id 
+----------+--------+------------+------------
+ Ahmedali | M      | CSE        | 1323059
+ Akash    | M      | CIVIL      | 1323060
+ Maya     | F      | MECHANICAL | 
+ Shivani  | F      | MECHANICAL | 
+(4 rows)
+
+3. write a sql query to fetch details name,phno,designation,issued_by(borrower_details)table from staff_details table and name in between 'oss' and phno. in ascending order
+
+jit=# select issued_by,name,ph_no,designation from staff_details inner join  Borrower_Details on staff_details.staff_id=Borrower_Details.issued_by where name like '%oss%' order by ph_no;
+ issued_by |     name      | ph_no  | designation 
+-----------+---------------+--------+-------------
+         1 | Tarek Hossain | 123451 | Lib_manager
+(1 row)
+
+4. write a sql query to fetch details name,phno,designation,issued_by(borrower_details)table from staff_details table and name='shyamnath' or designation='lib_clerk' and phno. in ascending order
+
+jit=# select issued_by,name,ph_no,designation from staff_details inner join  Borrower_Details on staff_details.staff_id=Borrower_Details.issued_by where name='ShyamNath' or designation='Lib_clerk' order by ph_no;
+ issued_by |      name       | ph_no  | designation 
+-----------+-----------------+--------+-------------
+         2 | Md.kishor Morol | 876123 | Lib_clerk
+         4 | Anand Gupta     | 908976 | Lib_clerk
+         3 | ShyamNath       | 971156 | Lib_manager
+(3 rows)
+
+5. write a sql query to fetch details like authorname,no_of_copies,title,borrowed_from,borrowed_to(borrower table) from Book table.
+
+jit=# select author_name,no_of_copies,title,borrowed_from,borrowed_to from Book full join Borrower_Details on Book.book_id=Borrower_Details.borrower_id;
+    author_name     | no_of_copies |    title     | borrowed_from | borrowed_to 
+--------------------+--------------+--------------+---------------+-------------
+                    |              |              | 2000-08-01    | 2000-08-07
+                    |              |              | 2022-03-10    | 2022-03-17
+                    |              |              | 2022-05-10    | 2022-05-17
+                    |              |              | 2022-05-21    | 2022-05-27
+ John-Milton        |           89 | English      |               | 
+ Yashavant Kanetkar |           10 | Let us see   |               | 
+ S.Sudarshan        |           20 | English-Poem |               | 
+ S.Sudarshan        |           50 | Dbms         |               | 
+(8 rows)
+
+6. write a sql query to print staff_id,name,book_id from staff_details and Borrower_Details table
+
+jit=# select staff_id,name,book_id from staff_details cross join Borrower_Details;
+ staff_id |      name       | book_id 
+----------+-----------------+---------
+        1 | Tarek Hossain   |       6
+        2 | Md.kishor Morol |       6
+        3 | ShyamNath       |       6
+        4 | Anand Gupta     |       6
+        1 | Tarek Hossain   |       7
+        2 | Md.kishor Morol |       7
+        3 | ShyamNath       |       7
+        4 | Anand Gupta     |       7
+        1 | Tarek Hossain   |       8
+        2 | Md.kishor Morol |       8
+        3 | ShyamNath       |       8
+        4 | Anand Gupta     |       8
+        1 | Tarek Hossain   |       9
+        2 | Md.kishor Morol |       9
+        3 | ShyamNath       |       9
+        4 | Anand Gupta     |       9
+(16 rows)
+
+7. find nth highest salary from the table
+
+jit=# select * from book;
+ book_id |    author_name     | no_of_copies |    title     | publish_date 
+---------+--------------------+--------------+--------------+--------------
+       6 | Yashavant Kanetkar |           10 | Let us see   | 1999-01-12
+       7 | S.Sudarshan        |           50 | Dbms         | 1981-03-19
+       8 | John-Milton        |           89 | English      | 2002-12-23
+       9 | S.Sudarshan        |           20 | English_poem | 1970-03-09
+(4 rows)
+
+jit=# select no_of_copies from book b1 where 4-3= (select count(distinct no_of_copies) from book b2 where b2.no_of_copies>b1.no_of_copies);
+ no_of_copies 
+--------------
+           50
+(1 row)
+
+
+
+
+
+
+
+
+
+
