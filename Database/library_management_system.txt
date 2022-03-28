@@ -391,7 +391,43 @@ library_management=# select *  from student s1 where s1.stu_id not in(select t1.
  1323067 | Pratush  | M      | 2003-07-28    | 889076 | CSE
 (4 rows)
 
+26 fetch the saff_name , designation where fine>50
+library_management=# select s1.staff_name,s1.designation from staff_details s1 inner join borrower_details b1 on s1.staff_id=b1.staff_id where b1.fine>50;
+ staff_name |   designation   
+------------+-----------------
+ Ramkishan  | Generalemployee
+(1 row)
 
+27. find the name of department which is borrowed by student  where book title is 'DBMS'
+
+library_management=# select distinct s1.department from student s1 inner join transaction t1 on s1.stu_id=t1.stu_id inner join book b1 on t1.book_id=b1.book_id where b1.title='Dbms';
+ department 
+------------
+ Arts
+ Civil
+ CSE
+(3 rows)
+
+28. fetch staff_name,designation,phone_no where transaction 2000-08-01 to 2000-12-31
+
+library_management=# select distinct s1.staff_name,s1.ph_no,s1.designation from staff_details s1 inner join borrower_details b1 on s1.staff_id=b1.staff_id where borrowed_from between '2000-08-01' and '2000-12-31';
+ staff_name | ph_no  |   designation   
+------------+--------+-----------------
+ Raghunath  | 776655 | Generalemployee
+ ShyamNath  | 971156 | Lib_manager
+ TarakHossn | 123453 | Lib_manager
+ Tarakram   | 123451 | Lib_manager
+(4 rows)
+
+29. fetch staff_name which issued the book
+
+library_management=# select s1.staff_name,count(*) from borrower_details b1 inner join staff_details s1 on b1.staff_id=s1.staff_id where s1.designation='Lib_manager' group by s1.staff_name;
+ staff_name | count 
+------------+-------
+ ShyamNath  |     3
+ TarakHossn |     4
+ Tarakram   |     2
+(3 rows)
 
 
 
