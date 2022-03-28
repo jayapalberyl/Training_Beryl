@@ -1,0 +1,402 @@
+             
+   Git
+   version of git 2.17.1 new version 2.35
+* Git is born on April 2005
+* created by Linus Torvalds
+* Git is a distributed version control system , open source and free software.
+* Compatible with Linux,macOS, and windows
+* Better safeguards against data corruption.
+* Github launched in 2008 to host Git repositories
+
+
+1. Firstly check git in your terminal press ctrl+Alt+t
+then type git --version
+$ git --version
+git version 2.17.1
+
+if it shows the version name the git is already installed otherwise you can install git by command
+
+ sudo apt install git
+* ask for password type it and then check the version of git
+
+2. configuration of the username  by 
+git config --global user.name "username"
+beryl@beryl-To-be-filled-by-O-E-M:~$ git config --global user.name "jayapalberyl"
+
+   configuration of the username  by 
+git config --global user.email "emailaddress"
+beryl@beryl-To-be-filled-by-O-E-M:~$ git config --global user.name "jaya.pal@berylsystems.com"
+
+
+3. initialization in git
+it is used for create and initialyzed git repository(directory) in our system.
+
+git init // for initialize
+git init first // initialize first repositary and initialize it
+
+4.ssh key generate
+steps for generating ssh key:
+
+beryl@beryl-To-be-filled-by-O-E-M:~$ ssh-keygen -t rsa -b 4096 -C "jaya.pal@berylsystems.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/beryl/.ssh/id_rsa): 
+/home/beryl/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/beryl/.ssh/id_rsa.
+Your public key has been saved in /home/beryl/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:I+C8dKK18JpqkwfhyOPxOC2Za12Khlj8l6wmLMb4JVM jaya.pal@berylsystems.com
+The key's randomart image is:
++---[RSA 4096]----+
+|                 |
+|                 |
+|    .            |
+| . o .           |
+|+.o E o S        |
+|.*oB * . .       |
+|*o^.B. .         |
+|=^o%o +          |
+|*=Xo.o           |
++----[SHA256]-----+
+beryl@beryl-To-be-filled-by-O-E-M:~$ cd .ssh/
+
+beryl@beryl-To-be-filled-by-O-E-M:~/.ssh$ ls -lrt
+total 20
+-rw-r--r-- 1 beryl beryl  666 Jan 17 19:11 known_hosts
+-rw-r--r-- 1 beryl beryl  107 Feb  3 18:05 id_ed25519.pub
+-rw------- 1 beryl beryl  419 Feb  3 18:05 id_ed25519
+-rw-r--r-- 1 beryl beryl  751 Mar 10 18:18 id_rsa.pub
+-rw------- 1 beryl beryl 3247 Mar 10 18:18 id_rsa
+beryl@beryl-To-be-filled-by-O-E-M:~/.ssh$ cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjZtG7lnFHvOfhfl089t9LzMCgC5iUm6AKX5aO7a8jt1/G4YD7ARrjfZokjkihKZy7r3ukjYeuDL3qVtBiIMovqV9UwmhyRWQhYcHiDEpNpMymvcxEdI9hM48Hqj0anIAYuRN14O5/ZbvQk/LgI3QPOL9sRh/TCFF68Sx5l8wb3poraioX65IWjBUDNpZlF688zAGgeESvUwLCbb38PneTTcD+pVOiWJLFvIgSfe92G5Uy/JSlSx4TT79YH8HhcLQmBDGxXmLOhnx7ca6ox3NOKV6xZkk/WWFbeH3loRvUzmYSi4g2xDVfXCYNAToiwTmn3NWHk+GGNTU8jx8Ikk6b1O8gKUIZVXhv+ERPQ38rkQcfSxf201YeWZGMP8e8757CFDr+Nd7911q2jY/rKMOBEyCU1qw4bEIR+Tuo0utzY5E0wkh9i5BIX1UfwcLPP9REO5UrDiQ43S94BsFtSwA/zyTOv+biDCYOBstB5T/5lLxJLsUnu2Ve8KOx6sNrANsg1AV3mNVVwthIVL6qpLndPNmHIIUOgq+EQ0a541i8/Z0qPGRFwV2Hg5/CJ7YXVRpwOebf6b+MB2nCh6r7w9026EDUF+e/PHj2v2ehFRmuQAQRi8NHxXSeeJQ9MuHgkbWFnU1eLUMtZXVi8T6Dcl708y9LaAok0pb6KnDSXi0hKQ== jaya.pal@berylsystems.com
+
+* the whole code can copy and paste in github account to generate ssh key.
+
+
+5. git init
+It is used for created the git directory (Repository) in our system
+
+5.git add 
+It is used for add files in git current repository locally .
+
+git add file-name.txt
+git add * or git add . // For add all files from current directory to git repository
+
+beryl@beryl-To-be-filled-by-O-E-M:~$ git add shyam.txt
+beryl@beryl-To-be-filled-by-O-E-M:~$ git status
+On branch feature
+Your branch is up to date with 'origin/feature'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   shyam.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   and.txt
+
+6. git commit
+It is used for commit the all changes in current repository .
+
+git commit -m "commit message"
+beryl@beryl-To-be-filled-by-O-E-M:~$ touch isttwo.txt
+beryl@beryl-To-be-filled-by-O-E-M:~$ git add isttwo.txt
+beryl@beryl-To-be-filled-by-O-E-M:~$ git commit -m "add second file"
+Auto packing the repository in background for optimum performance.
+See "git help gc" for manual housekeeping.
+error: The last gc run reported the following. Please correct the root cause
+and remove .git/gc.log.
+Automatic cleanup will not be performed until the file is removed.
+
+warning: There are too many unreachable loose objects; run 'git prune' to remove them.
+
+[feature 6f98e1f] add second file
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 isttwo.txt
+ create mode 100644 shyam.txt
+7.status command
+It is used for show status of commit files .
+
+8 git log command
+by default if no argument passed, git log shows the most recent commits first. we can limit the number of log enteries like git log -2
+beryl@beryl-To-be-filled-by-O-E-M:~$ git log -2
+commit 6f98e1f831567989d2abdf11fc86f8c6b032e774 (HEAD -> feature)
+Author: jaya.pal@berylsystems.com <vikaschugh84@gmail.com>
+Date:   Wed Mar 9 19:07:01 2022 +0530
+
+    add second file
+
+commit 30756ceeb28bf102b790e339a5199f877d0c4a25 (origin/feature, nodes, hello)
+Author: jaya.pal@berylsystems.com <vikaschugh84@gmail.com>
+Date:   Wed Mar 9 17:03:59 2022 +0530
+
+    i have changed some code
+
+9.git remote command
+git remote command is used to connect your local repository to the remote server. 
+command: git remote add origin github.com/jayapalberyl/training.git
+
+10.git clone command
+this command helps to transfer files from remote repository to local repository
+
+beryl@beryl-To-be-filled-by-O-E-M:~$ mkdir git_repo
+beryl@beryl-To-be-filled-by-O-E-M:~$ cd git_ripo/
+bash: cd: git_ripo/: No such file or directory
+beryl@beryl-To-be-filled-by-O-E-M:~/git_repo$ git clone git@github.com:jayapalberyl/Gittest.git
+Cloning into 'Gittest'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 10 (delta 0), reused 10 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+beryl@beryl-To-be-filled-by-O-E-M:~/git_repo$ ls
+Gittest
+beryl@beryl-To-be-filled-by-O-E-M:~/git_repo$ cd Gittest/
+beryl@beryl-To-be-filled-by-O-E-M:~/git_repo/Gittest$ ls
+and.txt  hello.txt  ist.txt  one.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/git_repo/Gittest$ 
+
+11 git branch command
+you can create a new branch with this
+syntax git branch <branch name>
+
+to check how many branch 
+git branch
+
+delete a remote branch
+git push origin --delete <branch name>
+
+switch to branch
+git checkout <branch name>
+
+git branch -D <branch name>
+this command is used to delete the specified branch
+beryl@beryl-To-be-filled-by-O-E-M:~/Gittest$ git branch -D feature
+Deleted branch feature (was 6f98e1f).
+
+rename to master branch
+git branch -m newbranch_name
+
+12.pull command
+this command is used to updates your current local branch without git pull your local branch wouldnot have any of the updates that are present on the remote
+command git pull
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:jayapalberyl/training
+   34b0fe6..19ec4e9  server     -> origin/server
+Updating 34b0fe6..19ec4e9
+Fast-forward
+ abc | 1 +
+ 1 file changed, 1 insertion(+)
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ cat abc
+hello
+this is me.
+
+13 push command
+used to upload local repository content to a remote repository.
+command: git push -u origin name_masterbranch
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ ls
+readme.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ cat >> abc
+hello
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ ls
+abc  readme.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git add abc
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git status
+On branch server
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   abc
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git commit -m "file added " abc
+[server 34b0fe6] file added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 abc
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git push
+fatal: The current branch server has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin server
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git push -u origin server
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 473 bytes | 473.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+To github.com:jayapalberyl/training.git
+ * [new branch]      server -> server
+Branch 'server' set up to track remote branch 'server' from 'origin'.
+
+14 git diff command
+
+working dir -> staging area -> local repo -> remote repo
+1. to comapare the file contents between local dir to staging area or local repo to remote repo
+
+* firstly we crate a file by vim editor and write some content after that i create a git repository (staging area)
+* then add the git file in staging area 
+* after that we modify the content in working directory and see the different content in both working area and stagging area
+by diff command and result be like this.
+
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ vim index.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git diff
+diff --git a/index.txt b/index.txt
+index ce9d62d..185a401 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,2 +1,2 @@
+ ist one file is here
+-
++Animals are smart
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git diff index.txt
+diff --git a/index.txt b/index.txt
+index ce9d62d..185a401 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,2 +1,2 @@
+ ist one file is here
+-
+2. to see the difference in file content between working directory and last commit.
+git diff HEAD filename // last commit refered using HEAD
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git diff HEAD index.txt
+diff --git a/index.txt b/index.txt
+index ce9d62d..185a401 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,2 +1,2 @@
+ ist one file is here the gap in the line shows the line does not changed
+-
++Animals are smart
+
+3. to see the difference in file content between staging area & last commit
+
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git diff --staged HEAD index.txt
+diff --git a/index.txt b/index.txt
+index ce9d62d..7bc9bd5 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,2 +1,7 @@
+ ist one file is here
++:i
++:wq
+
++
++
++Animals are smart
+
+
+15 Multi line commit
+multi line commit helps to give multiple lines message when we write command 
+git commit -a
+then nano editor open and we can write multi line commit
+like that:
+
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git commit -a
+[master df77a12] we can push some commit after that we can run this file by this file commands
+ 1 file changed, 31 insertions(+), 1 deletion(-)
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ git log
+commit df77a1286de7b814e7cb8b4d374193b954651226 (HEAD -> master)
+Author: jayapal <jaya.pal@berylsystems.com>
+Date:   Fri Mar 11 11:29:43 2022 +0530
+
+    we can push some commit
+    after that we can run this file by this file commands
+
+16. git reset command
+this command helps to reset the commit but the file content doesnot affected.
+
+before reset status:
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git log --oneline
+b22cf87 (HEAD -> server) 2nd line added
+1673dc5 add new file istone
+2636340 (origin/server) Update abc
+19ec4e9 Update abc
+34b0fe6 file added
+1851222 Add new file
+
+After reset status:
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git reset 1673dc5
+Unstaged changes after reset:
+M	istone.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git log --oneline
+1673dc5 (HEAD -> server) add new file istone
+2636340 (origin/server) Update abc
+19ec4e9 Update abc
+34b0fe6 file added
+1851222 Add new file
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ cat istone.txt
+this is one account
+this is 2nd account
+
+17 git reset idname --hard
+ 
+this command will remove comment + content which you add in fill
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git reset 1673dc5 --hard
+HEAD is now at 1673dc5 add new file istone
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ cat istone.txt
+this is one account
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git status
+On branch server
+Your branch is ahead of 'origin/server' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git log --oneline
+1673dc5 (HEAD -> server) add new file istone
+2636340 (origin/server) Update abc
+19ec4e9 Update abc
+34b0fe6 file added
+1851222 Add new file
+
+18 delete a file in local repository
+
+git rm file_name
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ touch 2nd.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git add 2nd.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git commit -m "new file add"
+[server 079a1e6] new file add
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 2nd.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ ls
+2nd.txt  abc  istone.txt  readme.txt
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git rm 2nd.txt
+rm '2nd.txt'
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ ls
+abc  istone.txt  readme.txt
+
+19 new branch made and switch to it 
+syntax: git branch -b branch name
+
+20 git merge
+
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git merge server
+Already up to date.
+beryl@beryl-To-be-filled-by-O-E-M:~/training$ git branch
+* master
+  server
+  slave
+
+
+
+
+
+
+
+
+
+
+
