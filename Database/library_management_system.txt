@@ -465,5 +465,4 @@ library_management=# select department,count(*) as "No_of_department" from stude
  CSE        |                4
 (1 row)
 
-library_management=# 
 
