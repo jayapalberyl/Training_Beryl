@@ -291,6 +291,16 @@ lms_db=# select rack_num,count(book_code) as "NOOFBOOKS" from lms_book_details g
 (2 rows)
 
 12.Write a query to display book issue number, member name, date or registration, date of expiry, book title, category author, price, date of issue, date of return, actual returned date, issue status, fine amount.
+ book_issue_no | member_name | register_date | expiry_date |  book_title  | category |   author   | price | issue_date | return_date | fine_amount 
+---------------+-------------+---------------+-------------+--------------+----------+------------+-------+------------+-------------+-------------
+             1 | amit        | 2012-02-12    | 2013-02-11  | javaDumm     | Java     | Pauldentel |   575 | 2012-05-01 | 2012-05-16  |           0
+             2 | abdhul      | 2012-04-10    | 2013-04-09  | javaRef      | Java     | Herbertsch |   750 | 2012-05-01 | 2012-05-06  |          50
+             3 | gayan       | 2012-05-13    | 2013-05-12  | LetusC       | C        | yashavant  |   500 | 2012-04-01 | 2012-04-16  |          20
+             4 | radha       | 2012-04-22    | 2013-04-21  | jprogramming | Java     | Pauldentel |   600 | 2012-04-01 | 2012-04-16  |          20
+             5 | guru        | 2012-03-30    | 2013-05-16  | LetusC       | C        | Yashavant  |   500 | 2012-03-30 | 2012-04-15  |          20
+             6 | guru        | 2012-03-30    | 2013-05-16  | LetusC       | C        | Yashavant  |   500 | 2012-04-20 | 2012-05-05  |           0
+             7 | gayan       | 2012-05-13    | 2013-05-12  | LetusC       | C        | yashavant  |   500 | 2012-04-22 | 2012-05-07  |         100
+(7 rows)
 
 13. Write a query to display the book code, title, publish date of the books which is been published in the month of December.
 
