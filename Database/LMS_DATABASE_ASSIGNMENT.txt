@@ -265,6 +265,43 @@ lms_db=# select m1.member_id,m1.member_name,m1.register_date from lms_members m1
  LM006     | mohan       | 2012-04-12
 (1 row)
 
+8.Write a Query to display the member id and member name of the members who has not paid any fine in the year 2012.
+
+9.Write a query to display the date on which the maximum numbers of books were issued and the number of books issued with alias name “NOOFBOOKS”.
+lms_db=# select issue_date,count(*) as "NOOFBOOKS" from lms_book_issue group by issue_date order by count(*) desc limit 1;
+ issue_date | NOOFBOOKS 
+------------+-----------
+ 2012-05-01 |         2
+(1 row)
+
+10.Write a query to list the book title and supplier id for the books authored by “Herbert Schildt" and the book edition is 5 and supplied by supplier ‘S01’.
+
+lms_db=# select book_title,supplier_id from lms_book_details where author='Herbertsch' and book_edition=5 and supplier_id='s01';
+ book_title | supplier_id 
+------------+-------------
+ javaRef    | s01
+(1 row)
+
+11.Write a query to display the rack number and the number of books in each rack with alias name “NOOFBOOKS” and sort by rack number in ascending order.
+lms_db=# select rack_num,count(book_code) as "NOOFBOOKS" from lms_book_details group by rack_num order by rack_num;
+ rack_num | NOOFBOOKS 
+----------+-----------
+ A1       |         6
+ A3       |         4
+(2 rows)
+
+12.Write a query to display book issue number, member name, date or registration, date of expiry, book title, category author, price, date of issue, date of return, actual returned date, issue status, fine amount.
+
+13. Write a query to display the book code, title, publish date of the books which is been published in the month of December.
+
+lms_db=# select book_code,book_title,publish_date from lms_book_details where extract(month from publish_date)=12;
+ book_code |  book_title  | publish_date 
+-----------+--------------+--------------
+ BL000010  | javaDumm     | 1999-12-10
+ BL000005  | jprogramming | 1999-12-10
+ BL000007  | LetusC       | 2010-12-11
+(3 rows)
+
 
 
 
