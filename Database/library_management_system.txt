@@ -451,4 +451,10 @@ library_management=# select b1.author_name,s1.stu_name from book b1 inner join t
  S.Sudarshan       | Luxmi
 (4 rows)
 
+31. fetch details like designation of staff where fine is greater than 50 and staff_name start with Ra.
+library_management=# select s1.designation from staff_details s1 inner join borrower_details b1 on s1.staff_id=b1.staff_id where b1.fine>50 and s1.staff_name like 'Ra%';
+   designation   
+-----------------
+ Generalemployee
+(1 row)
 
