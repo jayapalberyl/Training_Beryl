@@ -1,0 +1,275 @@
+
+
+lms_db=# \dt 
+                List of relations
+ Schema |         Name         | Type  |  Owner   
+--------+----------------------+-------+----------
+ public | lms_book_details     | table | postgres
+ public | lms_book_issue       | table | postgres
+ public | lms_fine_details     | table | postgres
+ public | lms_members          | table | postgres
+ public | lms_supplier_details | table | postgres
+(5 rows)
+
+1. lms_book_details
+book_code |  book_title  | category |   author   |   publication    | publish_date | book_edition | price | rack_num | arrival_date | supplier_id 
+-----------+--------------+----------+------------+------------------+--------------+--------------+-------+----------+--------------+-------------
+ BL000010  | javaDumm     | Java     | Pauldentel | PrenticeHall     | 1999-12-10   |            6 |   575 | A1       | 2011-05-10   | s01
+ BL000002  | javaRef      | Java     | Herbertsch | Tata mcgraw      | 2011-10-10   |            5 |   750 | A1       | 2011-05-10   | s03
+ BL000003  | jprogramming | Java     | Pauldentel | PrenticeHall     | 1999-05-10   |            6 |   600 | A1       | 2012-05-10   | s01
+ BL000004  | javaRef      | Java     | Herbertsch | Tata mcgraw      | 2011-10-10   |            5 |   750 | A1       | 2012-05-11   | s01
+ BL000005  | jprogramming | Java     | Pauldentel | PrenticeHall     | 1999-12-10   |            6 |   600 | A1       | 2012-05-11   | s01
+ BL000006  | javaRef      | Java     | Herbertsch | Tata mcgraw      | 2011-10-10   |            5 |   750 | A1       | 2012-05-12   | s03
+ BL000007  | LetusC       | C        | yashavant  | BPB publications | 2010-12-11   |            9 |   500 | A3       | 2010-11-03   | s03
+ BL000008  | LetusC       | C        | Yashavant  | BPB publications | 2010-05-12   |            9 |   500 | A3       | 2011-08-09   | s04
+ BL000009  | LetusC#      | C        | yashavant  | BPB publications | 2010-05-12   |            9 |   650 | A3       | 2011-08-09   | s04
+ BL000011  | LetusC++     | C        | Yashavant  | BPB publications | 2010-05-12   |            9 |   650 | A3       | 2011-08-09   | s04
+
+2. lms_book_issue
+ms_db=# select * from lms_book_issue;
+ book_issue_no | member_id | book_code | issue_date | return_date | fine_range 
+---------------+-----------+-----------+------------+-------------+------------
+             1 | LM001     | BL000010  | 2012-05-01 | 2012-05-16  | R0
+             2 | LM002     | BL000002  | 2012-05-01 | 2012-05-06  | R2
+             3 | LM003     | BL000007  | 2012-04-01 | 2012-04-16  | R1
+             4 | LM004     | BL000005  | 2012-04-01 | 2012-04-16  | R1
+             5 | LM005     | BL000008  | 2012-03-30 | 2012-04-15  | R1
+             6 | LM005     | BL000008  | 2012-04-20 | 2012-05-05  | R0
+             7 | LM003     | BL000007  | 2012-04-22 | 2012-05-07  | R4
+(7 rows)
+
+3. lms_fine_details
+lms_db=# select * from lms_fine_details;
+ fine_range | fine_amount 
+------------+-------------
+ R0         |           0
+ R1         |          20
+ R2         |          50
+ R3         |          75
+ R4         |         100
+ R5         |         150
+ R6         |         200
+(7 rows)
+
+4. lms_members
+member_id | member_name |   city    | register_date | expiry_date | membership_status 
+-----------+-------------+-----------+---------------+-------------+-------------------
+ LM001     | amit        | chennai   | 2012-02-12    | 2013-02-11  | Temporary
+ LM002     | abdhul      | delhi     | 2012-04-10    | 2013-04-09  | Temporary
+ LM003     | gayan       | chennai   | 2012-05-13    | 2013-05-12  | Permanent
+ LM004     | radha       | chennai   | 2012-04-22    | 2013-04-21  | Temporary
+ LM005     | guru        | bangalore | 2012-03-30    | 2013-05-16  | Temporary
+ LM006     | mohan       | chennai   | 2012-04-12    | 2013-05-16  | Temporary
+(6 rows)
+
+5.lms_supplier_details
+lms_db=# select * from lms_supplier_details;
+ supplier_id | supplier_name |  address   |  contact   |      email      
+-------------+---------------+------------+------------+-----------------
+ s01         | singshopee    | chennai    | 9894123555 | sing@gmail.com
+ s02         | jkstores      | mumbai     | 9940123450 | jks@gmail.com
+ s03         | rose_book     | trivandrum | 9444411222 | rose@gmail.com
+ s04         | kavaristore   | delhi      | 8630001452 | kavi@redif.com
+ s05         | einstenstore  | US         | 9542000001 | eingal@aol.com
+ s06         | akbarstore    | mumbai     | 7855623100 | akbakst@aol.com
+(6 rows)
+
+Questions:
+
+1.Write a query to display the member id, member name, city and membership status who are all having life time membership. Hint: Life time membership status is “Permanent”.
+
+lms_db=# select member_id,member_name,city,membership_status from lms_members where membership_status='Permanent';
+ member_id | member_name |  city   | membership_status 
+-----------+-------------+---------+-------------------
+ LM003     | gayan       | chennai | Permanent
+(1 row)
+2.Write a query to display the member id, member name who have not returned the books.
+lms_db=# select m1.member_id,m1.member_name from lms_members m1  where m1.member_id not in(select b1.member_id from lms_book_issue b1);
+ member_id | member_name 
+-----------+-------------
+ LM006     | mohan
+(1 row)
+
+3.Write a query to display the member id, member name who have taken the book with book code 'BL000002'.
+lms_db=# select m1.member_id,m1.member_name from lms_members m1 inner join lms_book_issue b1 on m1.member_id=b1.member_id where b1.book_code='BL000002';
+ member_id | member_name 
+-----------+-------------
+ LM002     | abdhul
+(1 row)
+4.Write a query to display the book code, book title and author of the books whose author name begins with 'P'.
+lms_db=# select book_code,book_title,author from lms_book_details where author like 'P%';
+ book_code |  book_title  |   author   
+-----------+--------------+------------
+ BL000010  | javaDumm     | Pauldentel
+ BL000003  | jprogramming | Pauldentel
+ BL000005  | jprogramming | Pauldentel
+(3 rows)
+
+5.Write a query to display the total number of Java books available in library with alias name ‘NO_OF_BOOKS’.
+lms_db=# select category,count(*) as NO_OF_BOOKS from lms_book_details where category='Java' group by category;
+ category | no_of_books 
+----------+-------------
+ Java     |           6
+(1 row)
+6.Write a query to display list of categories and Number of books available in library with alias name ‘NO_OF_BOOKS’.
+lms_db=# select category,count(*) as NO_OF_BOOKS from lms_book_details  group by category;
+ category | no_of_books 
+----------+-------------
+ C        |           4
+ Java     |           6
+(2 rows)
+7.Write a query to display the number of books published by "Prentice Hall” with the alias name “NO_OF_BOOKS”.
+lms_db=# select category,count(*) as NO_OF_BOOKS from lms_book_details where publication='PrenticeHall'  group by category;
+ category | no_of_books 
+----------+-------------
+ Java     |           3
+(1 row)
+8.Write a query to display the book code, book title of the books which are issued on the date "1st April 2012".
+lms_db=# select book_code,book_title from lms_book_details where publish_date='2012-01-01';
+ book_code | book_title 
+-----------+------------
+(0 rows)
+
+9.Write a query to display the member id, member name, date of registration and expiry date of the members whose membership expiry date is before APR 2013.
+lms_db=# select member_id,member_name,register_date,membership_status from lms_members where register_date<'2012-03-01';
+ member_id | member_name | register_date | membership_status 
+-----------+-------------+---------------+-------------------
+ LM001     | amit        | 2012-02-12    | Temporary
+(1 row)
+
+10.Write a query to display the member id, member name, date of registration and expiry date of the members whose membership expiry date is before APR 2013.
+lms_db=# select member_id,member_name,register_date,membership_status from lms_members where register_date<'2012-03-01' and membership_status='Temporary';
+ member_id | member_name | register_date | membership_status 
+-----------+-------------+---------------+-------------------
+ LM001     | amit        | 2012-02-12    | Temporary
+(1 row)
+
+11.Write a query to display the member id, member name who’s City is CHENNAI or DELHI. Hint: Display the member name in title case with alias name 'Name'.
+lms_db=#  select member_id,member_name as Name  from lms_members where city='chennai' or city='delhi';
+ member_id |  name  
+-----------+--------
+ LM001     | amit
+ LM002     | abdhul
+ LM003     | gayan
+ LM004     | radha
+ LM006     | mohan
+(5 rows)
+
+12.Write a query to concatenate book title, author and display in the following format.
+Book_Title_is_written_by_Author
+Example: Let Us C_is_written_by_Yashavant Kanetka
+ display unique books. Use “BOOK_WRITTEN_BY” as alias name.
+
+lms_db=# select concat(book_title,'is_written_by',author) as BOOK_WRITTEN_BY from lms_book_details;
+           book_written_by           
+-------------------------------------
+ javaDummis_written_byPauldentel
+ javaRefis_written_byHerbertsch
+ jprogrammingis_written_byPauldentel
+ javaRefis_written_byHerbertsch
+ jprogrammingis_written_byPauldentel
+ javaRefis_written_byHerbertsch
+ LetusCis_written_byyashavant
+ LetusCis_written_byYashavant
+ LetusC#is_written_byyashavant
+ LetusC++is_written_byYashavant
+(10 rows)
+
+13.Write a query to display the average price of books which is belonging to ‘JAVA’ category with alias name “AVERAGEPRICE”.
+lms_db=# select avg(price) as AVERAGEPRICE from lms_book_details where category='Java';
+   averageprice   
+------------------
+ 670.833333333333
+(1 row)
+
+14.Write a query to display the supplier id, supplier name and email of the suppliers who are all having gmail account.
+lms_db=# select supplier_id,supplier_name from lms_supplier_details where email like '%gmail%';
+ supplier_id | supplier_name 
+-------------+---------------
+ s01         | singshopee
+ s02         | jkstores
+ s03         | rose_book
+(3 rows)
+
+15.Write a query to display the supplier id, supplier name and contact details. Contact details can be either phone number or email or address with alias name “CONTACTDETAILS”. If phone number is null then display email, even if email also null then display the address of the supplier. Hint: Use Coalesce function.
+
+16.Write a query to display the supplier id, supplier name and contact. If phone number is null then display ‘No’ else display ‘Yes’ with alias name “PHONENUMAVAILABLE”. Hint: Use NVL2.
+
+Average Questions:
+
+1.Write a query to display the member id, member name of the members, book code and book title of the books taken by them.
+
+lms_db=# select m1.member_id,m1.member_name,b1.book_code,bd1.book_title from lms_members m1 inner join lms_book_issue b1 on m1.member_id=b1.member_id inner join lms_book_details bd1 on b1.book_code=bd1.book_code;
+ member_id | member_name | book_code |  book_title  
+-----------+-------------+-----------+--------------
+ LM001     | amit        | BL000010  | javaDumm
+ LM002     | abdhul      | BL000002  | javaRef
+ LM003     | gayan       | BL000007  | LetusC
+ LM004     | radha       | BL000005  | jprogramming
+ LM005     | guru        | BL000008  | LetusC
+ LM005     | guru        | BL000008  | LetusC
+ LM003     | gayan       | BL000007  | LetusC
+(7 rows)
+
+2.Write a query to display the total number of books available in the library with alias name “NO_OF_BOOKS_AVAILABLE” (Which is not issued). Hint: The issued books details are available in the LMS_BOOK_ISSUE table.
+lms_db=# select bd1.category,count(*) as NO_OF_BOOKS_AVAILABLE from lms_book_details bd1 where bd1.book_code not in(select b1.book_code from lms_book_issue b1) group by bd1.category;
+ category | no_of_books_available 
+----------+-----------------------
+ C        |                     2
+ Java     |                     3
+(2 rows)
+
+3.Write a query to display the member id, member name, fine range and fine amount of the members whose fine amount is less than 100.
+lms_db=# select m1.member_id,m1.member_name,fd.fine_range,fd.fine_amount from lms_members m1 inner join lms_book_issue b1 on m1.member_id=b1.member_id inner join lms_fine_details fd on b1.fine_range=fd.fine_range where fd.fine_amount<100;
+ member_id | member_name | fine_range | fine_amount 
+-----------+-------------+------------+-------------
+ LM001     | amit        | R0         |           0
+ LM002     | abdhul      | R2         |          50
+ LM003     | gayan       | R1         |          20
+ LM004     | radha       | R1         |          20
+ LM005     | guru        | R1         |          20
+ LM005     | guru        | R0         |           0
+(6 rows)
+
+4.Write a query to display the book code, book title and availability status of the ‘JAVA’ books whose edition is "6”. Show the availability status with alias name “AVAILABILITYSTATUS”. Hint: Book availability status can be fetched from “BOOK_ISSUE_STATUS” column of LMS_BOOK_ISSUE table.
+
+lms_db=# select b1.book_code,b1.book_title as "AVAILABILITYSTATUS"  from lms_book_details b1 inner join lms_book_issue b2 on b1.book_code=b2.book_code where b1.category='Java' and b1.book_edition=6;
+ book_code | AVAILABILITYSTATUS 
+-----------+--------------------
+ BL000010  | javaDumm
+ BL000005  | jprogramming
+(2 rows)
+
+5.Write a query to display the book code, book title and rack number of the books which are placed in rack 'A1' and sort by book title in ascending order.
+lms_db=# select book_code,book_title,rack_num from lms_book_details where rack_num like 'A1%' order by book_title;
+ book_code |  book_title  | rack_num 
+-----------+--------------+----------
+ BL000010  | javaDumm     | A1
+ BL000002  | javaRef      | A1
+ BL000004  | javaRef      | A1
+ BL000006  | javaRef      | A1
+ BL000003  | jprogramming | A1
+ BL000005  | jprogramming | A1
+(6 rows)
+
+6.Write a query to display the member id, member name, due date and date returned of the members who has returned the books after the due date. Hint: Date_return is due date and Date_returned is actual book return date.
+lms_db=# select m1.member_id,m1.member_name,m1.expiry_date,b1.return_date from lms_members m1 inner join lms_book_issue b1 on m1.member_id=b1.member_id where b1.return_date=m1.expiry_date;
+ member_id | member_name | expiry_date | return_date 
+-----------+-------------+-------------+-------------
+(0 rows)
+
+7.Write a query to display the member id, member name and date of registration who have not taken any book.
+lms_db=# select m1.member_id,m1.member_name,m1.register_date from lms_members m1 where m1.member_id not in(select b1.member_id from lms_book_issue b1);
+ member_id | member_name | register_date 
+-----------+-------------+---------------
+ LM006     | mohan       | 2012-04-12
+(1 row)
+
+
+
+
+
+
+
+
+
