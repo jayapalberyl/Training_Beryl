@@ -458,3 +458,12 @@ library_management=# select s1.designation from staff_details s1 inner join borr
  Generalemployee
 (1 row)
 
+32 fetch  count of departments as No_of_department from staff_details table 
+library_management=# select department,count(*) as "No_of_department" from student group by department having count(*)>2;
+ department | No_of_department 
+------------+------------------
+ CSE        |                4
+(1 row)
+
+library_management=# 
+
