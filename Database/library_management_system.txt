@@ -429,5 +429,26 @@ library_management=# select s1.staff_name,count(*) from borrower_details b1 inne
  Tarakram   |     2
 (3 rows)
 
+30. fetch details of stu_name ,author_name where gender is male
+library_management=# select b1.author_name,s1.stu_name from book b1 inner join transaction t1 on b1.book_id=t1.book_id inner join student s1 on t1.stu_id=s1.stu_id where s1.gender='M';
+    author_name    | stu_name 
+-------------------+----------
+ S.Sudarshan       | Ahmedali
+ Ravidas           | Ahmedali
+ S.Sudarshan       | Raman
+ R.ksharma         | Prem
+ Yashwant kanetkar | Prem
+ Yashwant kanetkar | Ahmedali
+(6 rows)
+
+31 fetch details of stu_name,author_name where gender is female
+library_management=# select b1.author_name,s1.stu_name from book b1 inner join transaction t1 on b1.book_id=t1.book_id inner join student s1 on t1.stu_id=s1.stu_id where s1.gender='F';
+    author_name    | stu_name 
+-------------------+----------
+ Yashwant kanetkar | Nidhi
+ Ravidas           | Nidhi
+ S.Sudarshan       | Monika
+ S.Sudarshan       | Luxmi
+(4 rows)
 
 
