@@ -496,4 +496,19 @@ library_management=# select borrowed_from,borrowed_to from borrower_details wher
  2002-11-27    | 2002-12-10
 (1 row)
  
+36.Find out list of students where birthday in 2000 year
+library_management=# select stu_name from student where extract(year from date_of_birth)=2000;
+ stu_name 
+----------
+ Nidhi
+ Nisha
+(2 rows)
+
+37.Find out list of students where birthday in october month
+library_management=# select stu_name from student where extract(month from date_of_birth)=10;
+ stu_name 
+----------
+ Ahmedali
+(1 row)
+
 
