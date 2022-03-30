@@ -465,4 +465,27 @@ library_management=# select department,count(*) as "No_of_department" from stude
  CSE        |                4
 (1 row)
 
+33. fetch details of staff_name,ph_no which can issued book but only those book which have borrowed the student from august and returned the same month also 
+library_management=# select distinct s1.staff_name,s1.ph_no from staff_details s1 inner join borrower_details b1 on s1.staff_id=b1.staff_id where extract(month from borrowed_from)=08 and extract(month from borrowed_to)=08;
+ staff_name | ph_no  
+------------+--------
+ Raghunath  | 776655
+ ShyamNath  | 971156
+ TarakHossn | 123453
+ Tarakram   | 123451
+(4 rows)
+ 
+34 find out fine of student whose fine is greater than average fine
+library_management=# select fine from borrower_details where fine <(select avg(fine) from borrower_details);
+ fine 
+------
+   10
+    3
+    4
+    8
+   10
+    5
+    0
+(7 rows)
+
 
