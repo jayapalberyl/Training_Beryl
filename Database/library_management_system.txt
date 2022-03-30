@@ -488,4 +488,12 @@ library_management=# select fine from borrower_details where fine <(select avg(f
     0
 (7 rows)
 
+35. select date of issuing book and till date of issued from 2nd largest fine.
+You are now connected to database "library_management" as user "postgres".
+library_management=# select borrowed_from,borrowed_to from borrower_details where fine in (select fine from borrower_details b1 where 2-1=(select count(distinct fine) from borrower_details b2 where b2.fine>b1.fine));
+ borrowed_from | borrowed_to 
+---------------+-------------
+ 2002-11-27    | 2002-12-10
+(1 row)
+ 
 
