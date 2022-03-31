@@ -1,0 +1,374 @@
+
+ Ruby environment setup:
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.sudo apt update
+2.sudo apt install curl
+3.curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+4.curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+5.curl -sSL https://get.rvm.io | bash -s stable
+6* if user is not add then firstly add user 
+by command:sudo usermod -a -G rvm $USER
+           rvm user gemsets
+then restart the system
+
+7.ruby --version
+
+8.beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+=* ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+9. if you install another ruby version:
+ ->rvm install ruby 2.7.1
+ ->rvm use 2.7.1
+Using /home/beryl/.rvm/gems/ruby-2.7.1
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+=> ruby-2.7.1 [ x86_64 ]
+ * ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby is a scripting language .Its run on variety of platform like windows,Mac os.Ruby is a pure object oriented language 
+Features:
+. Ruby is an open-source and is freely available on the Web, but it is subject to a license.
+. Ruby is a general-purpose, interpreted programming language.
+. Ruby is a true object-oriented programming language.
+. Ruby is a server-side scripting language similar to Python and PERL.
+. Ruby can be used to write Common Gateway Interface (CGI) scripts.
+. Ruby can be embedded into Hypertext Markup Language (HTML).
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Syntax of ruby:
+1. ruby coding can be done in nano editor 
+2. like  nano filename.rb[.rb is the extension of ruby command]
+3. then puts"hello world" [puts in the builtin function for writing any text]
+4. then Ctrl+x then save then exit
+5. If we can see the file then we type ruby filename.rb
+
+BEGIN and AND syntax
+BEGIN{          # this will execute firstly [* comments can be started with # tag]
+puts "msg"
+}
+END {           # this will execute at the end
+puts "msg"
+}
+for example:
+puts "Hello,world"
+BEGIN{
+  puts"Good morning"
+}
+END{
+ puts"My name is Jaya"
+}
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby hello.rb
+Good morning
+Hello,world
+My name is Jaya
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+classes and objects:
+Ruby is a perfect object oriented languages .The features of object oriented language are:
+Encapsulation
+Data abstraction
+Polymorphism
+Inheritance
+Classes and objects
+ 
+class is basically a user defined data types in which we can define memberfunction and data members
+object is the instance of class which help to allocate of memory 
+Inheritance means to reusability of code or to inheriit the properties of one class to another
+Polymorphisms means one name many forms
+data abstraction means hide the background details and show only essentials details.
+encapsulation means binding the properties into one form 
+
+In Ruby class can be defined as 
+class Class_name * class_name always be start with capital letter
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+variables in ruby
+1.local variable:
+local variables are the variable that are defined in a method.Local variables begin with a lowercase letter or _.
+
+2. instance variable:
+Instance variables are available across methods for any particular instance or object.Instance variables are preceded by the 
+at sign (@) followed by the variable name.
+
+3.class variable:
+A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+
+4.Global variable
+If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
+examples:
+global variable
+$var=10
+class Class2
+   def print_global
+     puts"this is the value of global variable#$var"
+   end
+end
+c1=Class2.new
+c1.print_global
+
+Instance variable
+class Customer
+  def initialize(id,name,address)
+   @cust_id=id
+   @cust_name=name
+   @cust_address=address
+  end
+  def display_details()
+   puts "customer id is #@cust_id"
+   puts "customer name is #@cust_name"
+   puts "customer address is #@cust_address"
+  end
+end
+# create objects
+c1=Customer.new("1","john","faridabad")
+c2=Customer.new("2","Ram","palwal")
+
+# call methods
+c1.display_details()
+c2.display_details()
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Customer.rb
+customer id is 1
+customer name is john
+customer address is faridabad
+customer id is 2
+customer name is Ram
+customer address is palwal
+
+class variable:
+class Customesdetails
+ @@no_of_customer=1
+ def initialize(id,name,address)
+ @cust_id=id
+ @cust_name=name
+ @cust_address=address
+ end
+ def display_details()
+  puts"id = #@cust_id"
+  puts"name = #@cust_name"
+  puts"address = #@cust_address"
+ end
+ def total_no_of_customers()
+   @@no_of_customer += 1
+  puts"total customer= #@@no_of_customer"
+ end
+end
+c1=Customesdetails.new("1","jaya","faridabad")
+c2=Customesdetails.new("2","roshini","Delhi")
+c1.display_details()
+c2.display_details()
+c2.total_no_of_customers()
+
+output
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Customesdetails.rb
+id = 1
+name = jaya
+address = faridabad
+id = 2
+name = roshini
+address = Delhi
+total customer= 2
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby Constants
+constant variable can be uppercase only
+
+class First
+ VAR=10
+
+  def show
+  puts "the first value is #{VAR}"
+  end
+end
+c1=First.new
+c1.show
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby First.rb
+the first value is 10
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby Operators
+
+1.Ruby arthimetic operator
+addition        c=a+b
+subtraction     c=a-b
+multiplication  c=a*b
+division        c=a/b
+modulus         c=a%b
+2.Ruby comparision operator
+==,!=,>,<,<=,>=,==
+3.ruby assignment operator
+=,+=,-=,*=,/=,%=
+4.Bitwise operator
+&,|,^,~,<<,>>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby comments
+1.single line comment
+# my name is jaya
+2.multi line comment
+
+puts "Hello, Ruby!"
+=begin
+This is a multiline comment and con spwan as many lines as you
+like. But =begin and =end should come in the first line only. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby If else statement
+x=10
+if x>2
+ puts "x is greater than 2"
+elsif x<=2 and x!=0
+ puts "x is 1"
+else
+ puts "no output"
+end
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Condition.rb
+x is greater than 2
+
+loops 
+1 .times loop
+4.times do
+  puts"Jaya Pal"
+end
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby dot.rb
+Jaya Pal
+Jaya Pal
+Jaya Pal
+Jaya Pal
+ 
+2. while loop
+n=3
+while n<10 do
+  puts n
+  n=n+1
+end
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Whileloop.rb
+3
+4
+5
+6
+7
+8
+9
+
+
+3. For loop
+for i in 0...5 do   # in triple dot it will not consider the last value
+  puts "hello ruby"
+end
+for i in 0..5 do    # in double dot it will consider the last value 
+  puts "hello ruby"
+end
+
+4. a.control of loops
+for i in 1..100
+ puts i
+  if i==10
+    puts "i reached 10 and terminated the loop"
+   break
+  end
+end
+  b. Next statement
+for i in 1..10
+  if i%2!=0
+   puts i
+   next
+  end
+end
+  c.Ruby redo statement
+Restarts this iteration of the most internal loop, without checking loop condition. Restarts yield or call if called within a block.
+for i in 0..5
+   if i < 2 then
+      puts "Value of local variable is #{i}"
+      redo
+   end
+end
+output:-
+Value of local variable is 0
+Value of local variable is 0
+............................
+
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Even.rb
+1
+3
+5
+7
+9
+
+progrqams:
+1.print the table of 18 through for loop
+for i in 1..10
+ result=18*i
+ puts "18 * #{i} = #{result}"
+end
+
+output:-
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Table.rb
+18 * 1 = 18
+18 * 2 = 36
+18 * 3 = 54
+18 * 4 = 72
+18 * 5 = 90
+18 * 6 = 108
+18 * 7 = 126
+18 * 8 = 144
+18 * 9 = 162
+18 * 10 = 180
+
+2. user input for print the sum of number
+sum=0
+puts "Enter n:"
+n=gets.chomp.to_i
+
+for i in 1..n
+   sum+=i
+end
+puts "Sum of 1 to 10 = #{sum}"
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Table.rb
+Enter n:
+5
+Sum of 1 to 10 = 15
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Methods in Ruby:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
