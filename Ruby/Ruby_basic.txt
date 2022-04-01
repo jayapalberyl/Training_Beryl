@@ -309,7 +309,23 @@ beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Even.rb
 5
 7
 9
+ d. When case
+$age=10
+case $age
+when 0 .. 2
+ puts"small child"
+when 2 .. 10
+ puts "child"
+when 10 .. 20
+ puts "adult"
+else
+ puts"no result"
+end
 
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Switch.rb
+child
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 progrqams:
 1.print the table of 18 through for loop
 for i in 1..10
@@ -349,8 +365,32 @@ Sum of 1 to 10 = 15
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Methods in Ruby:
 
+1.class Class_name 
+   def method_name1
+  end
+   def method_name2
+  end
+end
 
+def test
+   i = 100
+   j = 200
+   k = 300
+return i, j, k
+end
+var = test
+puts var
 
+2. variables numbers in parameters
+def sample (*test)
+   puts "The number of parameters is #{test.length}"
+   for i in 0...test.length
+      puts "The parameters are #{test[i]}"
+   end
+end
+sample "Zara", "6", "F"
+sample "Mac", "36", "M", "MCA"
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
