@@ -44,11 +44,11 @@ A String object holds and manipulates an arbitrary sequence of bytes, typically 
 3.0.0 :012 > 
 
 5.string<=> other_string -> -1,0,1 or nil # <=>sign used for comparison
--1 if other_string is smaller.
+1 if other_string is smaller.
 
 0 if the two are equal.
 
-1 if other_string is larger.
+-1 if other_string is larger.
 
 nil if the two are incomparable.
 3.0.0 :012 > 'ram' <=> 'sh'
