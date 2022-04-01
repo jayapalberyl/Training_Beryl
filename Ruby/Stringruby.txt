@@ -1,0 +1,22 @@
+
+ Strings:-
+A String object holds and manipulates an arbitrary sequence of bytes, typically representing characters.
+ Public class methods
+1. ::new
+
+3.0.0 :001 > s=String.new #when argument passed it returns empty string
+ => "" 
+3.0.0 :002 > s=String.new("Que veut dire \u{e7}a?")
+ => "Que veut dire ça?" 
+3.0.0 :003 > s=String.new(encoding:'ASCII') #With keyword encoding, returns a copy of str with the specified encoding:
+ => "" 
+3.0.0 :004 > s=String.new('foo',encoding:'ASCII')
+ => "foo" 
+3.0.0 :005 > String.new(capacity:1) #With keyword capacity, returns a copy of str; the given capacity may set the size of the internal buffer, which may affect performance
+ => "" 
+3.0.0 :006 > String.new(capacity:4096)
+ => "" 
+3.0.0 :007 > String.new('hello',encoding:'UTF-8',capacity:25) # The string, encoding, and capacity arguments may all be used together:
+ => "hello" 
+3.0.0 :008 > 
+
