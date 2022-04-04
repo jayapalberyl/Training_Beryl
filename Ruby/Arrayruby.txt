@@ -1,0 +1,79 @@
+
+
+    Array in Ruby
+An Array is an ordered, integer-indexed collection of objects, called elements. Any object may be an Array element.
+1. creating array
+ 3.0.0 :001 > array=['ram',1,2,3,nil]
+ => ["ram", 1, 2, 3, nil] 
+ 3.0.0 :002 > arr=Array.new
+ => [] 
+
+2.creating multidimensional array
+ 3.0.0 :003 > arr=Array.new(3) {Array.new(3)}
+ => [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]] 
+ 3.0.0 :004 > arr=Array.new(2) {Array.new(2)}
+ => [[nil, nil], [nil, nil]] 
+
+3. find out element in particular index
+3.0.0 :005 > arr=[1,2,3,4,5]
+ => [1, 2, 3, 4, 5] 
+3.0.0 :006 > arr[2]
+ => 3 
+3.0.0 :007 > arr[-2]
+ => 4 
+3.0.0 :008 > arr[2,4]
+ => [3, 4, 5]
+ 3.0.0 :009 > arr.at(0)
+ => 1 
+
+4. finding first and last index
+3.0.0 :010 > arr.first
+ => 1 
+3.0.0 :012 > arr.last
+ => 5 
+
+5.take and drop method
+3.0.0 :013 > arr.take(2)
+ => [1, 2] 
+3.0.0 :014 > arr.drop(2)
+ => [3, 4, 5] 
+3.0.0 :015 > arr
+ => [1, 2, 3, 4, 5] 
+
+6. empty?,length,include? function
+3.0.0 :016 > arr.length
+ => 5 
+3.0.0 :017 > arr.empty?
+ => false 
+3.0.0 :018 > arr.include?('raman')
+ => false 
+
+7.push function
+3.0.0 :019 > arr1=['jaya','monika','prem','kuldeep']
+ => ["jaya", "monika", "prem", "kuldeep"] 
+3.0.0 :020 > arr1.push('sandeep')
+ => ["jaya", "monika", "prem", "kuldeep", "sandeep"] 
+
+8.unshift function() # add element in front of the array
+3.0.0 :022 > arr1.unshift('kamal')
+ => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep"] 
+
+9.<< operator # used to add value at the end of function
+3.0.0 :023 > arr1 << ('kamal')
+ => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep", "kamal"] 
+
+10.array in hashes
+3.0.0 :025 > Array.new(4) {Hash.new}
+ => [{}, {}, {}, {}] 
+
+11.fetch()
+3.0.0 :028 > arr.fetch(2)
+ => 3 
+
+12.insert()
+3.0.0 :029 > a1=[1,2,3,4,5]
+ => [1, 2, 3, 4, 5] 
+3.0.0 :030 > a1.insert(3,"apple")
+ => [1, 2, 3, "apple", 4, 5] 
+3.0.0 :031 > a1.insert(3,"ram","sharma","kunal")
+ => [1, 2, 3, "ram", "sharma", "kunal", "apple", 4, 5] 
