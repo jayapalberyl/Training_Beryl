@@ -48,7 +48,7 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
 3.0.0 :018 > arr.include?('raman')
  => false 
 
-7.push function
+7.push function # it can add the element at the end
 3.0.0 :019 > arr1=['jaya','monika','prem','kuldeep']
  => ["jaya", "monika", "prem", "kuldeep"] 
 3.0.0 :020 > arr1.push('sandeep')
@@ -77,3 +77,44 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
  => [1, 2, 3, "apple", 4, 5] 
 3.0.0 :031 > a1.insert(3,"ram","sharma","kunal")
  => [1, 2, 3, "ram", "sharma", "kunal", "apple", 4, 5] 
+
+13.pop() # it can delete the element at the end
+3.0.0 :004 > array.pop
+ => 9 
+3.0.0 :005 > array
+ => [1, 2, 3, 4, 5, 6, 7, 8] 
+
+14. shift method # used to retrieve and delete value in an array
+3.0.0 :007 > array.shift
+ => 1 
+3.0.0 :008 > array
+ => [2, 3, 4, 5, 6, 7, 8, 10] 
+
+15.delete a value at particular index
+3.0.0 :011 > array.delete_at(5)
+ => 8 
+3.0.0 :012 > array
+ => [3, 4, 5, 6, 7, 10] 
+* to delete anywhere in the list used delete function
+=> [3, 4, 5, 6, 7, 10, 3] 
+3.0.0 :014 > array.delete(3)
+ => 3 
+3.0.0 :015 > array
+
+16.compact method # if you want to delete a nil values in the function
+=> [4, 5, 6, 7, 10, nil, nil]
+3.0.0 :019 > array.compact
+ => [4, 5, 6, 7, 10] 
+
+17.uniq method # used to remove the duplicate methods in an array
+3.0.0 :020 > array.push(5)
+ => [4, 5, 6, 7, 10, nil, nil, 5] 
+3.0.0 :021 > array.uniq
+ => [4, 5, 6, 7, 10, nil] 
+
+18.iterating over array
+3.0.0 :022 > a2=[1,2,3,4]
+ => [1, 2, 3, 4] 
+3.0.0 :023 > a2.each{|a| print a-=10," "}
+-9 -8 -7 -6  => [1, 2, 3, 4] 
+
