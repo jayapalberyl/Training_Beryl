@@ -10,7 +10,6 @@ count=0
       if (n%i==0) 
         count+=1
       end
-      i+=1
     end
 end
 if count>1
