@@ -2,19 +2,25 @@
 
     Array in Ruby
 An Array is an ordered, integer-indexed collection of objects, called elements. Any object may be an Array element.
-1. creating array
  3.0.0 :001 > array=['ram',1,2,3,nil]
  => ["ram", 1, 2, 3, nil] 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. creating array object
+
  3.0.0 :002 > arr=Array.new
  => [] 
 
-2.creating multidimensional array
+ creating multidimensional array
  3.0.0 :003 > arr=Array.new(3) {Array.new(3)}
  => [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]] 
  3.0.0 :004 > arr=Array.new(2) {Array.new(2)}
  => [[nil, nil], [nil, nil]] 
 
-3. find out element in particular index
+if donot assign values in an array its shows null
+3.0.0 :028 > Array.new(10)
+ => [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. find out element in particular index
 3.0.0 :005 > arr=[1,2,3,4,5]
  => [1, 2, 3, 4, 5] 
 3.0.0 :006 > arr[2]
@@ -24,53 +30,62 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
 3.0.0 :008 > arr[2,4]
  => [3, 4, 5]
  3.0.0 :009 > arr.at(0)
- => 1 
+ => 1
+3.0.0 :016 > a=[1,"jaya",2]
+3.0.0 :022 > a[0,2]
+ => [1, "jaya"] 
+3.0.0 :023 > a[0..2]
+ => [1, "jaya", 2] 
+3.0.0 :024 > a[0..4]
+ => [1, "jaya", 2]  
 
-4. finding first and last index
+*at_index
+3.0.0 :045 > a
+ => [1, "jaya", 2] 
+3.0.0 :046 > a.at(1)
+ => "jaya" 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. finding first and last index,take,drop particular element in  array
 3.0.0 :010 > arr.first
  => 1 
 3.0.0 :012 > arr.last
  => 5 
-
-5.take and drop method
 3.0.0 :013 > arr.take(2)
  => [1, 2] 
 3.0.0 :014 > arr.drop(2)
  => [3, 4, 5] 
 3.0.0 :015 > arr
  => [1, 2, 3, 4, 5] 
-
-6. empty?,length,include? function
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. empty?,length,include?,count with for each loop function
 3.0.0 :016 > arr.length
  => 5 
 3.0.0 :017 > arr.empty?
  => false 
 3.0.0 :018 > arr.include?('raman')
  => false 
-
-7.push function # it can add the element at the end
+count particular element by for each loops
+3.0.0 :025 > [0,1,2,3,4,5].count {|element| element > 1}
+ => 4 
+3.0.0 :026 > [0,1,2,3,4,5].count {|element| element > 0.3}
+ => 5 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. adding elements in array methods like:
+push function # it can add the element at the end
 3.0.0 :019 > arr1=['jaya','monika','prem','kuldeep']
  => ["jaya", "monika", "prem", "kuldeep"] 
 3.0.0 :020 > arr1.push('sandeep')
  => ["jaya", "monika", "prem", "kuldeep", "sandeep"] 
 
-8.unshift function() # add element in front of the array
+unshift function() # add element in front of the array
 3.0.0 :022 > arr1.unshift('kamal')
  => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep"] 
 
-9.<< operator # used to add value at the end of function
+<< operator # used to add value at the end of function
 3.0.0 :023 > arr1 << ('kamal')
  => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep", "kamal"] 
 
-10.array in hashes
-3.0.0 :025 > Array.new(4) {Hash.new}
- => [{}, {}, {}, {}] 
-
-11.fetch()
-3.0.0 :028 > arr.fetch(2)
- => 3 
-
-12.insert()
+insert()
 3.0.0 :029 > a1=[1,2,3,4,5]
  => [1, 2, 3, 4, 5] 
 3.0.0 :030 > a1.insert(3,"apple")
@@ -78,19 +93,21 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
 3.0.0 :031 > a1.insert(3,"ram","sharma","kunal")
  => [1, 2, 3, "ram", "sharma", "kunal", "apple", 4, 5] 
 
-13.pop() # it can delete the element at the end
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Removing elements in array methods like:
+pop() # it can delete the element at the end
 3.0.0 :004 > array.pop
  => 9 
 3.0.0 :005 > array
  => [1, 2, 3, 4, 5, 6, 7, 8] 
 
-14. shift method # used to retrieve and delete value in an array
+shift method # used to retrieve and delete value in an array
 3.0.0 :007 > array.shift
  => 1 
 3.0.0 :008 > array
  => [2, 3, 4, 5, 6, 7, 8, 10] 
 
-15.delete a value at particular index
+delete a value at particular index
 3.0.0 :011 > array.delete_at(5)
  => 8 
 3.0.0 :012 > array
@@ -101,24 +118,25 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
  => 3 
 3.0.0 :015 > array
 
-16.compact method # if you want to delete a nil values in the function
+compact method # if you want to delete a nil values in the function
 => [4, 5, 6, 7, 10, nil, nil]
 3.0.0 :019 > array.compact
  => [4, 5, 6, 7, 10] 
 
-17.uniq method # used to remove the duplicate methods in an array
+uniq method # used to remove the duplicate methods in an array
 3.0.0 :020 > array.push(5)
  => [4, 5, 6, 7, 10, nil, nil, 5] 
 3.0.0 :021 > array.uniq
  => [4, 5, 6, 7, 10, nil] 
-
-18.iterating over array
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.iterating over an array methods like:
+iterating over array
 3.0.0 :022 > a2=[1,2,3,4]
  => [1, 2, 3, 4] 
 3.0.0 :023 > a2.each{|a| print a-=10," "}
 -9 -8 -7 -6  => [1, 2, 3, 4] 
 
-19.map method
+map method
 3.0.0 :008 > a=[1,2,3,4,5]
  => [1, 2, 3, 4, 5] 
 3.0.0 :009 > a.map{|a| 2*a}
@@ -127,8 +145,9 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
  => [2, 4, 8, 16, 32] 
 3.0.0 :011 > a.map{|a| a**2}
  => [1, 4, 9, 16, 25] 
-
-20.select,drop,reject methods
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8.Non destructive selection:
+select,drop,reject methods
 3.0.0 :012 > a.select {|a| a>3}
  => [4, 5] 
 3.0.0 :013 > a.reject {|a| a>3}
@@ -137,7 +156,8 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
 3.0.0 :015 > a.drop_while {|a| a<3}
  => [3, 4, 5] 
 
-21.delete_if,keep_if method
+9.destructive selection array methods like:
+ a1.delete_if,a1.keep_if
 3.0.0 :019 > a1=[1,2,3,4,5,6,7,8]
  => [1, 2, 3, 4, 5, 6, 7, 8] 
 3.0.0 :020 > a1.delete_if {|a1| a1<5}
@@ -147,95 +167,22 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
  => [1, 2, 3, 4] 
 3.0.0 :026 > a1.keep_if {|a1| a1<3}
  => [1, 2] 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.
 22.Array indexing
 3.0.0 :038 > a=Array.new(3) {|index| "element #{index}"}
  => ["element 0", "element 1", "element 2"] 
 3.0.0 :039 > a=Array.new(3) {|index| "Jayapal #{index}"}
  => ["Jayapal 0", "Jayapal 1", "Jayapal 2"] 
-
-24.find out the name of array class and elements also
-3.0.0 :034 > Array[1,'a',/^A/]
- => [1, "a", /^A/] 
-3.0.0 :035 > [1,'a',/^A/]
- => [1, "a", /^A/] 
-3.0.0 :036 > a.class
- => Array 
-3.0.0 :037 > a
- => [1, 2, 3, 4, 5] 
-
-25.if donot assign values in an array its shows null
-3.0.0 :028 > Array.new(10)
- => [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil] 
-
-26.Removing duplicate array
-3.0.0 :040 > [0,1,2,3,4]&[1,2,3]
- => [1, 2, 3] 
-3.0.0 :041 > ["jaya","pal"]&["jaya"]
- => ["jaya"] 
-
-27.repeating the array,concatenate array
-3.0.0 :001 > a1=[1,4,5]
- => [1, 4, 5] 
-3.0.0 :002 > a1 * 2
- => [1, 4, 5, 1, 4, 5]
-
-3.0.0 :005 > j=[1,2,3]+[4,5,6]
- => [1, 2, 3, 4, 5, 6] 
-
-28.array - other_array → new_array
-3.0.0 :005 > j=[1,2,3]+[4,5,6]
- => [1, 2, 3, 4, 5, 6] 
-3.0.0 :006 > [0,1,1,2,1,1,3,1,1]-[1]
- => [0, 2, 3] 
-3.0.0 :007 > [0,1,1,2,1,1,3,1,1]-[3,0]
- => [1, 1, 2, 1, 1, 1, 1] 
-3.0.0 :008 > [0,1,1,2,1,1,3,1,1]-[3,0,1]
- => [2] 
-
-29.append value in an array
-3.0.0 :010 > a1
- => [1, 4, 5] 
-3.0.0 :011 > a1 << 4  
- => [1, 4, 5, 4] 
-
-30.comparison operator # <=>
-3.0.0 :012 > [0,1,2] <=>[-1,0,1]
- => 1 
-3.0.0 :013 > [0,1,2] <=>[-1,2,3]
- => 1 
-3.0.0 :014 > [-2,-1,0] <=>[-1,2,3]
- => -1 
-3.0.0 :015 > [-1,2,3] <=>[-1,2,3]
- => 0 
-
-31.array indexing
-3.0.0 :016 > a=[1,"jaya",2]
- => [1, "jaya", 2] 
-3.0.0 :017 > a[0]
- => 1 
-3.0.0 :018 > a[2]
- => 2 
-3.0.0 :019 > a[3]
- => nil 
-3.0.0 :020 > a[-1]
- => 2 
-3.0.0 :021 > a[-2]
- => "jaya" 
-3.0.0 :022 > a[0,2]
- => [1, "jaya"] 
-3.0.0 :023 > a[0..2]
- => [1, "jaya", 2] 
-3.0.0 :024 > a[0..4]
- => [1, "jaya", 2] 
-
-32.for each loop to check conditions
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10.methods for querying:
+for each loop to check conditions
 3.0.0 :035 > [0,1,2,3].all? { |element| element<3}
  => false 
 3.0.0 :037 > [0,1,2,3].all? { |value| value<4}
  => true 
 
-33.any? method # this method return true if any true value is given otherwise return false if any only nil and false value given
+any? method # this method return true if any true value is given otherwise return false if any only nil and false value given
 3.0.0 :038 > [nil,false].any?
  => false 
 3.0.0 :039 > [nil,false,true].any?
@@ -246,38 +193,25 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
  => true 
 3.0.0 :043 > [1,2,3,4].any? {|value| value>5}
  => false 
-
-34.at_index
-3.0.0 :045 > a
- => [1, "jaya", 2] 
-3.0.0 :046 > a.at(1)
- => "jaya" 
-
-35.binary_search[ return only minimum  value which satisfy the condition
-3.0.0 :051 > a.bsearch {|x| x>2}
- => 3 
-3.0.0 :052 > a.bsearch {|x| x>4}
- => nil 
-3.0.0 :053 > a.bsearch {|x| x<4}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. compairing methods like:
+comparison operator # <=>
+3.0.0 :012 > [0,1,2] <=>[-1,0,1]
  => 1 
-3.0.0 :053 > a.bsearch {|x| x<3}
- => nil
+3.0.0 :013 > [0,1,2] <=>[-1,2,3]
+ => 1 
+3.0.0 :014 > [-2,-1,0] <=>[-1,2,3]
+ => -1 
+3.0.0 :015 > [-1,2,3] <=>[-1,2,3]
+ => 0 
 
-36.map method # its same as bsearch but its check every value and return the result
-3.0.0 :055 > a.map {|x| x<4}
- => [true, true, true, false] 
-3.0.0 :056 > a.map {|x| x==4}
- => [false, false, false, true] 
-3.0.0 :057 > a.map {|x| x==1}
- => [true, false, false, false] 
-
-37.to check whether element is present or not
+to check whether element is present or not
 3.0.0 :063 > a.bsearch {|x| 2 <=> x}
  => 2 
 3.0.0 :064 > a.bsearch {|x| 7 <=> x}
  => nil 
 
-38. comparision with map function
+comparision with map function
 3.0.0 :067 > a << -1
  => [1, 2, 3, 4, -1] 
 3.0.0 :068 > a.map {|x| 1<=> x}
@@ -291,16 +225,168 @@ An Array is an ordered, integer-indexed collection of objects, called elements. 
 3.0.0 :072 > a.map {|x| 4<=> x}
  => [1, 1, 1, 0, 1] 
 
-39.clear
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12. methods for fetching:
+=> fetch function return the value of particular index but index function return particular index which we found at.
+3.0.0 :010 > a=[1,2,3,4,5,"jaya"]
+ => [1, 2, 3, 4, 5, "jaya"] 
+3.0.0 :011 > a.fetch(3)
+ => 4 
+3.0.0 :012 > a.first(3)
+ => [1, 2, 3] 
+3.0.0 :013 > a.last(3)
+ => [4, 5, "jaya"] 
+
+* rindex return the index if value have repeated then if i searched the last index value we us rindex
+3.0.0 :030 > a1
+ => [1, 2, 3, 4, 5, 6, 3] 
+3.0.0 :031 > a1.index(3)
+ => 2 
+3.0.0 :032 > a1.rindex(3)
+ => 6 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13. Removing duplicate array
+3.0.0 :040 > [0,1,2,3,4]&[1,2,3]
+ => [1, 2, 3] 
+3.0.0 :041 > ["jaya","pal"]&["jaya"]
+ => ["jaya"] 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14.repeating the array,concatenate array
+3.0.0 :001 > a1=[1,4,5]
+ => [1, 4, 5] 
+3.0.0 :002 > a1 * 2
+ => [1, 4, 5, 1, 4, 5]
+
+3.0.0 :005 > j=[1,2,3]+[4,5,6]
+ => [1, 2, 3, 4, 5, 6] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15. array - other_array → new_array
+3.0.0 :005 > j=[1,2,3]+[4,5,6]
+ => [1, 2, 3, 4, 5, 6] 
+3.0.0 :006 > [0,1,1,2,1,1,3,1,1]-[1]
+ => [0, 2, 3] 
+3.0.0 :007 > [0,1,1,2,1,1,3,1,1]-[3,0]
+ => [1, 1, 2, 1, 1, 1, 1] 
+3.0.0 :008 > [0,1,1,2,1,1,3,1,1]-[3,0,1]
+ => [2] 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16.append value in an array
+3.0.0 :010 > a1
+ => [1, 4, 5] 
+3.0.0 :011 > a1 << 4  
+ => [1, 4, 5, 4] 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17.binary_search[ return only minimum  value which satisfy the condition
+3.0.0 :051 > a.bsearch {|x| x>2}
+ => 3 
+3.0.0 :052 > a.bsearch {|x| x>4}
+ => nil 
+3.0.0 :053 > a.bsearch {|x| x<4}
+ => 1 
+3.0.0 :053 > a.bsearch {|x| x<3}
+ => nil
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+18. clear
 3.0.0 :073 > a
  => [1, 2, 3, 4, -1] 
 3.0.0 :074 > a.clear
  => [] 
 
-40. to know the particular datatypes of array we used 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+19.to know the particular datatypes of array we used 
 3.0.0 :075 > a=[1,2,3,4]
  => [1, 2, 3, 4] 
 3.0.0 :076 > a1=a.map{|element| element.class}
  => [Integer, Integer, Integer, Integer] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+20. combination method
+3.0.0 :006 > a.combination(2) {|values| p values}
+[1, 2]
+[1, 3]
+[1, 4]
+[2, 3]
+[2, 4]
+[3, 4]
+ => [1, 2, 3, 4] 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+21. compact method #return all nill values
+ => [1, 2, 3, 4, nil, nil, 10] 
+3.0.0 :012 > a.compact
+ => [1, 2, 3, 4, 10] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+22. difference(*other_arrays) → new_array # return the values except which i mention that
+3.0.0 :033 > [0,1,2,2,1,1,3,1,1].difference([1])
+ => [0, 2, 2, 3] 
+3.0.0 :034 > [0,1,2,2,1,1,3,1,1].difference([4])
+ => [0, 1, 2, 2, 1, 1, 3, 1, 1] 
+3.0.0 :035 > [0,1,2,2,1,1,3,1,1].difference([2])
+ => [0, 1, 1, 1, 3, 1, 1] 
+
+dig method # return array of array values
+3.0.0 :072 > arr=[1,[1,2,[3,4]]]
+ => [1, [1, 2, [3, 4]]] 
+3.0.0 :073 > a.dig(1)
+ => "a" 
+3.0.0 :074 > arr.dig(1)
+ => [1, 2, [3, 4]] 
+3.0.0 :075 > arr.dig(1,2)
+ => [3, 4] 
+3.0.0 :076 > arr.dig(1,2,0)
+ => 3 
+
+
+drop method delete the particular element at starting but if we drop(0) then it doesnot delete any element
+3.0.0 :036 > a1
+ => [1, 2, 3, 4, 5, 6, 3] 
+3.0.0 :037 > a1.drop(0)
+ => [1, 2, 3, 4, 5, 6, 3] 
+3.0.0 :038 > a1.drop(1)
+ => [2, 3, 4, 5, 6, 3] 
+3.0.0 :039 > a1.drop(2)
+ => [3, 4, 5, 6, 3] 
+
+* drop_while method
+ => [3, 4, 5, 6, 3] 
+3.0.0 :040 > a1.drop_while {|value| value < 4}
+ => [4, 5, 6, 3] 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+23. each loop
+3.0.0 :041 > s1=[:foo,'bar',2,3]
+ => [:foo, "bar", 2, 3] 
+3.0.0 :042 > s1.each {|element| puts "#{element.class}  #{element}"}
+Symbol  foo
+String  bar
+Integer  2
+Integer  3
+ => [:foo, "bar", 2, 3] 
+* to know the index and value 
+
+s1 => [:foo, "bar", 2, 3] 
+3.0.0 :049 > s1.each_index{|index| puts "#{index}  #{s1[index]}"}
+0  foo
+1  bar
+2  2
+3  3
+
+3.0.0 :058 > a1.fetch(50) {|indexvalue|   "value for #{indexvalue}" } # return the same content which i mention in return statement when fetch value is not in the list
+ => "value for 50" 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+24.hash method # Two arrays with the same content will have the same hash code (and will compare using eql?):
+3.0.0 :069 > [0,1,2].hash == [0,1,2].hash
+ => true 
+3.0.0 :070 > [0,1,2].hash == [0,1,6].hash
+ => false 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+25.replace method
 
 
