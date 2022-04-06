@@ -1,0 +1,53 @@
+ 
+   Hash functions in ruby
+A Hash maps each of its unique keys to a specific value.
+A Hash has certain similarities to an Array,but
+An Array index is always an Integer.
+A Hash key can be (almost) any object.
+
+1.creating a Hash function
+3.0.0 :002 > h=Hash.new # create a empty Hash
+ => {} 
+3.0.0 :003 > h=Hash[]
+ => {} 
+3.0.0 :004 > h=Hash[foo:0,bar:1,baz:2] # create a Hash with initial enteries
+ => {:foo=>0, :bar=>1, :baz=>2} 
+
+** The initial default value and initial default proc for the new hash depend on which form above was used.
+3.0.0 :005 > h=Hash.new
+ => {} 
+3.0.0 :006 > h.default
+ => nil 
+3.0.0 :007 > h=Hash.new(false)
+ => {} 
+3.0.0 :008 > h.default
+ => false 
+3.0.0 :009 > h=Hash.new(true)
+ => {} 
+3.0.0 :010 > h.default
+ => true 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Public instance methods
+ hash < other_hash → true or false #Returns true if hash is a proper subset of other_hash, false otherwise 
+** proper subset means if a is a proper subset of b the a have all elements present in b but b has 1 element that has not present in a
+3.0.0 :011 > h1={a:0,b:1}
+ => {:a=>0, :b=>1} 
+3.0.0 :012 > h2={a:0,b:1,c:3}
+ => {:a=>0, :b=>1, :c=>3} 
+3.0.0 :013 > h1<h2
+ => true 
+3.0.0 :014 > h1>h2
+ => false 
+ hash <= other_hash → true or false # return true if h1 Hash is the subset of second Hash otherwise false
+** subset means if a is a subset of b then all elements of a present in b
+3.0.0 :011 > h1={a:0,b:1}
+ => {:a=>0, :b=>1} 
+3.0.0 :012 > h2={a:0,b:1,c:3}
+ => {:a=>0, :b=>1, :c=>3} 
+3.0.0 :013 > h1<=h2
+ => true 
+3.0.0 :014 > h2<=h1
+ => false 
+
