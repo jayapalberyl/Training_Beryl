@@ -152,7 +152,11 @@ select,drop,reject methods
  => [4, 5] 
 3.0.0 :013 > a.reject {|a| a>3}
  => [1, 2, 3] 
- => [1, 2, 3, 4, 5] 
+ => [1, 2, 3, 4, 5]
+3.0.0 :140 > a1=['jaya','pal','jayesh',1,2,3,'jiva']
+ => ["jaya", "pal", "jayesh", 1, 2, 3, "jiva"] 
+3.0.0 :142 > a1.reject{ |value| value.to_s.start_with?('j')}
+ => ["pal", 1, 2, 3]
 3.0.0 :015 > a.drop_while {|a| a<3}
  => [3, 4, 5] 
 
@@ -387,6 +391,205 @@ s1 => [:foo, "bar", 2, 3]
  => false 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-25.replace method
+25. zip() # this method basically add elements in an array format just it is declared in
+3.0.0 :002 > a=[:a0,:a1,:a2,:a3]
+ => [:a0, :a1, :a2, :a3] 
+3.0.0 :003:> b=[:b0,:b1,:b2,:b3]
+ => [:b0, :b1, :b2, :b3] 
+3.0.0 :004:> c=[:c0,:c1,:c2,:c3]
+ => [:c0, :c1, :c2, :c3] 
+3.0.0 :005 > d=a.zip(b,c)
+ => [[:a0, :b0, :c0], [:a1, :b1, :c1], [:a2, :b2, :c2], [:a3, :b3, :c3]] 
 
+** If any array in other_arrays is smaller than self, fills to self.size with nil:
+ 3.0.0 :023 > a
+ => [:a3, :a0, :a1, :a2] 
+3.0.0 :021 > b
+ => [:b0, :b1] 
+3.0.0 :022 > c
+ => [:c0, :c1, :c2] 
+3.0.0 :020 > d=a.zip(b,c)
+ => [[:a3, :b0, :c0], [:a0, :b1, :c1], [:a1, nil, :c2], [:a2, nil, nil]] 
 
+** If any array in other_arrays is larger than self, fills to self.it ignored:
+ => [:b0, :b1, :b2, :b3, :b4] 
+ => [[:a0, :b0, :c0], [:a1, :b1, :c1], [:a2, :b2, :c2]] 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+26. union function
+3.0.0 :025 > a |b |c
+ => [:a3, :a0, :a1, :a2, :b0, :b1, :c0, :c1, :c2] 
+
+** we can union array by union methods also like:
+3.0.0 :026 > [0,1,2,3].union([0,1],[1,2,3,4])
+ => [0, 1, 2, 3, 4] 
+3.0.0 :027 > [0,1,2,3].union([0,11],[1,22,33,4])
+ => [0, 1, 2, 3, 11, 22, 33, 4] 
+3.0.0 :026 > [0,1,2,3].union([0,1],[1,2,3,4])
+ => [0, 1, 2, 3, 4] 
+3.0.0 :027 > [0,1,2,3].union([0,11],[1,22,33,4])
+ => [0, 1, 2, 3, 11, 22, 33, 4] 
+
+** transpose 
+3.0.0 :029 > [0,1,2,3].union([1,3,8,9])
+ => [0, 1, 2, 3, 8, 9] 
+3.0.0 :030 > a=[[1,2,3,4],[2,4,5,6],[1,4,8,9]]
+ => [[1, 2, 3, 4], [2, 4, 5, 6], [1, 4, 8, 9]] 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27. take(n) # its take elements according to user wants 
+3.0.0 :039 > a=[2,3,4,5,6]
+ => [2, 3, 4, 5, 6] 
+3.0.0 :040 > a.take(1)
+ => [2] 
+3.0.0 :041 > a.take(56)
+ => [2, 3, 4, 5, 6] 
+3.0.0 :042 > a.take(5)
+ => [2, 3, 4, 5, 6] 
+
+** take_while
+3.0.0 :044 > a.take_while{|element| element<3}
+ => [2] 
+3.0.0 :045 > a.take_while{|element| element<5}
+ => [2, 3, 4] 
+
+** slice method  # it does not return result if we enter negative index
+3.0.0 :065 > a1=['jayapal','pal',1,2,3,'w','e']
+ => ["jayapal", "pal", 1, 2, 3, "w", "e"] 
+3.0.0 :066 > a1.slice(0..2)
+ => ["jayapal", "pal", 1] 
+3.0.0 :080 > a1.slice(-1..2)
+ => [] 
+3.0.0 :081 > a1.slice(1..2)
+ => ["pal", 1] 
+
+** shuffle method
+3.0.0 :084 > a1.shuffle
+ => [1, 2, "w", "pal", "jayapal", 3, "e"] 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+28.sum() # its sum of the array 
+3.0.0 :050 > b=[1,2,3,4,5]
+ => [1, 2, 3, 4, 5] 
+3.0.0 :051 > b.sum
+ => 15 
+3.0.0 :052 > b.sum(100)
+ => 115 
+
+sum by for each loop:-
+3.0.0 :055 > s=b.sum{ |element| element.to_i}
+ => 15 
+
+** sort method
+3.0.0 :057 > a=[2,3,1,2,5,4,3]
+ => [2, 3, 1, 2, 5, 4, 3] 
+3.0.0 :058 > a.sort
+ => [1, 2, 2, 3, 3, 4, 5] 
+
+* sort according to size of array by sory_by method:
+3.0.0 :064 > a.sort_by{|element| element.size}
+ => ["c", "bb", "dd", "aaa"] 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+29. select method
+ Particular method can be select 
+3.0.0 :092 > arr1.select{|element| element.to_s.start_with?('b')}
+ => [:bar]
+
+** rotate method
+When no argument given, rotates the first element to the last position:
+3.0.0 :107 > j1=[1,2,3,4]
+ => [1, 2, 3, 4] 
+3.0.0 :108 > j1.rotate
+ => [2, 3, 4, 1] 
+
+When given a non-negative Integer count, rotates count elements from the beginning to the end:
+ [1, 2, 3, 4] 
+3.0.0 :109 > j1.rotate(2)
+ => [3, 4, 1, 2] 
+3.0.0 :110 > j1.rotate(3)
+ => [4, 1, 2, 3] 
+3.0.0 :111 > j1.rotate(1)
+ => [2, 3, 4, 1] 
+3.0.0 :112 > j1.rotate(4)
+ => [1, 2, 3, 4] 
+
+When given a negative Integer count, rotates in the opposite direction, from end to beginning
+ [1, 2, 3, 4] 
+3.0.0 :113 > j1.rotate(-1)
+ => [4, 1, 2, 3] 
+3.0.0 :114 > j1.rotate(-3)
+ => [2, 3, 4, 1] 
+
+** reverse method # it reverse the elements in reverse order
+3.0.0 :116 > j1
+ => [1, 2, 3, 4] 
+3.0.0 :117 > j1.reverse
+ => [4, 3, 2, 1] 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30.combination : make a combination of element according to user requirements but it cannot use the same element more than 1 time ** No. of combination = (n+1)*(n+2)/2
+
+=>name=["jaya", "monika", "charu", 1, 2]
+3.0.0 :128 > name.combination(2){ |values| puts"#{values}"} # n=2 the (2+1)*(2+2)/ 2 = 6combinations
+["jaya", "monika"]
+["jaya", "charu"]
+["jaya", 1]
+["monika", "charu"]
+["monika", 1]
+["charu", 1]
+["charu", 2]
+[1, 2]
+
+* permutation: make combiantions of elements according to user requirements but it cacnot use the same element more than 1 time ** No of permutation= size**n
+=>name=["jaya", "monika", "charu", 1, 2]
+3.0.0 :139 > name.permutation(2){ |values| puts"#{values}"}
+["jaya", "monika"]
+["jaya", "charu"]
+["jaya", 1]
+["jaya", 2]
+["monika", "jaya"]
+["monika", "charu"]
+["monika", 1]
+["monika", 2]
+["charu", "jaya"]
+["charu", "monika"]
+["charu", 1]
+["charu", 2]
+[1, "jaya"]
+[1, "monika"]
+[1, "charu"]
+[1, 2]
+[2, "jaya"]
+[2, "monika"]
+[2, "charu"]
+[2, 1]
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+31.max,min,minmax methods 
+* max method
+
+3.0.0 :144 > a=[1,2,3,4,5]
+3.0.0 :145 > a.max
+ => 5 
+3.0.0 :149 > a.max(3)
+ => [5, 4, 3] 
+3.0.0 :150 > a.max(4)
+ => [5, 4, 3, 2] 
+3.0.0 :151 > a.max(2)
+ => [5, 4] 
+* min method
+
+3.0.0 :152 > a=[1,2,3,4,5,1,3,6]
+ => [1, 2, 3, 4, 5, 1, 3, 6] 
+3.0.0 :153 > a.min
+ => 1 
+3.0.0 :154 > a.min(3)
+ => [1, 1, 2] 
+3.0.0 :155 > a.min(5)
+ => [1, 1, 2, 3, 3] 
+* minmax method
+
+ => [1, 2, 3, 4, 5, 1, 3, 6] 
+3.0.0 :157 > a.minmax
+ => [1, 6] 
