@@ -340,3 +340,31 @@ fetch values
 2
 3
 
+* each_pair method
+=> {:aman=>0, :himani=>1, :jaya=>2, :shrikant=>3} 
+3.0.0 :006 > a1.each_pair{|key,value| puts " THE KEY VALUE PAIR IS: #{key}=>#{va
+lue}"}
+ THE KEY VALUE PAIR IS: aman=>0
+ THE KEY VALUE PAIR IS: himani=>1
+ THE KEY VALUE PAIR IS: jaya=>2
+ THE KEY VALUE PAIR IS: shrikant=>3
+
+3.0.0 :007 > a1.each_key{|key| puts " THE KEYS  IS: #{key}"}
+ THE KEYS  IS: aman
+ THE KEYS  IS: himani
+ THE KEYS  IS: jaya
+ THE KEYS  IS: shrikant
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13.dig method # its shows the result in nested objects in hash function
+3.0.0 :008 > d1={foo: {bar: {baz: 2}}}
+ => {:foo=>{:bar=>{:baz=>2}}} 
+3.0.0 :009 > d1.dig(:foo)
+ => {:bar=>{:baz=>2}} 
+3.0.0 :010 > d1.dig(:foo,:bar)
+ => {:baz=>2} 
+3.0.0 :011 > d1.dig(:foo,:bar,:baz)
+ => 2 
+3.0.0 :012 > d1.dig(:foo,:bar,:Baz)
+ => nil 
+
+
