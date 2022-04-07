@@ -238,6 +238,7 @@ transform_values{|value| function}
 3.0.0 :052 > a1
 
 ** select method 
+[if any hash value have nil content then if we can select anything it shows error]
 3.0.0 :055 > a2.select{|key,value| key.start_with?('as')}
  => {} 
 3.0.0 :056 > a2.select{|key,value| key.start_with?('s')}
@@ -367,4 +368,10 @@ lue}"}
 3.0.0 :012 > d1.dig(:foo,:bar,:Baz)
  => nil 
 
+** delete method
+=> {:aman=>0, :himani=>1, :jaya=>2, :shrikant=>3} 
+3.0.0 :015 > a1.delete(:himani)
+ => 1 
+3.0.0 :016 > a1.delete_if{|key,value| value>2}
+ => {:aman=>0, :jaya=>2} 
 
