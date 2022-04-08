@@ -1,2 +1,128 @@
    
- DateTime methods
+ Date methods:
+ 
+ date provides 2 classes: Date and dateTime
+A Date object is created with Date::new, Date::jd, Date::ordinal, Date::commercial, Date::parse, Date::strptime, Date::today, Time#to_date, etc.
+
+date methods
+
+3.0.0 :002 > require 'date'
+ => true 
+3.0.0 :003 > Date.new(1999-1-18) [its created object]
+ => #<Date: 1980-01-01 ((2444240j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :004 > Date.jd(2444240) [with the help of jd we can know the actual date
+ => #<Date: 1980-01-01 ((2444240j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :005 > Date.ordinal(2002,87) [ordinal function return the date by calculating the monthwise dates like if we know after 40 days of 2001 what date can be found it calculates 31+09=40 then it returns 9th feb 2001]
+=> #<Date: 2002-03-28 ((2452362j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :006 > Date.commercial(2022,5,6) [its return the date 5 shows the week and 6 shows the day then its calculated this ]
+ => #<Date: 2022-02-05 ((2459616j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :007 > Date.parse('2022-01-03')
+ => #<Date: 2022-01-03 ((2459583j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :008 > Date.strptime('03-02-2011','%d-%m-%Y') [ its return the date in proper date format ]
+ => #<Date: 2011-02-03 ((2455596j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :009 > Time.new(2022,9,3).to_date [ its convert the date format]
+ => #<Date: 2022-09-03 ((2459826j,0s,0n),+0s,2299161j)> 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Date objects methods:
+
+3.0.0 :010 > d=Date.parse('2nd april 2022')
+ => #<Date: 2022-04-02 ((2459672j,0s,0n),+0s,2299161j)> 
+3.0.0 :011 > d.year
+ => 2022 
+3.0.0 :012 > d.mon
+ => 4 
+3.0.0 :013 > d.mday [mday stands for month day]
+ => 2 
+3.0.0 :014 > d.wday [wday stands for week day]
+ => 6 
+3.0.0 :015 > d=d+1
+ => #<Date: 2022-04-03 ((2459673j,0s,0n),+0s,2299161j)> 
+3.0.0 :016 > d.mday
+ => 3 
+3.0.0 :017 > d.strftime('%a %d %b %Y')
+ => "Sun 03 Apr 2022" 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ ** _Parse the given representation of date and time, and returns a hash of parsed elements.
+
+3.0.0 :019 > Date._parse('2000-09-10')
+ => {:year=>2000, :mon=>9, :mday=>10} 
+
+ ** _strptime Parses the given representation of date and time with the given template, and returns a hash of parsed elements.
+3.0.0 :021 > Date._strptime('2000-09-10','%Y-%m-%d')
+ => {:year=>2000, :mon=>9, :mday=>10} 
+
+ ** gregorian_leap?(year) → bool[Returns true if the given year is a leap year of the proleptic Gregorian calendar]
+ 3.0.0 :023 > Date.gregorian_leap?(1999)
+ => false 
+3.0.0 :024 > Date.gregorian_leap?(2002)
+ => false 
+3.0.0 :025 > Date.gregorian_leap?(2004)
+ => true 
+
+ ** julian_leap?(year) → bool[Returns true if the given year is a leap year of the proleptic Julian calendar]
+3.0.0 :028 > Date.julian_leap?(2000)
+ => true 
+3.0.0 :029 > Date.julian_leap?(1990)
+ => false 
+
+ ** Date.valid_date?()
+3.0.0 :033 > Date.valid_date?(2000,9,111)
+ => false 
+3.0.0 :034 > Date.valid_date?(2000,9,11)
+ => true 
+
+ ** Date.today
+3.0.0 :035 > Date.today
+ => #<Date: 2022-04-08 ((2459678j,0s,0n),+0s,2299161j)> 
+
+ ** Date.commercial_date?()
+3.0.0 :038 > Date.valid_commercial?(2000,5,14)
+ => false 
+
+ ** Date.valid_ordinal?()
+3.0.0 :039 > Date.valid_ordinal?(2000,367)
+ => false 
+3.0.0 :040 > Date.valid_ordinal?(2000,366)
+ => true 
+
+ ** xmlschema creates a new Date object by parsing from a string according to some typical XML Schema formats.
+3.0.0 :041 > Date.xmlschema('1999-01-18')
+ => #<Date: 1999-01-18 ((2451197j,0s,0n),+0s,2299161j)>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Public instance methods
+
+3.0.0 :055 > m=Date.parse('19 dec 2022')
+ => #<Date: 2022-12-19 ((2459933j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :056 > m
+ => #<Date: 2022-12-19 ((2459933j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :057 > m+=2
+ => #<Date: 2022-12-21 ((2459935j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :058 > m-=9
+ => #<Date: 2022-12-12 ((2459926j,0s,0n),+0s,2299161j)>
+
+d << n → date
+3.0.0 :063 > Date.new(1999,10,18) << 1
+ => #<Date: 1999-09-18 ((2451440j,0s,0n),+0s,2299161j)> 
+3.0.0 :064 > Date.new(1999,1,18) << 1
+ => #<Date: 1998-12-18 ((2451166j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :065 > Date.new(1999,1,18) << 1 << 2
+ => #<Date: 1998-10-18 ((2451105j,0s,0n),+0s,2299161j)> 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+comparison functions
+-1,0,1
+
+
+
