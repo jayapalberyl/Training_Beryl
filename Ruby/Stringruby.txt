@@ -343,4 +343,8 @@ h e l l o  => "hello"
 3.0.0 :069 > 'hello'.split(//)
  => ["h", "e", "l", "l", "o"] 
 
-
+41.upcase and downcase method
+3.0.0 :020 > "aeiou".upcase
+ => "AEIOU" 
+3.0.0 :021 > "AEIOU".downcase
+ => "aeiou" 
