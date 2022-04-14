@@ -104,9 +104,10 @@ library_management=# select * from issue_details;
         105 |      10 | 2022-02-11 | 2022-02-20  |    10001
         101 |      11 | 2022-03-27 | 2022-04-10  |    10001
         104 |      12 | 2021-02-12 | 2021-02-27  |    10002
-        102 |      15 | 2021-04-21 | 2021-05-10  |    10006
         104 |      15 | 2020-08-17 | 2020-09-01  |    10006
-(7 rows)
+        102 |      15 | 2021-04-21 | 2021-05-10  |    10006
+        101 |      15 | 2022-01-10 | 2022-02-01  |    10004
+(8 rows)
 
 
 ----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
@@ -604,7 +605,7 @@ library_management=# select staff_name from staff_details where staff_id in (sel
  Rimal
 (3 rows)
 
-50. fetch studentname,stafffname,bookname from library database and bookname=accountancy
+50. fetch studentname,stafffname,bookname from library database and bookname=accountancy.
 library_management=# select distinct s1.staff_name,b1.book_name,s11.student_name from staff_details s1 inner join issue_details i1 on s1.staff_id=i1.staff_id inner join book b1 on i1.book_id=b1.book_id inner join student s11 on i1.student_id=s11.student_id where b1.book_name='Accountancy';
  staff_name |  book_name  | student_name 
 ------------+-------------+--------------
