@@ -555,4 +555,18 @@ library_management=# select student_name,student_id from student where student_i
  keshav       |        105
 (2 rows)
 
+45.fetch student_name,department_name,staff_name which have issued for largest interval of time 
+library_management=# select s1.student_name,d1.department_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where i1.date_return-i1.date_issue=(select max(date_return-date_issue) from issue_details);
+ student_name | department_name | staff_name 
+--------------+-----------------+------------
+ akshay       | IT_department   | Rimal
+(1 row)
+
+46.fetch student_name,department_name,staff_name which have issued for smallest interval of time 
+library_management=# select s1.student_name,d1.department_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where i1.date_return-i1.date_issue=(select min(date_return-date_issue) from issue_details);
+ student_name | department_name | staff_name 
+--------------+-----------------+------------
+ keshav       | Math            | latif
+(1 row)
+
 
