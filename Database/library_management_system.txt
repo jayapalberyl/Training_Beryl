@@ -540,4 +540,19 @@ library_management=# select distinct d1.department_name,s1.student_name from dep
  Math            | keshav
 (4 rows)
 
+43.find the student name and student_id who have return books in march month
+library_management=# select student_name,student_id from student where student_id in (select student_id from issue_details where extract(month from date_return)=04);
+ student_name | student_id 
+--------------+------------
+ akash        |        101
+(1 row)
+
+44.find the student name and student_id who have return books in 2022 year
+library_management=# select student_name,student_id from student where student_id in (select student_id from issue_details where extract(year from date_issue)=2022);
+ student_name | student_id 
+--------------+------------
+ akash        |        101
+ keshav       |        105
+(2 rows)
+
 
