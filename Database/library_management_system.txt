@@ -502,5 +502,12 @@ library_management=# select distinct s1.student_name from student s1 inner join 
 --------------
  akshita
 (1 row)
+39.fetch student_name who have issue book in the month of march
+You are now connected to database "library_management" as user "postgres".
+library_management=# select student_name from student where student_id in (select student_id from issue_details where extract(month from date_issue)=03);
+ student_name 
+--------------
+ akash
+(1 row)
 
 
