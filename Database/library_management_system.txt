@@ -509,5 +509,13 @@ library_management=# select student_name from student where student_id in (selec
 --------------
  akash
 (1 row)
+40. fetch name who have issue book less than 1 year of current date .
+library_management=#  select student_name from student where student_id in (select student_id from issue_details where extract(year from age(CURRENT_DATE,date_issue))<1);
+ student_name 
+--------------
+ akash
+ akshay
+ keshav
+(3 rows)
 
 
