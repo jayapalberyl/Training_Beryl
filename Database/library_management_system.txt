@@ -7,27 +7,35 @@ Type "help" for help.
 postgres=#create database library_management;
 
 postgres=# \c library_management
+library_management=# \dt
+             List of relations
+ Schema |     Name      | Type  |  Owner   
+--------+---------------+-------+----------
+ public | book          | table | postgres
+ public | department    | table | postgres
+ public | issue_details | table | postgres
+ public | staff_details | table | postgres
+ public | student       | table | postgres
+(5 rows)
+
 
 1.student table
-jit=# create table student(stu_id varchar(10) primary key,stu_name varchar(10),gender char,date_of_birth date,ph_no int,department varchar(10));
+jit=# create table student(student_id int  primary key,student_name varchar(15),gender varchar(5),department_id varchar(10));
 CREATE TABLE
 jit=# insert into student(stu_id,stu_name,gender,date_of_birth,ph_no,department)values('1323059','Ahmedali','M','05-10-1995','121345',1,'CSE');
 INSERT 0 1
 
 library_management=# select * from student;
- stu_id  | stu_name | gender | date_of_birth | ph_no  | department 
----------+----------+--------+---------------+--------+------------
- 1323059 | Ahmedali | M      | 1995-10-05    | 121345 | CSE
- 1323060 | Raman    | M      | 1996-11-10    |  12987 | CSE
- 1323061 | Nidhi    | F      | 2000-01-12    | 998760 | Civil
- 1323062 | Nisha    | F      | 2000-08-11    | 998723 | Arts
- 1323063 | Nishant  | M      | 1996-05-06    | 798202 | Electrical
- 1323064 | Monika   | F      | 2003-07-08    | 234232 | Civil
- 1323065 | Prem     | M      | 1999-02-10    | 897635 | Electrical
- 1323066 | Riyaan   | M      | 1999-11-10    | 711908 | CSE
- 1323067 | Pratush  | M      | 2003-07-28    | 889076 | CSE
- 1323068 | Luxmi    | F      | 1998-01-17    | 971136 | Arts
-(10 rows)
+ library_management=# select * from student;
+ student_id | student_name | gender | department_id 
+------------+--------------+--------+---------------
+        101 | akash        | male   |           200
+        102 | akshay       | male   |           201
+        103 | rani         | f      |           202
+        104 | akshita      | f      |           205
+        105 | keshav       | male   |           204
+        106 | kamal        | male   |           203
+(6 rows)
 
 
 2. staff_details table:
@@ -35,86 +43,59 @@ library_management=# select * from student;
 library_management=# insert into staff_details(staff_id,staff_name,ph_no,designation)values(1,'TarakHossn','123451','Lib_manager'),(2,'Md.Goyal','876123','Lib_clerk'),(3,'ShyamNath','971156','Lib_manager'),(4,'Tarakram','123451','Lib_manager'),(5,'ShreeNath','789567','Lib_clerk'),(6,'Ramkishan','880097','Generalemployee'),(7,'Raghunath','776655','Generalemployee'),(8,'Ravinath','908765','Generalemployee');
 INSERT 0 8
 library_management=# select * from staff_details;
- staff_id | staff_name | ph_no  |   designation   
-----------+------------+--------+-----------------
-        1 | TarakHossn | 123453 | Lib_manager
-        2 | Md.Goyal   | 876123 | Lib_clerk
-        3 | ShyamNath  | 971156 | Lib_manager
-        4 | Tarakram   | 123451 | Lib_manager
-        5 | ShreeNath  | 789567 | Lib_clerk
-        6 | Ramkishan  | 880097 | Generalemployee
-        7 | Raghunath  | 776655 | Generalemployee
-        8 | Ravinath   | 908765 | Generalemployee
-(8 rows)
-
-
-
-
-3. Book table
-library_management=# create table Book(book_id int primary key,author_name text, No_of_copies int,Title text);
-CREATE TABLE
-library_management=# alter table book add column publish_date date;
-ALTER TABLE
-library_management=# insert into Book(book_id,author_name,No_of_copies,Title,publish_date)values('001','S.Sudarshan',50,'Dbms','19-mar-1981'),('002','John-Milton',89,'English','23-dec-2002'),('003','S.Sudarshan',20,'English-Poem','09-mar-1970'),('004','Ravidas',20,'Hindistories','1970-03-09'),('005','R.ksharma',70,'Businessstd','19-mar-2000'),('006','Yashwant kanetkar',10,'Let us C','1999-01-17');
-INSERT 0 6
-library_management=# select * from book;
- book_id |    author_name    | no_of_copies |    title     | publish_date 
----------+-------------------+--------------+--------------+--------------
-       1 | S.Sudarshan       |           50 | Dbms         | 1981-03-19
-       2 | John-Milton       |           89 | English      | 2002-12-23
-       3 | S.Sudarshan       |           20 | English-Poem | 1970-03-09
-       4 | Ravidas           |           20 | Hindistories | 1970-03-09
-       5 | R.ksharma         |           70 | Businessstd  | 2000-03-19
-       6 | Yashwant kanetkar |           10 | Let us C     | 1999-01-17
+ staff_id | staff_name | gender | department_id 
+----------+------------+--------+---------------
+    10001 | latif      | M      |           200
+    10002 | irfan      | M      |           200
+    10003 | kiran      | F      |           201
+    10004 | karishma   | F      |           202
+    10005 | Ravi       | M      |           205
+    10006 | Rimal      | M      |           204
 (6 rows)
 
 
-4. Borrower_Details
-library_management=# create table borrower_details(staff_id int references staff_details(staff_id),borrowed_from date,borrowed_to date,fine int,stu_id varchar(10) references student(stu_id));
-CREATE TABLE
+3. book table:-
+library_management=# select * from book;
+ book_id |   book_name   | isbn |  authorname   | bookedition 
+---------+---------------+------+---------------+-------------
+      10 | Dbms          | 1211 | Shrikant      | first
+      11 | Datastructre  | 1000 | Susheelgoyel  | first
+      12 | Accountancy   | 1290 | Rakesh singla | first
+      13 | Business std  | 1790 | Rakesh singla | Second
+      14 | Datawarehouse | 1390 | Ramkrishan    | Third
+      15 | C             | 1980 | Yashwant      | second
+(6 rows)
+
+4. department table
+
+library_management=# select * from department;
+ department_id | department_name | student_id 
+---------------+-----------------+------------
+           200 | CS_department   |        101
+           201 | IT_department   |        102
+           202 | Physics         |        103
+           203 | Chemistry       |        106
+           204 | Math            |        105
+           205 | Commerce        |        104
+(6 rows)
 
 
-library_management=#insert into borrower_details(staff_id,borrowed_from,borrowed_to,fine,stu_id)values(1,'2000-08-07','2000-08-15',10,1323059),(4,'2000-05-19','2000-05-26',5,1323060),(1,'2000-01-17','2000-01-21',0,1323064),(6,'2001-06-07','2001-09-15',90,1323059),(3,'2002-08-01','2002-08-15',29,1323061),(3,'2002-11-27','2002-12-10',40,1323060);
-
-INSERT 0 6
-library_management=# select * from borrower_details;
- staff_id | borrowed_from | borrowed_to | fine | stu_id  
-----------+---------------+-------------+------+---------
-        1 | 2000-08-07    | 2000-08-15  |   10 | 1323059
-        4 | 2000-05-19    | 2000-05-26  |    5 | 1323060
-        1 | 2000-01-17    | 2000-01-21  |    0 | 1323064
-        6 | 2001-06-07    | 2001-09-15  |   90 | 1323059
-        3 | 2002-08-01    | 2002-08-15  |   29 | 1323061
-        3 | 2002-11-27    | 2002-12-10  |   40 | 1323060
-        2 | 2001-09-10    | 2001-09-17  |    0 | 1323065
-        5 | 2000-05-09    | 2000-05-26  |   15 | 1323065
-        5 | 2000-01-11    | 2000-01-21  |   20 | 1323066
-        1 | 2002-07-07    | 2002-09-30  |   90 | 1323066
-        1 | 2002-08-01    | 2002-08-15  |   29 | 1323064
-        6 | 2000-12-18    | 2000-12-31  |   23 | 1323064
-(12 rows)
-
-
-5. Transaction_details
+5. issue_details table:-
 library_management=# create table transaction(stu_id varchar(10) references student(stu_id),book_id int references book(book_id));
 CREATE TABLE
 library_management=# insert into transaction(stu_id,book_id)values('1323059',001),('1323059',004),('1323060',001),('1323061',006),('1323061',004),('1323064',001),('1323065',005),('1323065',006),('1323059',006),('1323068',001);
 INSERT 0 10
-library_management=# select * from transaction;
- stu_id  | book_id 
----------+---------
- 1323059 |       1
- 1323059 |       4
- 1323060 |       1
- 1323061 |       6
- 1323061 |       4
- 1323064 |       1
- 1323065 |       5
- 1323065 |       6
- 1323059 |       6
- 1323068 |       1
-(10 rows)
-
+library_management=# select * from issue_details;
+ student_id | book_id | date_issue | date_return | staff_id 
+------------+---------+------------+-------------+----------
+        101 |      10 | 2021-01-10 | 2021-01-20  |    10001
+        102 |      11 | 2021-01-10 | 2021-01-20  |    10004
+        105 |      10 | 2022-02-11 | 2022-02-20  |    10001
+        101 |      11 | 2022-03-27 | 2022-04-10  |    10001
+        104 |      12 | 2021-02-12 | 2021-02-27  |    10002
+        102 |      15 | 2021-04-21 | 2020-09-01  |    10006
+        104 |      15 | 2020-08-17 | 2020-09-01  |    10006
+(7 rows)
 
 
 ----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
