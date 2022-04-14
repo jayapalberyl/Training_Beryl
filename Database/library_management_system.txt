@@ -20,9 +20,9 @@ library_management=# \dt
 
 
 1.student table
-jit=# create table student(student_id int  primary key,student_name varchar(15),gender varchar(5),department_id varchar(10));
+library_management=# create table student(student_id int  primary key,student_name varchar(15),gender varchar(5),department_id varchar(10));
 CREATE TABLE
-jit=# insert into student(stu_id,stu_name,gender,date_of_birth,ph_no,department)values('1323059','Ahmedali','M','05-10-1995','121345',1,'CSE');
+library_management=# insert into student(student_id,student_name,gender,department_id)values(101,'akash','male',200);
 INSERT 0 1
 
 library_management=# select * from student;
@@ -39,9 +39,11 @@ library_management=# select * from student;
 
 
 2. staff_details table:
+library_management=# create table staff_details(staff_id int  primary key,staff_name varchar(15),gender varchar(5),department_id varchar(10));
+CREATE TABLE
 
-library_management=# insert into staff_details(staff_id,staff_name,ph_no,designation)values(1,'TarakHossn','123451','Lib_manager'),(2,'Md.Goyal','876123','Lib_clerk'),(3,'ShyamNath','971156','Lib_manager'),(4,'Tarakram','123451','Lib_manager'),(5,'ShreeNath','789567','Lib_clerk'),(6,'Ramkishan','880097','Generalemployee'),(7,'Raghunath','776655','Generalemployee'),(8,'Ravinath','908765','Generalemployee');
-INSERT 0 8
+library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10001,'latif','M',200),(10002,'irfan','M',200),(10003,'kiran','F',201),(10004,'karishma','F',202),(10005,'Ravi','M',205),(10006,'Rimal','M',204);
+INSERT 0 6
 library_management=# select * from staff_details;
  staff_id | staff_name | gender | department_id 
 ----------+------------+--------+---------------
@@ -81,10 +83,10 @@ library_management=# select * from department;
 
 
 5. issue_details table:-
-library_management=# create table transaction(stu_id varchar(10) references student(stu_id),book_id int references book(book_id));
+library_management=# create table issue_details(student_id int references student(student_id),book_id int references book(book_id),date_issue date,date_return date,staff_id int references staff_details(staff_id));
 CREATE TABLE
-library_management=# insert into transaction(stu_id,book_id)values('1323059',001),('1323059',004),('1323060',001),('1323061',006),('1323061',004),('1323064',001),('1323065',005),('1323065',006),('1323059',006),('1323068',001);
-INSERT 0 10
+library_management=# insert into issue_details(student_id,book_id,date_issue,date_return,staff_id)values(101,10,'2021-01-10','2021-01-10',10001),(102,11,'2021-01-10','2021-01-20',10004),(105,10,'2022-02-11','2022-02-20',10001),(101,11,'2022-03-27','2022-04-10',10001),(104,12,'2021-02-12','2021-02-27',10002);
+INSERT 0 5
 library_management=# select * from issue_details;
  student_id | book_id | date_issue | date_return | staff_id 
 ------------+---------+------------+-------------+----------
