@@ -517,5 +517,18 @@ library_management=#  select student_name from student where student_id in (sele
  akshay
  keshav
 (3 rows)
+41.fetch book_id issues books for the minimum duration.
+library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select min(date_return-date_issue) from issue_details);
+ book_id 
+---------
+      10
 
+42.fetch book_id where issue books for maximum duration
+library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select max(date_return-date_issue) from issue_details);
+ book_id 
+---------
+      15
+(1 row)
+
+(1 row)
 
