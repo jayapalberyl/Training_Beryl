@@ -496,4 +496,11 @@ library_management=# select stu_name from student where extract(month from date_
  Ahmedali
 (1 row)
 
+38.fetch Student name issues books for the longest duration.
+library_management=# select distinct s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id where i1.date_return-i1.date_issue= (select max(date_return-date_issue) from issue_details);
+ student_name
+--------------
+ akshita
+(1 row)
+
 
