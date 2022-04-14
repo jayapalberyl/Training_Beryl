@@ -57,6 +57,11 @@ library_management=# select * from staff_details;
 
 
 3. book table:-
+create table book(book_id int  primary key,book_name varchar(15),authorname varchar(20),bookedition varchar(10));
+CREATE TABLE
+library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
+INSERT 0 6
+
 library_management=# select * from book;
  book_id |   book_name   | isbn |  authorname   | bookedition 
 ---------+---------------+------+---------------+-------------
@@ -69,6 +74,10 @@ library_management=# select * from book;
 (6 rows)
 
 4. department table
+create table department(department_id int primary key,department_name varchar(20),student_id int references student(student_id));
+CREATE TABLE
+library_management=# insert into department(department_id,department_name,student_id)values(200,'CS_department',101),(201,'IT_department',102),(202,'Physics',103),(203,'chemistry',106),(204,'Math',105),(205,'Commerce',104);
+INSERT 0 6
 
 library_management=# select * from department;
  department_id | department_name | student_id 
