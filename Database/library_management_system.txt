@@ -530,5 +530,14 @@ library_management=# select i1.book_id from book b1 inner join issue_details i1 
       15
 (1 row)
 
-(1 row)
+42. find student name , department name who have issue the book
+library_management=# select distinct d1.department_name,s1.student_name from department d1 inner join issue_details i1 on d1.student_id=i1.student_id inner join student s1 on i1.student_id=s1.student_id;
+ department_name | student_name 
+-----------------+--------------
+ Commerce        | akshita
+ IT_department   | akshay
+ CS_department   | akash
+ Math            | keshav
+(4 rows)
+
 
