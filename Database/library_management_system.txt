@@ -569,4 +569,12 @@ library_management=# select s1.student_name,d1.department_name,sd1.staff_name fr
  keshav       | Math            | latif
 (1 row)
 
-
+47. fetch student_name ,book_name,date_issue,date_return where name start with aks
+library_management=# select s1.student_name,b1.book_name,i1.date_issue,i1.date_return from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where s1.student_name like 'aks%';
+ student_name |  book_name   | date_issue | date_return 
+--------------+--------------+------------+-------------
+ akshay       | Datastructre | 2021-01-10 | 2021-01-20
+ akshita      | Accountancy  | 2021-02-12 | 2021-02-27
+ akshita      | C            | 2020-08-17 | 2020-09-01
+ akshay       | C            | 2021-04-21 | 2021-05-10
+(4 rows)
