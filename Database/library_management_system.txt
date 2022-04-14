@@ -604,3 +604,10 @@ library_management=# select staff_name from staff_details where staff_id in (sel
  Rimal
 (3 rows)
 
+50. fetch studentname,stafffname,bookname from library database and bookname=accountancy
+library_management=# select distinct s1.staff_name,b1.book_name,s11.student_name from staff_details s1 inner join issue_details i1 on s1.staff_id=i1.staff_id inner join book b1 on i1.book_id=b1.book_id inner join student s11 on i1.student_id=s11.student_id where b1.book_name='Accountancy';
+ staff_name |  book_name  | student_name 
+------------+-------------+--------------
+ irfan      | Accountancy | akshita
+(1 row)
+
