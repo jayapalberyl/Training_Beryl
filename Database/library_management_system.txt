@@ -587,3 +587,20 @@ library_management=# select s1.student_name,b1.book_name,i1.date_issue,i1.date_r
  akshita      | C            | 2020-08-17 | 2020-09-01
  akshay       | C            | 2021-04-21 | 2021-05-10
 (4 rows)
+
+48.fetch staff_name who have not issue any book
+library_management=# select staff_name from staff_details where staff_id not in (select staff_id from issue_details);
+ staff_name 
+------------
+ kiran
+ Ravi
+(2 rows)
+49. fetch staff_name who have not issue book in the month of march
+library_management=# select staff_name from staff_details where staff_id in (select staff_id from issue_details where extract(month from date_issue)!=02);
+ staff_name 
+------------
+ latif
+ karishma
+ Rimal
+(3 rows)
+
