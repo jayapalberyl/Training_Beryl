@@ -57,6 +57,11 @@ library_management=# select * from staff_details;
 
 
 3. book table:-
+create table book(book_id int  primary key,book_name varchar(15),authorname varchar(20),bookedition varchar(10));
+CREATE TABLE
+library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
+INSERT 0 6
+
 library_management=# select * from book;
  book_id |   book_name   | isbn |  authorname   | bookedition 
 ---------+---------------+------+---------------+-------------
@@ -69,6 +74,10 @@ library_management=# select * from book;
 (6 rows)
 
 4. department table
+create table department(department_id int primary key,department_name varchar(20),student_id int references student(student_id));
+CREATE TABLE
+library_management=# insert into department(department_id,department_name,student_id)values(200,'CS_department',101),(201,'IT_department',102),(202,'Physics',103),(203,'chemistry',106),(204,'Math',105),(205,'Commerce',104);
+INSERT 0 6
 
 library_management=# select * from department;
  department_id | department_name | student_id 
@@ -95,9 +104,10 @@ library_management=# select * from issue_details;
         105 |      10 | 2022-02-11 | 2022-02-20  |    10001
         101 |      11 | 2022-03-27 | 2022-04-10  |    10001
         104 |      12 | 2021-02-12 | 2021-02-27  |    10002
-        102 |      15 | 2021-04-21 | 2020-09-01  |    10006
         104 |      15 | 2020-08-17 | 2020-09-01  |    10006
-(7 rows)
+        102 |      15 | 2021-04-21 | 2021-05-10  |    10006
+        101 |      15 | 2022-01-10 | 2022-02-01  |    10004
+(8 rows)
 
 
 ----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
@@ -502,5 +512,106 @@ library_management=# select distinct s1.student_name from student s1 inner join 
 --------------
  akshita
 (1 row)
+<<<<<<< HEAD
+39.fetch student_name who have issue book in the month of march
+You are now connected to database "library_management" as user "postgres".
+library_management=# select student_name from student where student_id in (select student_id from issue_details where extract(month from date_issue)=03);
+ student_name 
+--------------
+ akash
+(1 row)
+40. fetch name who have issue book less than 1 year of current date .
+library_management=#  select student_name from student where student_id in (select student_id from issue_details where extract(year from age(CURRENT_DATE,date_issue))<1);
+ student_name 
+--------------
+ akash
+ akshay
+ keshav
+(3 rows)
+41.fetch book_id issues books for the minimum duration.
+library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select min(date_return-date_issue) from issue_details);
+ book_id 
+---------
+      10
+
+42.fetch book_id where issue books for maximum duration
+library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select max(date_return-date_issue) from issue_details);
+ book_id 
+---------
+      15
+(1 row)
+
+42. find student name , department name who have issue the book
+library_management=# select distinct d1.department_name,s1.student_name from department d1 inner join issue_details i1 on d1.student_id=i1.student_id inner join student s1 on i1.student_id=s1.student_id;
+ department_name | student_name 
+-----------------+--------------
+ Commerce        | akshita
+ IT_department   | akshay
+ CS_department   | akash
+ Math            | keshav
+(4 rows)
+
+43.find the student name and student_id who have return books in march month
+library_management=# select student_name,student_id from student where student_id in (select student_id from issue_details where extract(month from date_return)=04);
+ student_name | student_id 
+--------------+------------
+ akash        |        101
+(1 row)
+
+44.find the student name and student_id who have return books in 2022 year
+library_management=# select student_name,student_id from student where student_id in (select student_id from issue_details where extract(year from date_issue)=2022);
+ student_name | student_id 
+--------------+------------
+ akash        |        101
+ keshav       |        105
+(2 rows)
+
+45.fetch student_name,department_name,staff_name which have issued for largest interval of time 
+library_management=# select s1.student_name,d1.department_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where i1.date_return-i1.date_issue=(select max(date_return-date_issue) from issue_details);
+ student_name | department_name | staff_name 
+--------------+-----------------+------------
+ akshay       | IT_department   | Rimal
+(1 row)
+
+46.fetch student_name,department_name,staff_name which have issued for smallest interval of time 
+library_management=# select s1.student_name,d1.department_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where i1.date_return-i1.date_issue=(select min(date_return-date_issue) from issue_details);
+ student_name | department_name | staff_name 
+--------------+-----------------+------------
+ keshav       | Math            | latif
+(1 row)
+
+47. fetch student_name ,book_name,date_issue,date_return where name start with aks
+library_management=# select s1.student_name,b1.book_name,i1.date_issue,i1.date_return from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where s1.student_name like 'aks%';
+ student_name |  book_name   | date_issue | date_return 
+--------------+--------------+------------+-------------
+ akshay       | Datastructre | 2021-01-10 | 2021-01-20
+ akshita      | Accountancy  | 2021-02-12 | 2021-02-27
+ akshita      | C            | 2020-08-17 | 2020-09-01
+ akshay       | C            | 2021-04-21 | 2021-05-10
+(4 rows)
+
+48.fetch staff_name who have not issue any book
+library_management=# select staff_name from staff_details where staff_id not in (select staff_id from issue_details);
+ staff_name 
+------------
+ kiran
+ Ravi
+(2 rows)
+49. fetch staff_name who have not issue book in the month of march
+library_management=# select staff_name from staff_details where staff_id in (select staff_id from issue_details where extract(month from date_issue)!=02);
+ staff_name 
+------------
+ latif
+ karishma
+ Rimal
+(3 rows)
+
+50. fetch studentname,stafffname,bookname from library database and bookname=accountancy.
+library_management=# select distinct s1.staff_name,b1.book_name,s11.student_name from staff_details s1 inner join issue_details i1 on s1.staff_id=i1.staff_id inner join book b1 on i1.book_id=b1.book_id inner join student s11 on i1.student_id=s11.student_id where b1.book_name='Accountancy';
+ staff_name |  book_name  | student_name 
+------------+-------------+--------------
+ irfan      | Accountancy | akshita
+(1 row)
+
 
 
