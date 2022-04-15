@@ -698,5 +698,14 @@ library_management=# select date_issue,date_return from issue_details order by s
  2021-01-10 | 2021-01-10
  2022-03-27 | 2022-04-10
 (2 rows)
+55. fetch book_id,count of issued_books,left books which are not issued 
+library_management=# select b1.book_count,count(*),b1.book_count-count(*) as "left books" from book b1 inner join issue_details i1 on b1.book_id=i1.book_id group by b1.book_count;
+ book_count | count | left books 
+------------+-------+------------
+         10 |     2 |          8
+         32 |     1 |         31
+         20 |     2 |         18
+(3 rows)
+
 
 
