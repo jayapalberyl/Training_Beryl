@@ -679,3 +679,24 @@ library_management=# select s1.student_name from student s1 inner join issue_det
  keshav
 (2 rows)
 
+53. fetch how many author in the particular library system
+
+library_management=# select authorname,count(*) from book  group by authorname;
+  authorname   | count 
+---------------+-------
+ Shrikant      |     1
+ Susheelgoyel  |     1
+ Ramkrishan    |     1
+ Yashwant      |     1
+ Rakesh singla |     2
+(5 rows)
+
+54.fetch only two details related to date_issue,date_return according to student_id 
+library_management=# select date_issue,date_return from issue_details order by student_id limit 2;
+ date_issue | date_return 
+------------+-------------
+ 2021-01-10 | 2021-01-10
+ 2022-03-27 | 2022-04-10
+(2 rows)
+
+
