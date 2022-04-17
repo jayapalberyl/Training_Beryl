@@ -57,9 +57,15 @@ library_management=# select * from staff_details;
 
 
 3. book table:-
+<<<<<<< HEAD
 create table book(book_id int  primary key,book_name varchar(15),authorname varchar(20),bookedition varchar(10));
 CREATE TABLE
 library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
+=======
+create table book(book_id int  primary key,book_name varchar(15),isbn varchar(10),authorname varchar(20),bookedition varchar(10));
+CREATE TABLE
+library_management=# insert into book(book_id,book_name,isbn,authorname,bookedition)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
+>>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 INSERT 0 6
 
 library_management=# select * from book;
@@ -72,22 +78,70 @@ library_management=# select * from book;
       14 | Datawarehouse | 1390 | Ramkrishan    | Third
       15 | C             | 1980 | Yashwant      | second
 (6 rows)
+library_management=# alter table book add book_count int ;
+ALTER TABLE
+library_management=# select * from book;
+ book_id |   book_name   | isbn |  authorname   | bookedition | book_count 
+---------+---------------+------+---------------+-------------+------------
+      10 | Dbms          | 1211 | Shrikant      | first       |           
+      11 | Datastructure | 1000 | Susheelgoyel  | first       |           
+      12 | Accountancy   | 1290 | Rakesh singla | first       |           
+      13 | Business std  | 1790 | Rakesh singla | second      |           
+      14 | Datawarehouse | 1390 | Ramkrishan    | Third       |           
+      15 | C             | 1980 | Yashwant      | second      |           
+(6 rows)
+
+library_management=# update book set book_count=10 where book_id=10;
+UPDATE 1
+library_management=# select * from book;
+ book_id |   book_name   | isbn |  authorname   | bookedition | book_count 
+---------+---------------+------+---------------+-------------+------------
+      11 | Datastructure | 1000 | Susheelgoyel  | first       |           
+      12 | Accountancy   | 1290 | Rakesh singla | first       |           
+      13 | Business std  | 1790 | Rakesh singla | second      |           
+      14 | Datawarehouse | 1390 | Ramkrishan    | Third       |           
+      15 | C             | 1980 | Yashwant      | second      |           
+      10 | Dbms          | 1211 | Shrikant      | first       |         10
+(6 rows)
+
+library_management=# update book set book_count=20 where book_id=11;
+UPDATE 1
+library_management=# update book set book_count=32 where book_id=12;
+UPDATE 1
+library_management=# update book set book_count=12 where book_id=13;
+UPDATE 1
+library_management=# update book set book_count=12 where book_id=14;
+UPDATE 1
+library_management=# update book set book_count=100 where book_id=15;
+UPDATE 1
+library_management=# select * from book;
+ book_id |   book_name   | isbn |  authorname   | bookedition | book_count 
+---------+---------------+------+---------------+-------------+------------
+      10 | Dbms          | 1211 | Shrikant      | first       |         10
+      11 | Datastructure | 1000 | Susheelgoyel  | first       |         20
+      12 | Accountancy   | 1290 | Rakesh singla | first       |         32
+      13 | Business std  | 1790 | Rakesh singla | second      |         12
+      14 | Datawarehouse | 1390 | Ramkrishan    | Third       |         12
+      15 | C             | 1980 | Yashwant      | second      |        100
+(6 rows)
+
+
 
 4. department table
-create table department(department_id int primary key,department_name varchar(20),student_id int references student(student_id));
+create table department(department_id int primary key,department_name varchar(20));
 CREATE TABLE
-library_management=# insert into department(department_id,department_name,student_id)values(200,'CS_department',101),(201,'IT_department',102),(202,'Physics',103),(203,'chemistry',106),(204,'Math',105),(205,'Commerce',104);
+library_management=# insert into department(department_id,department_name)values(200,'CS_department'),(201,'IT_department'),(202,'Physics'),(203,'chemistry'),(204,'Math'),(205,'Commerce');
 INSERT 0 6
 
 library_management=# select * from department;
- department_id | department_name | student_id 
----------------+-----------------+------------
-           200 | CS_department   |        101
-           201 | IT_department   |        102
-           202 | Physics         |        103
-           203 | Chemistry       |        106
-           204 | Math            |        105
-           205 | Commerce        |        104
+ department_id | department_name 
+---------------+-----------------
+           200 | CS_department           
+           201 | IT_department           
+           202 | Physics                 
+           203 | Chemistry               
+           204 | Math                   
+           205 | Commerce              
 (6 rows)
 
 
@@ -513,6 +567,9 @@ library_management=# select distinct s1.student_name from student s1 inner join 
  akshita
 (1 row)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 39.fetch student_name who have issue book in the month of march
 You are now connected to database "library_management" as user "postgres".
 library_management=# select student_name from student where student_id in (select student_id from issue_details where extract(month from date_issue)=03);
@@ -528,7 +585,11 @@ library_management=#  select student_name from student where student_id in (sele
  akshay
  keshav
 (3 rows)
+<<<<<<< HEAD
 41.fetch book_id issues books for the minimum duration.
+=======
+41.fetch book_id issues books for the minimum duration.z
+>>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select min(date_return-date_issue) from issue_details);
  book_id 
 ---------
@@ -613,5 +674,55 @@ library_management=# select distinct s1.staff_name,b1.book_name,s11.student_name
  irfan      | Accountancy | akshita
 (1 row)
 
+<<<<<<< HEAD
+=======
+51. fetch student name whose book_count between 10 and 67
+
+library_management=# select distinct s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where b1.book_count between 10 and 67;
+ student_name 
+--------------
+ akash
+ akshay
+ akshita
+ keshav
+(4 rows)
+
+52 fetch student name whose book_count is minimum
+library_management=# select s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where b1.book_count=(select min(b1.book_count) from book b1);
+ student_name 
+--------------
+ akash
+ keshav
+(2 rows)
+
+53. fetch how many author in the particular library system
+
+library_management=# select authorname,count(*) from book  group by authorname;
+  authorname   | count 
+---------------+-------
+ Shrikant      |     1
+ Susheelgoyel  |     1
+ Ramkrishan    |     1
+ Yashwant      |     1
+ Rakesh singla |     2
+(5 rows)
+
+54.fetch only two details related to date_issue,date_return according to student_id 
+library_management=# select date_issue,date_return from issue_details order by student_id limit 2;
+ date_issue | date_return 
+------------+-------------
+ 2021-01-10 | 2021-01-10
+ 2022-03-27 | 2022-04-10
+(2 rows)
+55. fetch book_id,count of issued_books,left books which are not issued 
+library_management=# select b1.book_count,count(*),b1.book_count-count(*) as "left books" from book b1 inner join issue_details i1 on b1.book_id=i1.book_id group by b1.book_count;
+ book_count | count | left books 
+------------+-------+------------
+         10 |     2 |          8
+         32 |     1 |         31
+         20 |     2 |         18
+(3 rows)
+
+>>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 
 
