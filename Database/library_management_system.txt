@@ -24,18 +24,23 @@ library_management=# create table student(student_id int  primary key,student_na
 CREATE TABLE
 library_management=# insert into student(student_id,student_name,gender,department_id)values(101,'akash','male',200);
 INSERT 0 1
+library_management=# alter table student add column city varchar(20);
+ALTER TABLE
+library_management=# alter table student add column mobile_no bigint;
+ALTER TABLE
 
 library_management=# select * from student;
- library_management=# select * from student;
- student_id | student_name | gender | department_id 
-------------+--------------+--------+---------------
-        101 | akash        | male   |           200
-        102 | akshay       | male   |           201
-        103 | rani         | f      |           202
-        104 | akshita      | f      |           205
-        105 | keshav       | male   |           204
-        106 | kamal        | male   |           203
-(6 rows)
+ student_id | student_name | gender | department_id |    city    | mobile_no  
+------------+--------------+--------+---------------+------------+------------
+        108 | jaya         | f      | 200           | Palwal     | 9711364587
+        107 | rimi         | f      | 200           | Delhi      | 9711364512
+        106 | kamal        | male   | 203           | Delhi      | 7982027449
+        105 | keshav       | male   | 204           | Palwal     | 9718646759
+        104 | akshita      | f      | 205           | Faridabad  | 7065987290
+        103 | rani         | f      | 202           | Ballabgarh | 7065981234
+        102 | akshay       | f      | 201           | Palwal     | 9312395365
+        101 | akash        | male   | 200           | Faridabad  | 9118976540
+(8 rows)
 
 
 2. staff_details table:
@@ -57,11 +62,9 @@ library_management=# select * from staff_details;
 
 
 3. book table:-
-<<<<<<< HEAD
 create table book(book_id int  primary key,book_name varchar(15),authorname varchar(20),bookedition varchar(10));
 CREATE TABLE
 library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
-=======
 create table book(book_id int  primary key,book_name varchar(15),isbn varchar(10),authorname varchar(20),bookedition varchar(10));
 CREATE TABLE
 library_management=# insert into book(book_id,book_name,isbn,authorname,bookedition)values(10,'Dbms',1211,'Shrikant','first'),(11,'Datastructure',1000,'Susheelgoyel','first'),(12,'Accountancy',1290,'Rakesh singla','first'),(13,'Business std',1790,'Rakesh singla','second'),(14,'Datawarehouse',1390,'Ramkrishan','Third'),(15,'C',1980,'Yashwant','second');
@@ -587,9 +590,6 @@ library_management=#  select student_name from student where student_id in (sele
 (3 rows)
 <<<<<<< HEAD
 41.fetch book_id issues books for the minimum duration.
-=======
-41.fetch book_id issues books for the minimum duration.z
->>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select min(date_return-date_issue) from issue_details);
  book_id 
 ---------
@@ -722,7 +722,5 @@ library_management=# select b1.book_count,count(*),b1.book_count-count(*) as "le
          32 |     1 |         31
          20 |     2 |         18
 (3 rows)
-
->>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 
 
