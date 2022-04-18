@@ -574,10 +574,6 @@ library_management=# select distinct s1.student_name from student s1 inner join 
 --------------
  akshita
 (1 row)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cd53be763e9194fcbef0321567c3325ec27ea708
 39.fetch student_name who have issue book in the month of march
 You are now connected to database "library_management" as user "postgres".
 library_management=# select student_name from student where student_id in (select student_id from issue_details where extract(month from date_issue)=03);
@@ -593,7 +589,6 @@ library_management=#  select student_name from student where student_id in (sele
  akshay
  keshav
 (3 rows)
-<<<<<<< HEAD
 41.fetch book_id issues books for the minimum duration.
 library_management=# select i1.book_id from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where i1.date_return-i1.date_issue in (select min(date_return-date_issue) from issue_details);
  book_id 
@@ -679,8 +674,6 @@ library_management=# select distinct s1.staff_name,b1.book_name,s11.student_name
  irfan      | Accountancy | akshita
 (1 row)
 
-<<<<<<< HEAD
-=======
 51. fetch student name whose book_count between 10 and 67
 
 library_management=# select distinct s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where b1.book_count between 10 and 67;
@@ -775,4 +768,12 @@ library_management=# select student_id,Date_of_birth,age(CURRENT_DATE,Date_of_bi
         102 | 2000-12-20    | 21 years 3 mons 29 days
         105 | 1996-09-12    | 25 years 7 mons 6 days
 (2 rows)
+62. fetch the particular student age who have maximum book_issued
+                                                             ^
+library_management=# select s1.student_id,count(*),age(CURRENT_DATE,s1.Date_of_birth) from student s1 inner join issue_details i1 on s1.student_id=i1.student_id group by s1.student_id having count(*)>2;
+ student_id | count |          age           
+------------+-------+------------------------
+        101 |     3 | 22 years 6 mons 8 days
+(1 row)
+
 
