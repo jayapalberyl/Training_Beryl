@@ -769,11 +769,31 @@ library_management=# select student_id,Date_of_birth,age(CURRENT_DATE,Date_of_bi
         105 | 1996-09-12    | 25 years 7 mons 6 days
 (2 rows)
 62. fetch the particular student age who have maximum book_issued
-                                                             ^
-library_management=# select s1.student_id,count(*),age(CURRENT_DATE,s1.Date_of_birth) from student s1 inner join issue_details i1 on s1.student_id=i1.student_id group by s1.student_id having count(*)>2;
+                                                             
+library_management=# select s1.student_id,count(*),age(CURRENT_DATE,s1.Date_of_birth) from student s1 inner join issue_details i1 on s1.student_id=i1.student_id group by s1.student_id order by count(*) desc limit 1;
  student_id | count |          age           
 ------------+-------+------------------------
         101 |     3 | 22 years 6 mons 8 days
 (1 row)
 
+63.find out the student name and age who have not return the books
+library_management=# select s1.student_name,b1.book_name,age(CURRENT_DATE,s1.Date_of_birth) from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id where i1.date_return IS NULL; 
+ student_name | book_name |           age           
+--------------+-----------+-------------------------
+ akshay       | Dbms      | 21 years 3 mons 29 days
+ keshav       | Dbms      | 25 years 7 mons 6 days
+(2 rows)
+
+64.fetch student name who have eldest and youngest
+library_management=# select student_name,Date_of_birth from student where Date_of_birth =(select min(Date_of_birth) from student);
+ student_name | date_of_birth 
+--------------+---------------
+ akshita      | 1996-08-11
+(1 row)
+
+library_management=# select student_name,Date_of_birth from student where Date_of_birth =(select max(Date_of_birth) from student);
+ student_name | date_of_birth 
+--------------+---------------
+ akshay       | 2000-12-20
+(1 row)
 
