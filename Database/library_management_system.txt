@@ -33,18 +33,18 @@ ALTER TABLE
 library_management=# alter table student add constraint department_id_fk foreign key(department_id) references department(department_id);
 ALTER TABLE
 
-library_management=# select * from student;
- student_id | student_name | gender | department_id |    city    | mobile_no  
-------------+--------------+--------+---------------+------------+------------
-        108 | jaya         | f      | 200           | Palwal     | 9711364587
-        107 | rimi         | f      | 200           | Delhi      | 9711364512
-        106 | kamal        | male   | 203           | Delhi      | 7982027449
-        105 | keshav       | male   | 204           | Palwal     | 9718646759
-        104 | akshita      | f      | 205           | Faridabad  | 7065987290
-        103 | rani         | f      | 202           | Ballabgarh | 7065981234
-        102 | akshay       | f      | 201           | Palwal     | 9312395365
-        101 | akash        | male   | 200           | Faridabad  | 9118976540
+student_id | student_name | gender | department_id |    city    | mobile_no  | date_of_birth 
+------------+--------------+--------+---------------+------------+------------+---------------
+        101 | akash        | male   |           200 | Faridabad  | 9118976540 | 1999-10-10
+        102 | akshay       | f      |           201 | Palwal     | 9312395365 | 2000-12-20
+        103 | rani         | f      |           202 | Ballabgarh | 7065981234 | 2000-02-20
+        104 | akshita      | f      |           205 | Faridabad  | 7065987290 | 1996-08-11
+        105 | keshav       | male   |           204 | Palwal     | 9718646759 | 1996-09-12
+        106 | kamal        | male   |           203 | Delhi      | 7982027449 | 1999-09-12
+        107 | rimi         | f      |           200 | Delhi      | 9711364512 | 2000-03-03
+        108 | jaya         | f      |           200 | Palwal     | 9711364587 | 1998-10-04
 (8 rows)
+
 
 
 2. staff_details table:
@@ -160,19 +160,17 @@ library_management=# create table issue_details(student_id int references studen
 CREATE TABLE
 library_management=# insert into issue_details(student_id,book_id,date_issue,date_return,staff_id)values(101,10,'2021-01-10','2021-01-10',10001),(102,11,'2021-01-10','2021-01-20',10004),(105,10,'2022-02-11','2022-02-20',10001),(101,11,'2022-03-27','2022-04-10',10001),(104,12,'2021-02-12','2021-02-27',10002);
 INSERT 0 5
-library_management=# select * from issue_details;
+library_management=#  select * from issue_details;
  student_id | book_id | date_issue | date_return | staff_id 
 ------------+---------+------------+-------------+----------
-        101 |      10 | 2021-01-10 | 2021-01-20  |    10001
+        101 |      10 | 2021-01-10 | 2021-01-10  |    10001
         102 |      11 | 2021-01-10 | 2021-01-20  |    10004
-        105 |      10 | 2022-02-11 | 2022-02-20  |    10001
         101 |      11 | 2022-03-27 | 2022-04-10  |    10001
         104 |      12 | 2021-02-12 | 2021-02-27  |    10002
-        104 |      15 | 2020-08-17 | 2020-09-01  |    10006
-        102 |      15 | 2021-04-21 | 2021-05-10  |    10006
-        101 |      15 | 2022-01-10 | 2022-02-01  |    10004
-(8 rows)
-
+        104 |      10 | 2021-09-12 | 2021-09-19  |    10004
+        105 |      10 | 2022-02-11 | null        |    10001
+        102 |      10 | 2020-10-08 | null        |    10002
+(7 rows)
 
 ----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
 
@@ -768,5 +766,13 @@ library_management=# select s1.student_name from student s1 inner join issue_det
 --------------
  akshay
  akshita
+(2 rows)
+
+61. fetch student id,date_of_birth,age who have not return books
+library_management=# select student_id,Date_of_birth,age(CURRENT_DATE,Date_of_birth) from student where student_id in (select student_id from issue_details where date_return IS NULL);
+ student_id | date_of_birth |           age           
+------------+---------------+-------------------------
+        102 | 2000-12-20    | 21 years 3 mons 29 days
+        105 | 1996-09-12    | 25 years 7 mons 6 days
 (2 rows)
 
