@@ -736,4 +736,37 @@ library_management=# select s1.student_name,count(*) as "no_of_books" from stude
  akash        |           2
 (1 row)
 
+57. fetch studnet_name,book_count whose book_count have same
+library_management=# select s1.student_name,b1.book_count,count(*) from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join book b1 on i1.book_id=b1.book_id group by s1.student_name,b1.book_count having count(*)>1;
+ student_name | book_count | count 
+--------------+------------+-------
+(0 rows)
+
+58.fetch no of student in particular department with department_name
+library_management=# select d1.department_name,count(*) as "No_of_student" from department d1 inner join student s1 on d1.department_id=s1.department_id  group by d1.department_name;
+ department_name | No_of_student 
+-----------------+---------------
+ chemistry       |             1
+ Commerce        |             1
+ CS_department   |             3
+ IT_department   |             1
+ Math            |             1
+ Physics         |             1
+(6 rows)
+
+59.fetch male student name who have issued books 
+library_management=# select s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id where s1.gender='male';
+ student_name 
+--------------
+ akash
+ keshav
+ akash
+(3 rows)
+60. fetch female student name who have issued books
+library_management=# select s1.student_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id where s1.gender='f';
+ student_name 
+--------------
+ akshay
+ akshita
+(2 rows)
 
