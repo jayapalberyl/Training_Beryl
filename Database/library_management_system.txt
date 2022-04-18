@@ -20,13 +20,17 @@ library_management=# \dt
 
 
 1.student table
-library_management=# create table student(student_id int  primary key,student_name varchar(15),gender varchar(5),department_id varchar(10));
+library_management=# create table student(student_id int  primary key,student_name varchar(15),gender varchar(5),department_id varchar(10),city varchar(20),mobile_no bigint);
 CREATE TABLE
-library_management=# insert into student(student_id,student_name,gender,department_id)values(101,'akash','male',200);
+library_management=# insert into student(student_id,student_name,gender,department_id)values(101,'akash','male',200,'Palwal',9711364587);
 INSERT 0 1
 library_management=# alter table student add column city varchar(20);
 ALTER TABLE
 library_management=# alter table student add column mobile_no bigint;
+ALTER TABLE
+library_management=# ALTER TABLE student  ALTER COLUMN department_id TYPE integer USING (department_id::integer);
+ALTER TABLE
+library_management=# alter table student add constraint department_id_fk foreign key(department_id) references department(department_id);
 ALTER TABLE
 
 library_management=# select * from student;
@@ -44,21 +48,24 @@ library_management=# select * from student;
 
 
 2. staff_details table:
-library_management=# create table staff_details(staff_id int  primary key,staff_name varchar(15),gender varchar(5),department_id varchar(10));
+library_management=# create table staff_details(staff_id int  primary key,staff_name varchar(15),gender varchar(5));
 CREATE TABLE
 
-library_management=# insert into staff_details(staff_id,staff_name,gender,department_id)values(10001,'latif','M',200),(10002,'irfan','M',200),(10003,'kiran','F',201),(10004,'karishma','F',202),(10005,'Ravi','M',205),(10006,'Rimal','M',204);
+library_management=# insert into staff_details(staff_id,staff_name,gender)values(10001,'latif','M'),(10002,'irfan','M'),(10003,'kiran','F'),(10004,'karishma','F'),(10005,'Ravi','M'),(10006,'Rimal','M');
 INSERT 0 6
+library_management=# alter table staff_details drop column department_id;
+ALTER TABLE
 library_management=# select * from staff_details;
- staff_id | staff_name | gender | department_id 
-----------+------------+--------+---------------
-    10001 | latif      | M      |           200
-    10002 | irfan      | M      |           200
-    10003 | kiran      | F      |           201
-    10004 | karishma   | F      |           202
-    10005 | Ravi       | M      |           205
-    10006 | Rimal      | M      |           204
+ staff_id | staff_name | gender 
+----------+------------+--------
+    10001 | latif      | M
+    10002 | irfan      | M
+    10003 | kiran      | F
+    10004 | karishma   | F
+    10005 | Ravi       | M
+    10006 | Rimal      | M
 (6 rows)
+
 
 
 3. book table:-
@@ -722,5 +729,11 @@ library_management=# select b1.book_count,count(*),b1.book_count-count(*) as "le
          32 |     1 |         31
          20 |     2 |         18
 (3 rows)
+56. fetch student_name and no of books who have issued book but only the department_name=cs
+library_management=# select s1.student_name,count(*) as "no_of_books" from student s1 inner join issue_details i1 on s1.student_id=i1.student_id where s1.department_id =(select department_id from department where department_name='CS_department') group by s1.student_name;
+ student_name | no_of_books 
+--------------+-------------
+ akash        |           2
+(1 row)
 
 
