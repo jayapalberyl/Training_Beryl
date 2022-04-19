@@ -876,3 +876,26 @@ library_management=# select s1.department_id,count(*),d1.department_name from st
 ---------------+-------+-----------------
            200 |     3 | CS_department
 (1 row)
+
+74. fetch student details who have returned the book
+student_id | student_name | gender | department_id |   city    | mobile_no  | date_of_birth 
+------------+--------------+--------+---------------+-----------+------------+---------------
+        101 | akash        | male   |           200 | Faridabad | 9118976540 | 1999-10-10
+        104 | akshita      | f      |           205 | Faridabad | 7065987290 | 1996-08-11
+        102 | akshay       | f      |           201 | Palwal    | 9312395365 | 2000-12-20
+(3 rows)
+
+75. fetch studentname,student_gender and staff_name,its gender.
+
+library_management=# select s1.student_name,s1.gender,sd1.staff_name,sd1.gender from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id;
+ student_name | gender | staff_name | gender 
+--------------+--------+------------+--------
+ akash        | male   | latif      | M
+ akshay       | f      | karishma   | F
+ akash        | male   | latif      | M
+ akshita      | f      | karishma   | F
+ keshav       | male   | latif      | M
+ akshay       | f      | irfan      | M
+ akash        | male   | irfan      | M
+(7 rows)
+
