@@ -160,17 +160,19 @@ library_management=# create table issue_details(student_id int references studen
 CREATE TABLE
 library_management=# insert into issue_details(student_id,book_id,date_issue,date_return,staff_id)values(101,10,'2021-01-10','2021-01-10',10001),(102,11,'2021-01-10','2021-01-20',10004),(105,10,'2022-02-11','2022-02-20',10001),(101,11,'2022-03-27','2022-04-10',10001),(104,12,'2021-02-12','2021-02-27',10002);
 INSERT 0 5
-library_management=#  select * from issue_details;
+
+library_management=# select * from issue_details;
  student_id | book_id | date_issue | date_return | staff_id 
 ------------+---------+------------+-------------+----------
         101 |      10 | 2021-01-10 | 2021-01-10  |    10001
         102 |      11 | 2021-01-10 | 2021-01-20  |    10004
         101 |      11 | 2022-03-27 | 2022-04-10  |    10001
-        104 |      12 | 2021-02-12 | 2021-02-27  |    10002
         104 |      10 | 2021-09-12 | 2021-09-19  |    10004
-        105 |      10 | 2022-02-11 | null        |    10001
-        102 |      10 | 2020-10-08 | null        |    10002
+        105 |      10 | 2022-02-11 |             |    10001
+        102 |      10 | 2020-10-08 |             |    10002
+        101 |      12 | 2021-02-12 | 2021-02-27  |    10002
 (7 rows)
+
 
 ----------------------------------------------questions-------------------------------------questions--------------------------------------------------------------------
 
@@ -796,4 +798,27 @@ library_management=# select student_name,Date_of_birth from student where Date_o
 --------------+---------------
  akshay       | 2000-12-20
 (1 row)
+
+65.fetch how many male and female students.
+
+library_management=# select gender,count(*) from student group by gender;
+ gender | count 
+--------+-------
+ male   |     3
+ f      |     5
+(2 rows)
+
+66. fetch how may students issued_books according to department 
+library_management=# select department_id,count(*) from student group by department_id;
+ department_id | count 
+---------------+-------
+           202 |     1
+           204 |     1
+           205 |     1
+           203 |     1
+           201 |     1
+           200 |     3
+(6 rows)
+
+
 
