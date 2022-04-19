@@ -854,3 +854,25 @@ library_management=# select department_id,count(*) from student where department
            203 |     1
 (1 row)
 
+71.fetch the bookname which have issued maximum times
+library_management=# select b1.book_id,count(*),b1.book_name from issue_details i1 inner join book b1 on i1.book_id=b1.book_id group by b1.book_id order by count(*) desc limit 1;
+ book_id | count | book_name 
+---------+-------+-----------
+      10 |     4 | Dbms
+(1 row)
+
+72. fetch department name which have issued minimum books
+                                                            
+library_management=# select s1.department_id,count(*),d1.department_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id  inner join department d1 on s1.department_id=d1.department_id group by s1.department_id,d1.department_name having count(*)=1;
+ department_id | count | department_name 
+---------------+-------+-----------------
+           204 |     1 | Math
+           205 |     1 | Commerce
+(2 rows)
+
+73. fetch department name which have issued maximum books
+library_management=# select s1.department_id,count(*),d1.department_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id  inner join department d1 on s1.department_id=d1.department_id group by s1.department_id,d1.department_name  order by count(*) desc limit 1;
+ department_id | count | department_name 
+---------------+-------+-----------------
+           200 |     3 | CS_department
+(1 row)
