@@ -820,5 +820,31 @@ library_management=# select department_id,count(*) from student group by departm
            200 |     3
 (6 rows)
 
+67. fetch studentname , staffname who have issued book in the year 2022.
+library_management=# select s1.student_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where  extract(year from i1.date_issue)=2022;
+ student_name | staff_name 
+--------------+------------
+ keshav       | latif
+ akash        | latif
+(2 rows)
+
+68. fetch student details,department name who have not returened book.
+library_management=# select s1.student_id,s1.student_name,d1.department_name,s1.city,s1.mobile_no,s1.Date_of_birth from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id  where  i1.date_return IS NULL;
+
+ student_id | student_name | department_name |  city  | mobile_no  | date_of_birth 
+------------+--------------+-----------------+--------+------------+---------------
+        105 | keshav       | Math            | Palwal | 9718646759 | 1996-09-12
+        102 | akshay       | IT_department   | Palwal | 9312395365 | 2000-12-20
+(2 rows)
+
+69. fetch student details,department name who have return before 2022 year
+ library_management=# select s1.student_id,s1.student_name,d1.department_name,s1.city,s1.mobile_no,s1.Date_of_birth from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join department d1 on s1.department_id=d1.department_id  where  i1.date_return<'2022-01-01';
+ student_id | student_name | department_name |   city    | mobile_no  | date_of_birth 
+------------+--------------+-----------------+-----------+------------+---------------
+        101 | akash        | CS_department   | Faridabad | 9118976540 | 1999-10-10
+        102 | akshay       | IT_department   | Palwal    | 9312395365 | 2000-12-20
+        104 | akshita      | Commerce        | Faridabad | 7065987290 | 1996-08-11
+        101 | akash        | CS_department   | Faridabad | 9118976540 | 1999-10-10
+(4 rows)
 
 
