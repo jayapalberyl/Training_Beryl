@@ -973,3 +973,18 @@ student_id | student_name | gender | department_id |  city  | mobile_no  | date_
         102 | akshay       | f      |           201 | Palwal | 9312395365 | 2000-12-20
 (1 row)
 
+85. which book have issued most times 
+ibrary_management=# select i1.book_id,b1.book_name,count(*) from issue_details  i1 inner join book b1 on i1.book_id=b1.book_id group by i1.book_id,b1.book_name order by count(*) desc limit 1;
+ book_id | book_name | count 
+---------+-----------+-------
+      10 | Dbms      |     4
+(1 row)
+
+86. which staff have issued the books more number of times
+library_management=# select i1.book_id,sd1.staff_name,count(*),b1.book_name from issue_details  i1 inner join staff_details sd1 on i1.staff_id=sd1.staff_id inner join book b1 on i1.book_id=b1.book_id group by i1.book_id,sd1.staff_name,b1.book_name order by count(*) desc limit 1;
+ book_id | staff_name | count | book_name 
+---------+------------+-------+-----------
+      10 | latif      |     2 | Dbms
+(1 row)
+
+
