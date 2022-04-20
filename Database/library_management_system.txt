@@ -899,3 +899,17 @@ library_management=# select s1.student_name,s1.gender,sd1.staff_name,sd1.gender 
  akash        | male   | irfan      | M
 (7 rows)
 
+76. fetch student_name whose age is less than 22
+library_management=# select student_name,age(CURRENT_DATE,Date_of_birth) from student where extract(year from age(CURRENT_DATE,Date_of_birth))<22;
+ student_name |       age       
+--------------+-----------------
+ akshay       | 21 years 4 mons
+(1 row)
+
+77. fetch which staffid hae issued most book
+library_management=# select i1.staff_id,count(*),b1.book_name from issue_details i1 inner join book b1 on i1.book_id=b1.book_id  group by i1.staff_id,b1.book_name order by count(*) desc limit 1;
+ staff_id | count | book_name 
+----------+-------+-----------
+    10001 |     2 | Dbms
+(1 row)
+
