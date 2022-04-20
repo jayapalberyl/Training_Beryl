@@ -912,4 +912,32 @@ library_management=# select i1.staff_id,count(*),b1.book_name from issue_details
 ----------+-------+-----------
     10001 |     2 | Dbms
 (1 row)
+78. In an library how many books are issued.
+library_management=# select b1.book_id,b1.book_name,count(*) from book b1 inner join issue_details i1 on b1.book_id=i1.book_id group by b1.book_id,b1.book_name; 
+ book_id |   book_name   | count 
+---------+---------------+-------
+      11 | Datastructure |     2
+      10 | Dbms          |     4
+      12 | Accountancy   |     1
+(3 rows)
+
+79.fetch the student names where male staff have issued the books to that students.
+library_management=# select distinct s1.student_name,sd1.staff_name from student s1 inner join issue_details i1 on s1.student_id=i1.student_id inner join staff_details sd1 on i1.staff_id=sd1.staff_id where sd1.gender='M'; 
+ student_name | staff_name 
+--------------+------------
+ akash        | irfan
+ akash        | latif
+ akshay       | irfan
+ keshav       | latif
+(4 rows)
+ 
+80. fetch book_name which have issued till april month. 
+ 
+library_management=# select b1.book_name from book b1 inner join issue_details i1 on b1.book_id=i1.book_id where extract(month from i1.date_return)<04;
+   book_name   
+---------------
+ Dbms
+ Datastructure
+ Accountancy
+(3 rows)
 
