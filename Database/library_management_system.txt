@@ -941,3 +941,35 @@ library_management=# select b1.book_name from book b1 inner join issue_details i
  Accountancy
 (3 rows)
 
+81.fetch staff_name whose name not start with k
+
+library_management=# select staff_name from staff_details where staff_name not like'k%';
+ staff_name 
+------------
+ latif
+ irfan
+ Ravi
+ Rimal
+(4 rows)
+
+82. fetch student_id,name,age who have issued books most times.
+library_management=# select i1.student_id,count(*),s1.student_name,age(CURRENT_DATE,s1.Date_of_birth) from issue_details i1 inner join student s1 on i1.student_id=s1.student_id group by i1.student_id,s1.student_name,s1.Date_of_birth order by count(*) desc limit 1;
+ student_id | count | student_name |           age           
+------------+-------+--------------+-------------------------
+        101 |     3 | akash        | 22 years 6 mons 10 days
+(1 row)
+
+83. fetch how many Datestructure books are issued and how many Datastructuree books are left 
+library_management=# select b1.book_count,b1.book_name,count(*),(b1.book_count-count(*)) as"leftbooks" from book b1 inner join issue_details i1 on b1.book_id=i1.book_id  where b1.book_name='Datastructure' group by b1.book_count,b1.book_name;
+ book_count |   book_name   | count | leftbooks 
+------------+---------------+-------+-----------
+         20 | Datastructure |     2 |        18
+(1 row)
+
+84. fetch student details when issue_month<= october and issue_year<2021
+library_management=# select * from student where student_id in (select student_id from issue_details where extract(year from date_issue)<2021 and extract(month from date_issue)<=10);
+student_id | student_name | gender | department_id |  city  | mobile_no  | date_of_birth 
+------------+--------------+--------+---------------+--------+------------+---------------
+        102 | akshay       | f      |           201 | Palwal | 9312395365 | 2000-12-20
+(1 row)
+
