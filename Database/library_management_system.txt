@@ -987,4 +987,26 @@ library_management=# select i1.book_id,sd1.staff_name,count(*),b1.book_name from
       10 | latif      |     2 | Dbms
 (1 row)
 
+87. which staff have issued which book to which particular student.
+
+library_management=# select i1.student_id,i1.staff_id,i1.book_id,count(*),b1.book_name from issue_details i1 inner join book b1 on i1.book_id=b1.book_id  group by i1.student_id,i1.staff_id,i1.book_id,b1.book_name;
+ student_id | staff_id | book_id | count |   book_name   
+------------+----------+---------+-------+---------------
+        102 |    10004 |      11 |     1 | Datastructure
+        101 |    10001 |      11 |     1 | Datastructure
+        101 |    10002 |      12 |     1 | Accountancy
+        101 |    10001 |      10 |     1 | Dbms
+        102 |    10002 |      10 |     1 | Dbms
+        104 |    10004 |      10 |     1 | Dbms
+        105 |    10001 |      10 |     1 | Dbms
+(7 rows)
+
+88. which book have issued by first time
+
+library_management=# select b1.authorname from issue_details i1 inner join book b1 on i1.book_id=b1.book_id where i1.date_issue in ( select min(date_issue) from issue_details);
+ authorname 
+------------
+ Shrikant
+(1 row)
+
 
