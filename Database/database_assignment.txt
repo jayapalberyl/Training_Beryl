@@ -66,3 +66,24 @@ airline=# select * from employees;
   20 | heena    |  66000
 (11 rows)
 
+airline=# create table certified(eid int references employees(eid),aid int references aircraft(aid));
+CREATE TABLE
+airline=# alter table certified add unique(eid,aid);
+ALTER TABLE
+
+airline=# insert into certified(eid,aid)values(10,1),(10,3),(10,5),(20,4),(15,3),(12,1),(16,4),(10,6);
+
+ airline=# select * from certified;
+ eid | aid 
+-----+-----
+  10 |   1
+  10 |   3
+  10 |   5
+  20 |   4
+  15 |   3
+  12 |   1
+  16 |   4
+  10 |   6
+(8 rows)
+
+
