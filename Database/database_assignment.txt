@@ -164,3 +164,39 @@ airline=# select e1.ename,e1.salary from employees e1  where e1.eid not in (sele
  ramanaya | 170000
  randheer |  89000
 (4 rows)
+j. compute the difference between the average salary of a pilot and the average salary of all employees(including pilots).
+airline=# select (emp1.average-emp2.average)as "avg_salary" from (select avg(salary)as average from employees)as emp1 ,(select avg(e1.salary) as average from employees e1  where e1.eid in (select eid from certified)) as emp2;
+     avg_salary     
+--------------------
+ 15163.636363636364
+(1 row)
+c. Find the names of pilots whose salary is less than the price of the cheapest route from los angeles to honolulu.
+
+airline=# select  distinct e1.ename from employees e1 inner join certified c1 on e1.eid=c1.eid where e1.salary < (select min(price) from flights where "from"='los angeles' and "to"='honolulu');
+ ename 
+-------
+ raman
+(1 row)
+
+i. A customer wants to travel from Madison to newyork with no more than two changes of flights list the choices of departure times from madison if the customer wants to arrive in newyork by 6 pm.
+airline=# select f1.departs from flights f1 where ("from"='madison' or "to"='newyork') and f1.arrive<='06:00:00';
+ departs  
+----------
+ 09:00:00
+ 04:00:00
+ 01:00:00
+(3 rows)
+
+m. Print the names of employees who are certified only on aircraft with cruising range longer than 1000 miles but on atleast two such aircraft.
+airline=# select distinct  e1.ename from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid where a1.cruisingrange>1000 group by e1.ename having  count(e1.ename)>=2;
+ ename 
+-------
+ raman
+(1 row)
+
+
+
+
+
+
+
