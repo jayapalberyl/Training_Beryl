@@ -86,4 +86,40 @@ airline=# insert into certified(eid,aid)values(10,1),(10,3),(10,5),(20,4),(15,3)
   10 |   6
 (8 rows)
 
+Questions:-
+a.Find the names of aircraft suct that all pilots certified to operate them earn more than $80,000.
+airline=#  select aname from aircraft a1 inner join certified c1 on a1.aid=c1.aid inner join employees e1 on c1.eid=e1.eid where e1.salary>80000;
+  aname   
+----------
+ airbus19
+(1 row)
+b. For each pilot who is certified for more than 3 aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
+
+airline=# select e1.eid,max(a1.cruisingrange) from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid group by e1.eid having count(e1.eid)>3;
+ eid | max  
+-----+------
+  10 | 6000
+(1 row)
+
+d. For all aircraft with cruisingrange over 1000 miles,find the name of the aircraft and the average salary of all pilots certified for this aircraft.
+airline=# select a1.aname,avg(e1.salary) from aircraft a1 inner join certified c1 on a1.aid=c1.aid inner join employees e1 on c1.eid=e1.eid where a1.cruisingrange>1000 group by a1.aname;
+  aname   |          avg           
+----------+------------------------
+ boieng12 | 12500.0000000000000000
+ boieng30 |     73000.000000000000
+ arado90  | 10000.0000000000000000
+ agusta   | 10000.0000000000000000
+(4 rows)
+
+e. Find the names of pilots certified for some Boeing aircraft.
+
+airline=# select e1.ename as "Name_of_Pilots" from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid where a1.aname like 'boieng%';
+ Name_of_Pilots 
+----------------
+ raman
+ heena
+ harsh
+ manisha
+(4 rows)
+
 
