@@ -122,4 +122,27 @@ airline=# select e1.ename as "Name_of_Pilots" from employees e1 inner join certi
  manisha
 (4 rows)
 
+f.Find the aids of all aircraft that can be used on routes from los angeles to chicago.
+
+airline=# select a1.aid from aircraft a1 where a1.cruisingrange >(select min(distance) from flights where "from"='los angeles' and "to"='chicago');
+ aid 
+-----
+   1
+   4
+   5
+(3 rows)
+g. Identifies the routes that can be pioleted by every piolet who makes more than $100,000.
+airline=# select distinct  "from","to" from flights where distance <(select  min(a1.cruisingrange) from aircraft a1 inner join certified c1 on a1.aid=c1.aid inner join employees e1 on c1.eid=e1.eid and  e1.salary>100000);
+  from   |   to    
+---------+---------
+ madison | newyork
+ chicago | newyork
+(2 rows)
+h.Print the enames of pilots who can operate planes with cruisingrange greater than 3000miles but are not certified on any boeing aircraft.
+
+airline=# select e1.ename from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid and a1.cruisingrange>3000 and a1.aname not like 'boieng%';
+ ename 
+-------
+ raman
+(1 row)
 
