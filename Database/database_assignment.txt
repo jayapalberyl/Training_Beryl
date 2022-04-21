@@ -1,1 +1,34 @@
    Assignment:
+
+
+postgres=# create database airline;
+CREATE DATABASE
+postgres=# \c airline
+
+airline=# create table flights(flno int primary key,"from" varchar(20) not null,"to" varchar(20) not null,distance int not null,departs time not null,arrive time not null,price int not null);
+CREATE TABLE
+airline=# select * from flights;
+ flno | from | to | distance | departs | arrive | price 
+------+------+----+----------+---------+--------+-------
+(0 rows)
+
+
+airline=# insert into flights(flno,"from","to",distance,departs,arrive,price)values(101,'los angeles','honolulu',4000,'03:00:00','05:00:00',1500);
+INSERT 0 1
+airline=#  insert into flights(flno,"from","to",distance,departs,arrive,price)values(102,'los angeles','honolulu',4000,'04:00:00','07:00:00',1200),(103,'madison','newyork',500,'09:00:00','01:00:00',600),(104,'madison','newyork',890,'04:10:00','10:08:00',1600);
+INSERT 0 3
+airline=# insert into flights(flno,"from","to",distance,departs,arrive,price)values(105,'chicago','newyork',700,'04:00:00','06:00:00',500),(106,'los angeles','chicago',2200,'06:50:00','12:00:00',800),(107,'uk','chicago',750,'03:10:00','05:00:00',600);
+INSERT 0 3
+
+airline=# select * from flights;
+ flno |    from     |    to    | distance | departs  |  arrive  | price 
+------+-------------+----------+----------+----------+----------+-------
+  103 | madison     | newyork  |     1200 | 09:00:00 | 01:00:00 |   600
+  104 | madison     | newyork  |     1200 | 04:10:00 | 10:08:00 |  1600
+  105 | chicago     | newyork  |      700 | 04:00:00 | 06:00:00 |   500
+  106 | los angeles | chicago  |     2200 | 06:50:00 | 12:00:00 |   800
+  102 | los angeles | honolulu |     4000 | 04:00:00 | 07:00:00 | 12000
+  101 | los angeles | honolulu |     4000 | 03:00:00 | 05:00:00 | 11000
+  107 | los angeles | chicago  |     2750 | 03:10:00 | 05:00:00 |   600
+  108 | madison     | chicago  |      800 | 01:00:00 | 06:00:00 |  2000
+(8 rows)
