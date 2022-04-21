@@ -145,4 +145,22 @@ airline=# select e1.ename from employees e1 inner join certified c1 on e1.eid=c1
 -------
  raman
 (1 row)
+n. Print the enames of pilots who can operate planes with cruisingrange greater than 3000 but are certified on anyboeing aircraft.	
 
+airline=# select e1.ename from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid and a1.cruisingrange>1000 and a1.aname like 'boieng%';
+  ename  
+---------
+ raman
+ heena
+ harsh
+ manisha
+(4 rows)
+k. print the name and salary of every nonpilot whose salary is more than average salary of pilot
+airline=# select e1.ename,e1.salary from employees e1  where e1.eid not in (select eid from certified)and e1.salary > (select avg(e1.salary) from employees e1  where e1.eid in (select eid from certified));
+  ename   | salary 
+----------+--------
+ lavan    | 100000
+ akash    |  95000
+ ramanaya | 170000
+ randheer |  89000
+(4 rows)
