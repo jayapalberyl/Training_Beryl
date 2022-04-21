@@ -1007,6 +1007,19 @@ library_management=# select b1.authorname from issue_details i1 inner join book 
  authorname 
 ------------
  Shrikant
-(1 row)
+
+89. fetch department details which have minimum number of students
+library_management=# select d.department_id,d.department_name from department d inner join student s on d.department_id=s.department_id group by d.department_id,d.department_name having count(s.student_id)<=all (select count(s.student_id) from student s inner join department d on s.department_id=d.department_id group by d.department_id) order by department_id;
+ department_id | department_name 
+---------------+-----------------
+           201 | IT_department
+           202 | Physics
+           203 | chemistry
+           204 | Math
+           205 | Commerce
+(5 rows)
+
+
+
 
 
