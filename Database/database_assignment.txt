@@ -32,3 +32,37 @@ airline=# select * from flights;
   107 | los angeles | chicago  |     2750 | 03:10:00 | 05:00:00 |   600
   108 | madison     | chicago  |      800 | 01:00:00 | 06:00:00 |  2000
 (8 rows)
+
+airline=# create table aircraft(aid int primary key,aname varchar(10) not null,cruisingrange int not null);
+CREATE TABLE
+airline=# insert into aircraft(aid,aname,cruisingrange)values(1,'boieng12',3000),(2,'airlines',1000),(3,'airbus19',900),(4,'boieng30',3300),(5,'arado90',6000),(6,'agusta',2000);
+INSERT 0 6
+airline=# select * from aircraft;
+ aid |  aname   | cruisingrange 
+-----+----------+---------------
+   1 | boieng12 |          3000
+   2 | airlines |          1000
+   3 | airbus19 |           900
+   4 | boieng30 |          3300
+   5 | arado90  |          6000
+   6 | agusta   |          2000
+(6 rows)
+
+airline=# insert into employees(eid,ename,salary)values(10,'raman',10000),(11,'shalini',20000),(12,'harsh',15000),(13,'lavan',100000),(14,'akash',95000),(15,'tinkal',110000),(16,'manisha',80000),(17,'ramanaya',170000),(18,'pawan',30000),(19,'randheer',89000),(20,'heena',66000);
+INSERT 0 11
+airline=# select * from employees;
+ eid |  ename   | salary 
+-----+----------+--------
+  10 | raman    |  10000
+  11 | shalini  |  20000
+  12 | harsh    |  15000
+  13 | lavan    | 100000
+  14 | akash    |  95000
+  15 | tinkal   | 110000
+  16 | manisha  |  80000
+  17 | ramanaya | 170000
+  18 | pawan    |  30000
+  19 | randheer |  89000
+  20 | heena    |  66000
+(11 rows)
+
