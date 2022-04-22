@@ -187,7 +187,7 @@ airline=# select f1.departs from flights f1 where ("from"='madison' or "to"='new
  01:00:00
 (3 rows)
 
-m. Print the names of employees who are certified only on aircraft with cruising range longer than 1000 miles but on atleast two such aircraft.
+m. print the names of employees who are certified only on aircraft with cruising range longer than 1000 miles but on atleast two such aircraft.
 airline=# select distinct  e1.ename from employees e1 inner join certified c1 on e1.eid=c1.eid inner join aircraft a1 on c1.aid=a1.aid where a1.cruisingrange>1000 group by e1.ename having  count(e1.ename)>=2;
  ename 
 -------
