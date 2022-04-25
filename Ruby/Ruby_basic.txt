@@ -1,0 +1,73 @@
+
+
+ Ruby environment setup:
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.sudo apt update
+2.sudo apt install curl
+3.curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+4.curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+5.curl -sSL https://get.rvm.io | bash -s stable
+6* if user is not add then firstly add user 
+by command:sudo usermod -a -G rvm $USER
+           rvm user gemsets
+then restart the system
+
+7.ruby --version
+
+8.beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+=* ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+9. if you install another ruby version:
+ ->rvm install ruby 2.7.1
+ ->rvm use 2.7.1
+Using /home/beryl/.rvm/gems/ruby-2.7.1
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+=> ruby-2.7.1 [ x86_64 ]
+ * ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby is a scripting language .Its run on variety of platform like windows,Mac os.Ruby is a pure object oriented language 
+Features:
+. Ruby is an open-source and is freely available on the Web, but it is subject to a license.
+. Ruby is a general-purpose, interpreted programming language.
+. Ruby is a true object-oriented programming language.
+. Ruby is a server-side scripting language similar to Python and PERL.
+. Ruby can be used to write Common Gateway Interface (CGI) scripts.
+. Ruby can be embedded into Hypertext Markup Language (HTML).
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Syntax of ruby:
+1. ruby coding can be done in nano editor 
+2. like  nano filename.rb[.rb is the extension of ruby command]
+3. then puts"hello world" [puts in the builtin function for writing any text]
+4. then Ctrl+x then save then exit
+5. If we can see the file then we type ruby filename.rb
+
+BEGIN and AND syntax
+BEGIN{          # this will execute firstly [* comments can be started with # tag]
+puts "msg"
+}
+END {           # this will execute at the end
+puts "msg"
+}
+for example:
+puts "Hello,world"
+BEGIN{
+  puts"Good morning"
+}
+END{
+ puts"My name is Jaya"
+}
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby hello.rb
+Good morning
+Hello,world
+My name is Jaya
+
