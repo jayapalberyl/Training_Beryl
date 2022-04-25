@@ -1,5 +1,5 @@
 
-
+ruby latest version - 3.1.2 
  Ruby environment setup:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1.sudo apt update
@@ -70,4 +70,162 @@ beryl@beryl-To-be-filled-by-O-E-M:~$ ruby hello.rb
 Good morning
 Hello,world
 My name is Jaya
+
+classes and objects:
+Ruby is a perfect object oriented languages .The features of object oriented language are:
+Encapsulation
+Data abstraction
+Polymorphism
+Inheritance
+Classes and objects
+ 
+class is basically a user defined data types in which we can define memberfunction and data members
+object is the instance of class which help to allocate of memory 
+Inheritance means to reusability of code or to inheriit the properties of one class to another
+Polymorphisms means one name many forms
+data abstraction means hide the background details and show only essentials details.
+encapsulation means binding the properties into one form 
+
+In Ruby class can be defined as 
+class Class_name * class_name always be start with capital letter
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+variables in ruby
+1.local variable:
+local variables are the variable that are defined in a method.Local variables begin with a lowercase letter or _.
+
+2. instance variable:
+Instance variables are available across methods for any particular instance or object.Instance variables are preceded by the 
+at sign (@) followed by the variable name.
+
+3.class variable:
+A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+
+4.Global variable
+If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
+examples:
+global variable
+$var=10
+class Class2
+   def print_global
+     puts"this is the value of global variable#$var"
+   end
+end
+c1=Class2.new
+c1.print_global
+
+Instance variable
+class Customer
+  def initialize(id,name,address)
+   @cust_id=id
+   @cust_name=name
+   @cust_address=address
+  end
+  def display_details()
+   puts "customer id is #@cust_id"
+   puts "customer name is #@cust_name"
+   puts "customer address is #@cust_address"
+  end
+end
+# create objects
+c1=Customer.new("1","john","faridabad")
+c2=Customer.new("2","Ram","palwal")
+
+# call methods
+c1.display_details()
+c2.display_details()
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Customer.rb
+customer id is 1
+customer name is john
+customer address is faridabad
+customer id is 2
+customer name is Ram
+customer address is palwal
+
+class variable:
+class Customesdetails
+ @@no_of_customer=1
+ def initialize(id,name,address)
+ @cust_id=id
+ @cust_name=name
+ @cust_address=address
+ end
+ def display_details()
+  puts"id = #@cust_id"
+  puts"name = #@cust_name"
+  puts"address = #@cust_address"
+ end
+ def total_no_of_customers()
+   @@no_of_customer += 1
+  puts"total customer= #@@no_of_customer"
+ end
+end
+c1=Customesdetails.new("1","jaya","faridabad")
+c2=Customesdetails.new("2","roshini","Delhi")
+c1.display_details()
+c2.display_details()
+c2.total_no_of_customers()
+
+output
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Customesdetails.rb
+id = 1
+name = jaya
+address = faridabad
+id = 2
+name = roshini
+address = Delhi
+total customer= 2
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby Constants
+constant variable can be uppercase only
+
+
+class Constant
+ VAR1=10
+ VAR2=20
+  def show
+  puts"the first value of variable 1 is #{VAR1}"
+  puts"the second value of variable 2 is #{VAR2}"
+  end
+end
+c1=Constant.new()
+c1.show()
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby Constant.rb
+the first value of variable 1 is 10
+the second value of variable 2 is 20
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby Operators
+
+1.Ruby arthimetic operator
+addition        c=a+b
+subtraction     c=a-b
+multiplication  c=a*b
+division        c=a/b
+modulus         c=a%b
+2.Ruby comparision operator
+==,!=,>,<,<=,>=,==
+3.ruby assignment operator
+=,+=,-=,*=,/=,%=
+4.Bitwise operator
+&,|,^,~,<<,>>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby comments
+1.single line comment
+# my name is jaya
+2.multi line comment
+
+puts "Hello, Ruby!"
+=begin
+This is a multiline comment and con spwan as many lines as you
+like. But =begin and =end should come in the first line only. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
