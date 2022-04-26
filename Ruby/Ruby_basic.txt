@@ -1,4 +1,6 @@
 
+ruby latest version - 3.1.2 
+
 RVM [Ruby version manager]
 a software tool to manage Ruby programming language versions.
 
@@ -32,34 +34,9 @@ ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux]
 beryl@beryl-To-be-filled-by-O-E-M:~$ rvm --default use 3.0.0
 Using /home/beryl/.rvm/gems/ruby-3.0.0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ruby latest version - 3.1.2 
- Ruby environment setup:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby environment setup
+
 1.sudo apt update
 2.sudo apt install curl
 3.curl -sSL https://rvm.io/mpapis.asc | gpg --import -
@@ -272,6 +249,89 @@ modulus         c=a%b
 =,+=,-=,*=,/=,%=
 4.Bitwise operator
 &,|,^,~,<<,>>
+
+a=10
+b=20
+c=30
+d=100
+ if a==10 && b==20
+ puts a+b+c
+ elsif a<12 || b<21
+ puts c-b-a
+ else
+ puts"nothing"
+ end
+puts a+=1
+puts b-=2
+puts c*=10
+puts d/=2
+puts d%=3
+output:-
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Logical.rb
+60
+11
+18
+300
+50
+2
+
+2.Ruby defined? operator
+
+VAR=10
+Geeks=90
+
+puts defined? VAR
+puts defined? Geeks
+puts defined? 20
+puts defined? a
+output
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Logical.rb
+constant
+constant
+expression
+
+3. double and triple dot
+a=(1..10).to_a
+puts "#{a}"
+
+b=(1...10).to_a
+puts "#{b}"
+output:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+4. Ternary operator
+
+Name="jayapal"
+result=Name=="jayapal" ? "correct name #{Name}" : "wrongname"
+puts result
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Ternary.rb
+correct name jayapal
+ 
+5. Bitwise operator
+
+a=2<<2
+puts "#{a}"
+b=5>>2
+puts "#{b}"
+c=20
+puts (~c)
+a1=10
+b1=20
+puts (a1&b1)
+puts (a1 | b1)
+puts (a1 ^ b1)
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Ternary.rb
+8
+1
+-21
+0
+30
+30
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Ruby comments
