@@ -1,4 +1,62 @@
 
+RVM [Ruby version manager]
+a software tool to manage Ruby programming language versions.
+
+rvm commands :-
+1. rvm list [its shows how many rvm version install in our computer]
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+   ruby-2.7.1 [ x86_64 ]
+=* ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+
+2. rvm use [This command help to switch any version in ruby]
+
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm use 2.7.1
+Using /home/beryl/.rvm/gems/ruby-2.7.1
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm list
+=> ruby-2.7.1 [ x86_64 ]
+ * ruby-3.0.0 [ x86_64 ]
+
+# => - current
+# =* - current && default
+#  * - default
+
+3. ruby -v [this command helps to check the version in ruby]
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby -v
+ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux]
+
+4. rvm --default use version_no.[its change the ruby version and makes its default] 
+beryl@beryl-To-be-filled-by-O-E-M:~$ rvm --default use 3.0.0
+Using /home/beryl/.rvm/gems/ruby-3.0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ruby latest version - 3.1.2 
  Ruby environment setup:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
