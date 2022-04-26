@@ -345,5 +345,39 @@ This is a multiline comment and con spwan as many lines as you
 like. But =begin and =end should come in the first line only. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ruby Iterators
+The word iterate means doing one thing multiple times and that is what iterators do. Sometimes iterators are termed as the custom loops. 
 
+1.each iterator
+0..9).each do|i|
 
+ puts i
+end
+
+a=['j','a','y','a']
+arr=a.each do|arr|
+puts arr
+end
+
+2.collect iterator
+This iterator returns all the elements of a collection. The collect iterator returns an entire collection, regardless of whether it is an array or hash.
+
+a=(0...19)
+arr=a.collect{|a| 2*a}
+puts arr
+
+a=[1,2,3,4,5]
+arr=a.collect{|a| a*=2}
+print arr
+puts
+
+3.times iterator
+2.times do |i|
+puts i
+end
+output:
+0
+1
+
+4.Upto Iterator: This iterator follows top to bottom approach. It includes both the top and bottom variable in the iteration. 
+5.downto iterator:This iterator follows bottom to top approach. It includes both the top and bottom variable in the iteration.
