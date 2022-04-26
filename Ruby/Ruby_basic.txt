@@ -525,4 +525,44 @@ output:
 beryl@beryl-To-be-filled-by-O-E-M:~$ ruby Switch.rb
 child
 
+basic programs in ruby:-
+1. sum of number
+# sum of numbers
+puts"enter number"
+n=gets.chomp.to_i
+sum=0
+for i in 1..n
+ sum=sum+i
+end
+print "sum of #{n} = #{sum}"
+puts
+
+2. select week of the day with switch case
+puts "enter day number"
+n=gets.chomp.to_i
+case n
+when n=0
+ puts "Sunday"
+when n=1
+ puts "Monday"
+when n=2
+ puts "Tuesday"
+when n=3
+puts "wednesday"
+when n=4
+puts "Thursday"
+when n=5
+puts "friday"
+when n=6
+puts "saturday"
+else
+puts "Not a valid date"
+end
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~$ ruby programs.rb
+enter day number
+5
+friday
+
 
