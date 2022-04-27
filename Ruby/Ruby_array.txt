@@ -4,3 +4,129 @@
 An Array is an ordered, integer-indexed collection of objects, called elements. Any object may be an Array element.
  3.0.0 :001 > array=['ram',1,2,3,nil]
  => ["ram", 1, 2, 3, nil] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. creating array object
+
+ 3.0.0 :002 > arr=Array.new
+ => [] 
+
+ creating multidimensional array
+ 3.0.0 :003 > arr=Array.new(3) {Array.new(3)}
+ => [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]] 
+ 3.0.0 :004 > arr=Array.new(2) {Array.new(2)}
+ => [[nil, nil], [nil, nil]] 
+
+if donot assign values in an array its shows null
+3.0.0 :028 > Array.new(10)
+ => [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. find out element in particular index
+3.0.0 :005 > arr=[1,2,3,4,5]
+ => [1, 2, 3, 4, 5] 
+3.0.0 :006 > arr[2]
+ => 3 
+3.0.0 :007 > arr[-2]
+ => 4 
+3.0.0 :008 > arr[2,4]
+ => [3, 4, 5]
+ 3.0.0 :009 > arr.at(0)
+ => 1
+3.0.0 :016 > a=[1,"jaya",2]
+3.0.0 :022 > a[0,2]
+ => [1, "jaya"] 
+3.0.0 :023 > a[0..2]
+ => [1, "jaya", 2] 
+3.0.0 :024 > a[0..4]
+ => [1, "jaya", 2]  
+
+*at_index
+3.0.0 :045 > a
+ => [1, "jaya", 2] 
+3.0.0 :046 > a.at(1)
+ => "jaya" 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. finding first and last index,take,drop particular element in  array
+3.0.0 :010 > arr.first
+ => 1 
+3.0.0 :012 > arr.last
+ => 5 
+3.0.0 :013 > arr.take(2)
+ => [1, 2] 
+3.0.0 :014 > arr.drop(2)
+ => [3, 4, 5] 
+3.0.0 :015 > arr
+ => [1, 2, 3, 4, 5] 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. empty?,length,include?,count with for each loop function
+3.0.0 :016 > arr.length
+ => 5 
+3.0.0 :017 > arr.empty?
+ => false 
+3.0.0 :018 > arr.include?('raman')
+ => false 
+count particular element by for each loops
+3.0.0 :025 > [0,1,2,3,4,5].count {|element| element > 1}
+ => 4 
+3.0.0 :026 > [0,1,2,3,4,5].count {|element| element > 0.3}
+ => 5 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. adding elements in array methods like:
+push function # it can add the element at the end
+3.0.0 :019 > arr1=['jaya','monika','prem','kuldeep']
+ => ["jaya", "monika", "prem", "kuldeep"] 
+3.0.0 :020 > arr1.push('sandeep')
+ => ["jaya", "monika", "prem", "kuldeep", "sandeep"] 
+
+unshift function() # add element in front of the array
+3.0.0 :022 > arr1.unshift('kamal')
+ => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep"] 
+
+<< operator # used to add value at the end of function
+3.0.0 :023 > arr1 << ('kamal')
+ => ["kamal", "jaya", "monika", "prem", "kuldeep", "sandeep", "kamal"] 
+
+insert()
+3.0.0 :029 > a1=[1,2,3,4,5]
+ => [1, 2, 3, 4, 5] 
+3.0.0 :030 > a1.insert(3,"apple")
+ => [1, 2, 3, "apple", 4, 5] 
+3.0.0 :031 > a1.insert(3,"ram","sharma","kunal")
+ => [1, 2, 3, "ram", "sharma", "kunal", "apple", 4, 5] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. Removing elements in array methods like:
+pop() # it can delete the element at the end
+3.0.0 :004 > array.pop
+ => 9 
+3.0.0 :005 > array
+ => [1, 2, 3, 4, 5, 6, 7, 8] 
+
+shift method # used to retrieve and delete value in an array
+3.0.0 :007 > array.shift
+ => 1 
+3.0.0 :008 > array
+ => [2, 3, 4, 5, 6, 7, 8, 10] 
+
+delete a value at particular index
+3.0.0 :011 > array.delete_at(5)
+ => 8 
+3.0.0 :012 > array
+ => [3, 4, 5, 6, 7, 10] 
+* to delete anywhere in the list used delete function
+=> [3, 4, 5, 6, 7, 10, 3] 
+3.0.0 :014 > array.delete(3)
+ => 3 
+3.0.0 :015 > array
+
+compact method # if you want to delete a nil values in the function
+=> [4, 5, 6, 7, 10, nil, nil]
+3.0.0 :019 > array.compact
+ => [4, 5, 6, 7, 10] 
+
+uniq method # used to remove the duplicate methods in an array
+3.0.0 :020 > array.push(5)
+ => [4, 5, 6, 7, 10, nil, nil, 5] 
+3.0.0 :021 > array.uniq
+ => [4, 5, 6, 7, 10, nil] 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
