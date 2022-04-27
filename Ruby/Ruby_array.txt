@@ -499,4 +499,150 @@ sum by for each loop:-
 3.0.0 :064 > a.sort_by{|element| element.size}
  => ["c", "bb", "dd", "aaa"] 
 
+**3.1.2 :278 > a=['j','a','y','a']
+ => ["j", "a", "y", "a"] 
+3.1.2 :279 > a.to_s
+ => "[\"j\", \"a\", \"y\", \"a\"]" 
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+29. select method
+ Particular method can be select 
+3.0.0 :092 > arr1.select{|element| element.to_s.start_with?('b')}
+ => [:bar]
+
+** rotate method
+When no argument given, rotates the first element to the last position:
+3.0.0 :107 > j1=[1,2,3,4]
+ => [1, 2, 3, 4] 
+3.0.0 :108 > j1.rotate
+ => [2, 3, 4, 1] 
+
+When given a non-negative Integer count, rotates count elements from the beginning to the end:
+ [1, 2, 3, 4] 
+3.0.0 :109 > j1.rotate(2)
+ => [3, 4, 1, 2] 
+3.0.0 :110 > j1.rotate(3)
+ => [4, 1, 2, 3] 
+3.0.0 :111 > j1.rotate(1)
+ => [2, 3, 4, 1] 
+3.0.0 :112 > j1.rotate(4)
+ => [1, 2, 3, 4] 
+
+When given a negative Integer count, rotates in the opposite direction, from end to beginning
+ [1, 2, 3, 4] 
+3.0.0 :113 > j1.rotate(-1)
+ => [4, 1, 2, 3] 
+3.0.0 :114 > j1.rotate(-3)
+ => [2, 3, 4, 1] 
+
+** reverse method # it reverse the elements in reverse order
+3.0.0 :116 > j1
+ => [1, 2, 3, 4] 
+3.0.0 :117 > j1.reverse
+ => [4, 3, 2, 1] 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30.combination : make a combination of element according to user requirements but it cannot use the same element more than 1 time ** No. of combination = (n+1)*(n+2)/2
+
+=>name=["jaya", "monika", "charu", 1, 2]
+3.0.0 :128 > name.combination(2){ |values| puts"#{values}"} # n=2 the (2+1)*(2+2)/ 2 = 6combinations
+["jaya", "monika"]
+["jaya", "charu"]
+["jaya", 1]
+["monika", "charu"]
+["monika", 1]
+["charu", 1]
+["charu", 2]
+[1, 2]
+
+* permutation: make combiantions of elements according to user requirements but it cacnot use the same element more than 1 time ** No of permutation= size**n
+=>name=["jaya", "monika", "charu", 1, 2]
+3.0.0 :139 > name.permutation(2){ |values| puts"#{values}"}
+["jaya", "monika"]
+["jaya", "charu"]
+["jaya", 1]
+["jaya", 2]
+["monika", "jaya"]
+["monika", "charu"]
+["monika", 1]
+["monika", 2]
+["charu", "jaya"]
+["charu", "monika"]
+["charu", 1]
+["charu", 2]
+[1, "jaya"]
+[1, "monika"]
+[1, "charu"]
+[1, 2]
+[2, "jaya"]
+[2, "monika"]
+[2, "charu"]
+[2, 1]
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+31.max,min,minmax methods 
+* max method
+
+3.0.0 :144 > a=[1,2,3,4,5]
+3.0.0 :145 > a.max
+ => 5 
+3.0.0 :149 > a.max(3)
+ => [5, 4, 3] 
+3.0.0 :150 > a.max(4)
+ => [5, 4, 3, 2] 
+3.0.0 :151 > a.max(2)
+ => [5, 4] 
+* min method
+
+3.0.0 :152 > a=[1,2,3,4,5,1,3,6]
+ => [1, 2, 3, 4, 5, 1, 3, 6] 
+3.0.0 :153 > a.min
+ => 1 
+3.0.0 :154 > a.min(3)
+ => [1, 1, 2] 
+3.0.0 :155 > a.min(5)
+ => [1, 1, 2, 3, 3] 
+* minmax method
+
+ => [1, 2, 3, 4, 5, 1, 3, 6] 
+3.0.0 :157 > a.minmax
+ => [1, 6] 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+32. join method
+Returns the new String formed by joining the array elements after conversion.
+
+3.0.0 :001 > a=['jaya','pal','mayank',1,2,3]
+ => ["jaya", "pal", "mayank", 1, 2, 3] 
+3.0.0 :002 > a.join
+ => "jayapalmayank123" 
+3.0.0 :003 > a1=['jaya',['pal','mayank'],[1,2],3]
+ => ["jaya", ["pal", "mayank"], [1, 2], 3] 
+3.0.0 :004 > a1.join
+ => "jayapalmayank123"
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+33.flatten # replace array according to the level like flatten(0)= it return same array,if flatten(1)= it replace  the first array of array with self and so on.
+3.0.0 :030 > arr=[1,2,[1,2,3,[1,2,3,4,5],9],9,0]
+ => [1, 2, [1, 2, 3, [1, 2, 3, 4, 5], 9], 9, 0] 
+3.0.0 :031 > arr.flatten(1)
+ => [1, 2, 1, 2, 3, [1, 2, 3, 4, 5], 9, 9, 0] 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+34.fill method
+
+3.0.0 :003 > a1=[1,2,3,4,5,6,7]
+3.0.0 :004 > a1.fill(1)
+ => [1, 1, 1, 1, 1, 1, 1] 
+3.0.0 :008 > a1=[1,2,3,4,5,6,7]
+ => [1, 2, 3, 4, 5, 6, 7] 
+3.0.0 :009 > a1.fill(1,5)
+ => [1, 2, 3, 4, 5, 1, 1] 
+3.0.0 :010 > a1=[1,2,3,4,5,6,7]
+ => [1, 2, 3, 4, 5, 6, 7] 
+3.0.0 :011 > a1.fill(1,2,2)
+ => [1, 2, 1, 1, 5, 6, 7] 
+3.0.0 :012 > a1=[1,2,3,4,5,6,7]
+ => [1, 2, 3, 4, 5, 6, 7] 
+3.0.0 :013 > a1.fill(1,-2,2)
+ => [1, 2, 3, 4, 5, 1, 1] 
+
+
