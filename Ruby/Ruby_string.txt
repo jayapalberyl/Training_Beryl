@@ -189,4 +189,85 @@ casesmp>(other_str) -> true or false
  => "lo" 
 3.0.0 :046 > 'hello'.delete_suffix('llo')
  => "he" 
+19.each_char {|cstr| block } → str
+3.0.0 :050 > 'hello'.each_char {|c| print c, ' '}
+h e l l o  => "hello" 
+
+20.empty?
+3.0.0 :051 > 'hello'.empty?
+ => false 
+3.0.0 :052'> ' '.empty?
+ => false 
+3.0.0 :053 > ''.empty?
+ => true 
+
+21 eql?
+3.0.0 :058 > 'hello'.eql?('hello')
+ => true 
+3.0.0 :059 > 'hello'.eql?('helllo')
+ => false 
+
+22.end_with?
+3.0.0 :054 > 'hello'.end_with?('llo')
+ => true 
+3.0.0 :055 > 'hello'.end_with?('rama')
+ => false 
+
+23.hex -> integer
+3.0.0 :001 > "0x0a".hex
+ => 10 
+3.0.0 :002 > "-1234".hex
+ => -4660 
+
+24.include?
+3.0.0 :004 > "hello".include? "lo"
+ => true 
+3.0.0 :005 > "hello".include? "oll"
+ => false 
+3.0.0 :006 > "hello".include? "llo"
+ => true 
+
+25.index
+3.0.0 :007 > 'jaya'.index('j')
+ => 0 
+3.0.0 :008 > 'jaya'.index('a')
+ => 1 
+3.0.0 :009 > 'jaya'.index('ya')
+ => 2 
+3.0.0 :010 > 'jaya'.index('jaya')
+ => 0 
+
+26.replace
+3.0.0 :011 > s='hello'
+3.0.0 :012 > s.replace "world"
+ => "world"
+
+27.insert
+3.0.0 :014 > 'hello'.insert(1,'bar')
+ => "hbarello" 
+3.0.0 :015 > 'hello'.insert(-2,'bar')
+ => "hellbaro" 
+
+28.lines(separator=$/, chomp: false) → an_array
+3.0.0 :019 > "hello\nworld\n".lines
+ => ["hello\n", "world\n"] 
+3.0.0 :020 > "hello world ".lines(' ')
+ => ["hello ", "world "] 
+3.0.0 :021 > "hello world ".lines(chomp:true)
+ => ["hello world "] 
+
+29. length
+3.0.0 :018 > "hello".length
+ => 5 
+30.lstrip
+3.0.0 :026 > ' hello  '.lstrip
+ => "hello  " 
+3.0.0 :027 > 'hello '.rstrip
+ => "hello" 
+3.0.0 :028 > ' hello '.strip
+ => "hello" 
+
+31.ljust
+3.0.0 :025 > 'hello'.ljust(19,'1234')
+ => "hello12341234123412" 
 
