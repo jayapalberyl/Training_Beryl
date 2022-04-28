@@ -271,3 +271,89 @@ h e l l o  => "hello"
 3.0.0 :025 > 'hello'.ljust(19,'1234')
  => "hello12341234123412" 
 
+32.match
+3.0.0 :029 > 'foo'.match('fo')
+ => #<MatchData "fo"> 
+3.0.0 :030 > 'foo'.match('fi')
+ => nil 
+3.0.0 :031 > 'foo'.match('f',0)
+ => #<MatchData "f"> 
+3.0.0 :032 > 'foo'.match('f',1)
+ => nil 
+3.0.0 :033 > 'foo'.match?('f',1)
+ => false 
+3.0.0 :034 > 'foo'.match?('f',0)
+ => true 
+
+33.succ
+3.0.0 :035 > 'aa' .succ
+ => "ab" 
+3.0.0 :036 > 'aB' .succ
+ => "aC" 
+3.0.0 :037 > 'CB' .succ
+ => "CC" 
+
+34.ord # it returns ascii value
+3.0.0 :042 > 'a'.ord
+ => 97 
+3.0.0 :043 > 'A'.ord
+ => 65 
+
+35.Partition
+3.0.0 :045 > 'hello'.partition('o')
+ => ["hell", "o", ""] 
+3.0.0 :046 > 'hello'.partition('e')
+ => ["h", "e", "llo"] 
+
+36.reverse
+3.0.0 :053 > 'jaya'.reverse
+ => "ayaj" 
+3.0.0 :054 > 'mayank'.reverse
+ => "knayam" 
+3.0.0 :055 > 'pushpa'.reverse
+ => "aphsup" 
+
+37.Prepend
+3.0.0 :047 > s='jaya'
+3.0.0 :048 > s.prepend('bar','baz')
+ => "barbazjaya"
+
+38.index
+3.0.0 :062 > 'jayesh'.index('y',2)
+ => 2 
+3.0.0 :063 > 'jayesh'.index('y',5)
+ => nil 
+
+39.scan(pattern)
+3.0.0 :064 > a='cruel world'
+ => "cruel world" 
+3.0.0 :065 > a.scan(/.../)
+ => ["cru", "el ", "wor"] 
+3.0.0 :066 > a.scan(/(..)(..)/)
+ => [["cr", "ue"], ["l ", "wo"]] 
+
+40.split()
+3.0.0 :067 > " figure is the main's components".split
+ => ["figure", "is", "the", "main's", "components"] 
+3.0.0 :068 > 'hello'.split
+ => ["hello"] 
+3.0.0 :069 > 'hello'.split(//)
+ => ["h", "e", "l", "l", "o"] 
+
+41.upcase and downcase method
+3.0.0 :020 > "aeiou".upcase
+ => "AEIOU" 
+3.0.0 :021 > "AEIOU".downcase
+ => "aeiou"
+3.1.2 :389 > "JAYApal".swapcase
+ => "jayaPAL" 
+
+42. sub [its insert the value at particular value but only once]
+    gsub[it insert the value at whole string where its occured]
+3.1.2 :393 > "jaapal".gsub('a','@')
+ => "j@@p@l" 
+3.1.2 :394 > "jaapalMayanksharma".gsub('a','@')
+ => "j@@p@lM@y@nksh@rm@" 
+
+3.1.2 :395 > "jaapalMayanksharma".sub('a','@')
+ => "j@apalMayanksharma
