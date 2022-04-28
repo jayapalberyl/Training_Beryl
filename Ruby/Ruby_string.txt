@@ -118,3 +118,75 @@ string[substring] → new_string or nil
 3.0.0 :039 > '123A'.capitalize
  => "123a" 
 
+11.casecmp(other_str) → -1, 0, 1, or nil
+3.0.0 :001 > 'foo'.casecmp('foo')
+ => 0 
+3.0.0 :002 > 'foo'.casecmp('food')
+ => -1 
+3.0.0 :003 > 'foodesd'.casecmp('food')
+ => 1 
+3.0.0 :004 > 'ram' <=> 'sharma'
+ => -1 
+casesmp>(other_str) -> true or false
+3.0.0 :005 > 'ram'.casecmp? 'sharma'
+ => false 
+3.0.0 :006 > 'ram'.casecmp? 'ram'
+ => true 
+
+12.center method
+3.0.0 :007 > 'hello'.center(5)
+ => "hello" 
+3.0.0 :008 > 'hello'.center(1)
+ => "hello" 
+3.0.0 :009 > 'hello'.center(19)
+ => "       hello       " 
+3.0.0 :010 > 'hello'.center(19,'jaya')
+ => "jayajayhellojayajay" 
+
+13.chomp
+3.0.0 :014 > "hello\n\r".chomp
+ => "hello\n" 
+3.0.0 :015 > "hello\n\r\n".chomp
+ => "hello\n" 
+
+14.3.0.0 :017"> "hello".chop
+ => "hell" 
+3.0.0 :018 > 'ram'.chop.chop
+ => "r" 
+3.0.0 :019 > 'akash'.chop.chop.chop
+ => "ak" 
+15.chr
+3.0.0 :020 > a='jayapal'
+ => "jayapal" 
+3.0.0 :021 > a.chr
+ => "j" 
+3.0.0 :022 > a.clear
+ => "" 
+16.concat
+3.0.0 :030 > k='kajal'
+3.0.0 :031 > 
+ => "kajal" 
+3.0.0 :032 > k.concat('sharma','meena')
+ => "kajalsharmameena" 
+3.0.0 :033 > k.concat(' sharma ',' meena ')
+ => "kajalsharmameena sharma  meena " 
+
+17.count
+
+3.0.0 :034 > a='hello world'
+ => "hello world" 
+3.0.0 :035 > a.count "lo"
+ => 5 
+3.0.0 :036 > a.count "lo" ,"o"
+ => 2 
+
+18.delete
+3.0.0 :041 > 'jayapal'.delete 'pal'
+ => "jy" 
+3.0.0 :042 > 'jayapal'.delete 'jay','^j'
+ => "jpl" 
+3.0.0 :043 > 'hello'.delete_prefix('hel')
+ => "lo" 
+3.0.0 :046 > 'hello'.delete_suffix('llo')
+ => "he" 
+
