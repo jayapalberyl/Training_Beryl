@@ -1,0 +1,32 @@
+
+Date methods:
+ 
+ date provides 2 classes: Date and dateTime
+A Date object is created with Date::new, Date::jd, Date::ordinal, Date::commercial, Date::parse, Date::strptime, Date::today, Time#to_date, etc.
+
+date methods
+
+3.0.0 :002 > require 'date'
+ => true 
+3.0.0 :003 > Date.new(1999-1-18) [its created object]
+ => #<Date: 1980-01-01 ((2444240j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :004 > Date.jd(2444240) [with the help of jd we can know the actual date
+ => #<Date: 1980-01-01 ((2444240j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :005 > Date.ordinal(2002,87) [ordinal function return the date by calculating the monthwise dates like if we know after 40 days of 2001 what date can be found it calculates 31+09=40 then it returns 9th feb 2001]
+=> #<Date: 2002-03-28 ((2452362j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :006 > Date.commercial(2022,5,6) [its return the date 5 shows the week and 6 shows the day then its calculated this ]
+ => #<Date: 2022-02-05 ((2459616j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :007 > Date.parse('2022-01-03')
+ => #<Date: 2022-01-03 ((2459583j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :008 > Date.strptime('03-02-2011','%d-%m-%Y') [ its return the date in proper date format ]
+ => #<Date: 2011-02-03 ((2455596j,0s,0n),+0s,2299161j)> 
+
+3.0.0 :009 > Time.new(2022,9,3).to_date [ its convert the date format]
+ => #<Date: 2022-09-03 ((2459826j,0s,0n),+0s,2299161j)> 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
