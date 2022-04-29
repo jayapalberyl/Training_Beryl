@@ -302,3 +302,76 @@ transform_values{|value| function}
 3.0.0 :110 > a1.invert
  => {2=>:charu, 90=>:mayank} 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11. flatten method
+* if flatten of argument 1 its shows the same result
+* if flatten of argument 2 its delete the first array
+* if flatten of negative its deletes all array in hash method
+* if flatten of 0 arguments its display the result in to_a
+3.0.0 :123 > a2={a1:1,a2:[:a4,[:a5 ,9]]}
+ => {:a1=>1, :a2=>[:a4, [:a5, 9]]} 
+3.0.0 :124 > a2.flatten(1)
+ => [:a1, 1, :a2, [:a4, [:a5, 9]]] 
+3.0.0 :125 > a2.flatten(2)
+ => [:a1, 1, :a2, :a4, [:a5, 9]] 
+=> {:a1=>1, :a2=>[:a4, [:a5, 9]]} 
+3.0.0 :132 > a2.flatten(0)
+ => [[:a1, 1], [:a2, [:a4, [:a5, 9]]]] 
+
+** fetch method
+fetch keys
+3.0.0 :136 > a2.fetch(:a2)
+ => [:a4, [:a5, 9]] 
+
+fetch values
+3.0.0 :138 > a2.fetch_values(:a2,:a2)
+ => [[:a4, [:a5, 9]], [:a4, [:a5, 9]]] 
+3.0.0 :139 > a2.fetch_values(:a2,:a1)
+ => [[:a4, [:a5, 9]], 1] 
+
+** except method
+3.0.0 :140 > h1={v1:1,v2:2,v3:4,v7:0}
+ => {:v1=>1, :v2=>2, :v3=>4, :v7=>0} 
+3.0.0 :141 > h1.except(:v3)
+ => {:v1=>1, :v2=>2, :v7=>0} 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12.each_value # its gives the values of hash function
+=> {:aman=>0, :himani=>1, :jaya=>2, :shrikant=>3} 
+3.0.0 :145 > a1.each_value{|keys| puts keys}
+0
+1
+2
+3
+
+* each_pair method
+=> {:aman=>0, :himani=>1, :jaya=>2, :shrikant=>3} 
+3.0.0 :006 > a1.each_pair{|key,value| puts " THE KEY VALUE PAIR IS: #{key}=>#{va
+lue}"}
+ THE KEY VALUE PAIR IS: aman=>0
+ THE KEY VALUE PAIR IS: himani=>1
+ THE KEY VALUE PAIR IS: jaya=>2
+ THE KEY VALUE PAIR IS: shrikant=>3
+
+3.0.0 :007 > a1.each_key{|key| puts " THE KEYS  IS: #{key}"}
+ THE KEYS  IS: aman
+ THE KEYS  IS: himani
+ THE KEYS  IS: jaya
+ THE KEYS  IS: shrikant
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+13.dig method # its shows the result in nested objects in hash function
+3.0.0 :008 > d1={foo: {bar: {baz: 2}}}
+ => {:foo=>{:bar=>{:baz=>2}}} 
+3.0.0 :009 > d1.dig(:foo)
+ => {:bar=>{:baz=>2}} 
+3.0.0 :010 > d1.dig(:foo,:bar)
+ => {:baz=>2} 
+3.0.0 :011 > d1.dig(:foo,:bar,:baz)
+ => 2 
+3.0.0 :012 > d1.dig(:foo,:bar,:Baz)
+ => nil 
+
+** delete method
+=> {:aman=>0, :himani=>1, :jaya=>2, :shrikant=>3} 
+3.0.0 :015 > a1.delete(:himani)
+ => 1 
+3.0.0 :016 > a1.delete_if{|key,value| value>2}
+=> {:aman=>0, :jaya=>2} 
