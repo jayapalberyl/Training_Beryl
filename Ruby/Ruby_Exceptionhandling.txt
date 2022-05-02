@@ -1,0 +1,40 @@
+
+ Exception Handling 
+In Ruby, exception handling is a process which describes a way to handle the error raised in a program
+Here, error means an unwanted or unexpected event, which occurs during the execution of a program, i.e. at run time, that disrupts the normal flow of the program’s instructions
+
+syntax:
+begin
+    raise
+      # block where exception raise
+
+    rescue
+      # block where exception rescue
+end
+# function to create exception handling
+def raise_and_rescue
+ begin
+  puts "before exception"
+
+raise "exception created"
+
+#puts "after exception"
+
+rescue
+puts "finally saved"
+
+end
+
+puts "outside from block"
+end
+raise_and_rescue
+
+output:
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby Exception_handling.rb
+before exception
+finally saved
+outside from block
+
+** we can used multiple rescue statement to handle exception if an exception is not handled by the first rescue clause, then another rescue clause will definitely handle the exception.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
