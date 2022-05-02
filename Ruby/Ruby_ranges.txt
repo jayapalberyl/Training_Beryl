@@ -45,6 +45,27 @@ beryl@beryl-To-be-filled-by-O-E-M:~$ irb
 3.0.0 :005 > ('jaya'..'jayy').to_a
  => ["jaya", "jayb", "jayc", "jayd", "jaye", "jayf", "jayg", "jayh", "jayi", "jayj", "jayk", "jayl", "jaym", "jayn", "jayo", "jayp", "jayq", "jayr", "jays", "jayt", "jayu", "jayv", "jayw", "jayx", "jayy"] 
 
+* ruby ranges in condition
+score=0..9
+print score.min
+puts
+print score.max
+puts
+print score.reject{|a| a<5}
+puts
+score.each do|a|
+print"#{a}, "
+end
+puts
+
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby switch_range.txt
+0
+9
+[5, 6, 7, 8, 9]
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+ 
+
+
 
 
 
