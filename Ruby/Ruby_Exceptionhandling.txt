@@ -38,3 +38,104 @@ outside from block
 ** we can used multiple rescue statement to handle exception if an exception is not handled by the first rescue clause, then another rescue clause will definitely handle the exception.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Statements used in exception are:-
+1. retry Statement: This statement is used to execute the rescue block again from the beginning after capturing the exception.
+2. raise statement: This statement is used to raise an exception.
+raise "Error Message"
+3. ensure Statement: This statement ensures that required instructions will execute at the end of the code, whether the exception raise or raised exception is rescued, or the program terminates due to an uncaught exception. This block always gives output.
+
+
+begin
+   puts "exception created"
+    raise "exception created"
+    puts "after exception"
+    rescue
+    puts "finally caught"
+   ensure
+   puts "ensure block execute"
+
+end
+
+4. else Statement: This statement is present in between the rescue block and ensure block. This block only executes when no exception is raised
+
+  begin
+   puts "no exception created"
+
+    rescue
+    puts "no exception caught"
+
+   else
+    puts " block execute because of no exception caught"
+
+   ensure
+    puts "execute"
+
+end
+
+5. catch and throw in exception handling
+In Ruby, catch and throw blocks are the lightweight mechanism for error handling and used to jump from the exception when there is no additional work is available in the program.
+
+def catch_and_throw(value)
+  print  value
+a=readline.chomp
+
+throw  value_e if a == "!"
+ return a
+
+end
+
+catch :value_e do
+  name=catch_and_throw("name:")
+  age=catch_and_throw("age:")
+  sex=catch_and_throw("sex:")
+
+end
+catch_and_throw("name:")
+
+output:-
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby Exception_handling.rb
+name:jayapal
+age:22
+sex:female
+name:jayapal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
