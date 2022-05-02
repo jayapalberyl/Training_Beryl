@@ -1,0 +1,50 @@
+
+  Ranges in Ruby
+
+Ranges occur everywhere: January to December, 0 to 9, lines 50 through 67, and so on. Ruby supports ranges and allows us to use ranges in a variety of ways −
+
+    Ranges as Sequences
+    Ranges as Conditions
+    Ranges as Intervals
+
+1.Ranges as Intervals
+== means value will be same with the left hand side value
+=== means value will be present with the left hand side value
+
+if ((1..10) ===  5)
+ puts "lies between"
+end
+if (('j'..'z') === 'j')
+  puts "valid name"
+end
+
+2. Ranges as conditions
+Ranges may also be used as conditional expressions. For example, the following code fragment prints sets of lines from the standard input
+
+score=20
+
+result=  case score
+when  1..10 then "fail"
+when  20..40 then "pass"
+when 40..70 then "ist"
+when  80..100 then "merit"
+else puts "invalid"
+end
+puts result
+
+3.Ranges as Sequences
+beryl@beryl-To-be-filled-by-O-E-M:~$ irb
+3.0.0 :001 > ('a'..'d')
+ => "a".."d" 
+3.0.0 :002 > ('a'..'d').to_a
+ => ["a", "b", "c", "d"] 
+3.0.0 :003 > ('bat'..'ball').to_a
+ => [] 
+3.0.0 :004 > ('bar'..'bat').to_a
+ => ["bar", "bas", "bat"] 
+3.0.0 :005 > ('jaya'..'jayy').to_a
+ => ["jaya", "jayb", "jayc", "jayd", "jaye", "jayf", "jayg", "jayh", "jayi", "jayj", "jayk", "jayl", "jaym", "jayn", "jayo", "jayp", "jayq", "jayr", "jays", "jayt", "jayu", "jayv", "jayw", "jayx", "jayy"] 
+
+
+
+
