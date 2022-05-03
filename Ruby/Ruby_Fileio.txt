@@ -129,4 +129,31 @@ beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby append_content.rb
 [["section"], ["A"], ["Name"], ["jaya"]]
 #<CSV:0x000055892cba5aa8>
 
+How to write file content with new content
+require 'csv'
+
+class Test
+ def retrieve_data
+
+  file1=CSV.read("user2.csv")
+ print file1
+puts
+end
+ def append_content
+
+ f1=CSV.open("user2.csv","w+") do |csv|
+ csv<<["Name"]
+ csv<<["jaya"]
+ end
+print f1
+puts
+end
+end
+ output:
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby append_content.rb
+[["Name"], ["jaya"]]
+#<CSV:0x000055892cba5aa8>
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
