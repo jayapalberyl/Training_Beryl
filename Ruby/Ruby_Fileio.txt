@@ -1,0 +1,46 @@
+
+ File Input/output
+ The class IO provides all the basic methods, such as read, write, gets, puts, readline, getc, and printf.
+1.puts statement
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ irb
+3.0.0 :001 > puts"helloworld"
+helloworld
+
+2.gets statement
+The gets statement can be used to take any input from the user from standard screen called STDIN.
+
+3.0.0 :005 > n=gets.chomp.to_i
+34
+ => 34 
+
+3.putc 
+this will show only the ist character 
+3.0.0 :006 > s="hello_world"
+ => "hello_world" 
+3.0.0 :007 > putc s
+h => "hello_world" 
+
+4.print statement
+the print statement will same as the put statement but print will not give output in different lines but puts gives every output in new line
+
+3.0.0 :008 > print "helloworld"
+helloworld => nil 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+It is a way of processing a file such as creating a new file, reading content in a file, writing content to a file, appending content to a file, renaming the file and deleting the file.
+
+“r” : Read-only mode for a file.
+“r+” : Read-Write mode for a file.
+“w” : Write-only mode for a file.
+“w+” : Read-Write mode for a file.
+“a” : Write-only mode, if file exists it will append the data otherwise a new file will be created.
+“a+” : Read and Write mode, if file exists it will append the data otherwise a new file will be created.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to open a file in ruby
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ irb
+3.0.0 :001 > simple_file=File.read("/home/beryl/Desktop/sample.txt")
+ => "this is the ist sample file which i have completed the contents in la...
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to creae a CSV file in linux:
+
