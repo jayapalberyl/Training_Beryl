@@ -78,3 +78,55 @@ output
 beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby get_data.rb
 [["First_name", "Last_name", "department", "email"], ["jaya", "pal", "mca", "jaya@gmail.com"], ["kajal", "rani", "math", "kajal@gmail.com"]]
 
+** split method
+f1=File.read("sample.txt").split
+print f1
+
+output:-
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby file.rb
+["this", "is", "the", "ist", "sample", "file", "which", "i", "have", "completed", "the", "contents", "in", "last", "friday.", "thankyou"]
+
+File operations in Ruby:
+3.0.0 :001 > File.rename("user1.csv","user2.csv")
+ => 0 
+3.0.0 :002 > File.size("sample.txt")
+ => 89 
+3.0.0 :003 > File.extname("sample.txt")
+ => ".txt" 
+3.0.0 :004 > File.extname("time.rb")
+ => ".rb" 
+3.0.0 :005 > File.extname("time.rb")
+ => ".rb" 
+3.0.0 :006 > File.dirname("home/time.rb")
+ => "home" 
+3.0.0 :007 > File.directory?("time.rb")
+ => false 
+3.0.0 :008 > File.directory?("Ruby")
+ => true 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to append file content with new content
+require 'csv'
+
+class Test
+ def retrieve_data
+
+  file1=CSV.read("user2.csv")
+ print file1
+puts
+end
+ def append_content
+
+ f1=CSV.open("user2.csv","a+") do |csv|
+ csv<<["Name"]
+ csv<<["jaya"]
+ end
+print f1
+puts
+end
+end
+ output:
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby append_content.rb
+[["section"], ["A"], ["Name"], ["jaya"]]
+#<CSV:0x000055892cba5aa8>
+
+
