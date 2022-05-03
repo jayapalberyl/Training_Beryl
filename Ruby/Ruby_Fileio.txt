@@ -43,4 +43,38 @@ beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ irb
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 How to creae a CSV file in linux:
+beryl@beryl-To-be-filled-by-O-E-M:~$ cd Desktop/
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ cat > user.csv
+First_name,Last_name,department,email
+jaya,pal,mca,jaya@gmail.com
+kajal,rani,math,kajal@gmail.com
+
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ cat user.csv
+First_name,Last_name,department,email
+jaya,pal,mca,jaya@gmail.com
+kajal,rani,math,kajal@gmail.com
+
+* then we can open the file its shows like the database format
+and we can retrieve the file from your ruby promt
+
+How to read csv file in ruby nano editor
+
+
+# retrieve information from user
+
+require 'csv'
+class Test
+ def retrieve_data
+
+  file1=CSV.read("user1.csv")
+ print file1
+puts
+end
+end
+t1=Test.new
+t1.retrieve_data
+
+output
+beryl@beryl-To-be-filled-by-O-E-M:~/Desktop$ ruby get_data.rb
+[["First_name", "Last_name", "department", "email"], ["jaya", "pal", "mca", "jaya@gmail.com"], ["kajal", "rani", "math", "kajal@gmail.com"]]
 
