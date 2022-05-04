@@ -54,4 +54,24 @@ character classes:
 3.0.0 :012 > "@@#munmunJAYAPAL".match(/[^0-9]/)
  => #<MatchData "@"> 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+special character classes:
+
+3.0.0 :020 > "lubiask".match(/[ruby?]/) [match that any word included in it]
+ => #<MatchData "u"> 
+3.0.0 :021 > "jayak".match(/[ruby?]/)
+ => #<MatchData "y"> 
+3.0.0 :028 > "jayapal".match(/[jay\d{3}]/)[match 3 character matches in it]
+ => #<MatchData "j"> 
+3.0.0 :034 > "RUBYIC".match(/[rub|ruby]/)
+ => nil 
+3.0.0 :035 > "rubic".match(/[rub|ruby]/)
+ => #<MatchData "r"> 
+
+[Remove anything except digit]
+3.0.0 :048 > "jayapal1234".gsub(/\D/,"")
+ => "1234" 
+3.0.0 :036 > "jayapal is a good girl".sub("ja","#")
+ => "#yapal is a good girl" 
+3.0.0 :036 > "jayapal is a good girl".gsub("a","#")
+ => "j#y#p#l is # good girl" 
 
