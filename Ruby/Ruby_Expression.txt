@@ -1,0 +1,57 @@
+  
+  Ruby Expression:- 
+ regular expression is a special sequence of characters that helps you match or find other strings or sets of strings using a specialized syntax held in a pattern.
+
+[match the particular word by [/word/] syntax:
+
+1. beryl@beryl-To-be-filled-by-O-E-M:~$ irb
+3.0.0 :001 > "hii there".match(/hii/)
+ => #<MatchData "hii"> 
+3.0.0 :002 > "hii there".match(/hi/)
+ => #<MatchData "hi"> 
+3.0.0 :003 > "hii there".match(/hijaya/)
+ => nil 
+3.0.0 :004 > 
+
+ Checking if a string has some set of characters or not
+
+class Test
+  def vowel(str)
+   str=~/[aeiou]/
+  end
+end
+
+t1=Test.new
+print t1.vowel("jeuapal")
+puts
+output =1[its return index of vowel word of ist vowel index only]
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+character classes:
+
+3.0.0 :001 > "jayapal".match(/[jJ]ayapal/)
+ => #<MatchData "jayapal"> 
+3.0.0 :002 > "Jayapal".match(/[jJ]ayapal/)
+ => #<MatchData "Jayapal"> 
+3.0.0 :003 > "JayapaL".match(/[jJ]ayapa[l]/)
+ => nil 
+3.0.0 :004 > "JayapaL".match(/[jJ]ayapa[lL]/)
+ => #<MatchData "JayapaL"> 
+
+3.0.0 :005 > "JAYAPAL".match(/[aeiou]/)
+ => nil 
+3.0.0 :006 > "JAYAPAL".match(/[AEIOU]/)
+ => #<MatchData "A"> 
+3.0.0 :007 > "JAYAPAL11".match(/[0-9]/)
+ => #<MatchData "1"> 
+3.0.0 :008 > "JAYAPAL11".match(/[A-Z]/)
+ => #<MatchData "J"> 
+3.0.0 :009 > "munmunJAYAPAL11".match(/[A-Za-z0-9]/)
+ => #<MatchData "m"> 
+3.0.0 :010 > "munmunJAYAPAL11".match(/[^A-Za-z0-9]/)
+ => nil 
+3.0.0 :011 > "@@#munmunJAYAPAL11".match(/[^A-Za-z0-9]/)
+ => #<MatchData "@"> 
+3.0.0 :012 > "@@#munmunJAYAPAL".match(/[^0-9]/)
+ => #<MatchData "@"> 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
