@@ -437,6 +437,26 @@ J
 	A
 L
 
+8.Ruby modules:
+Modules are a way of grouping together methods, classes, and constants. Modules give you two major benefits.
+Modules provide a namespace and prevent name clashes.
+Modules implement the mixin facility.
+
+syntax:-
+module Identifier
+   statement1
+   statement2
+   ...........
+end
+module Trig
+   PI = 3.141592654
+   def Trig.sin(x)
+   # ..
+   end
+   def Trig.cos(x)
+   # ..
+   end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Loops in Ruby
 
