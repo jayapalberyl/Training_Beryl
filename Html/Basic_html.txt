@@ -1,0 +1,9 @@
+ Html language:-
+HTML stands for Hyper Text Markup Language. It is a formatting language used to define the appearance and contents of a web page. It allows us to organize text, graphics, audio, and video on a web page
+
+Key Points:
+The word Hypertext refers to the text which acts as a link.
+The word markup refers to the symbols that are used to define structure of the text. The markup symbols tells the browser how to display the text and are often called tags.
+The word Language refers to the syntax that is similar to any other language.
+
+** HTML was created by Tim Berners-Lee at CERN.
