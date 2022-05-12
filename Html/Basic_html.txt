@@ -7,3 +7,33 @@ The word markup refers to the symbols that are used to define structure of the t
 The word Language refers to the syntax that is similar to any other language.
 
 ** HTML was created by Tim Berners-Lee at CERN.
+<html>
+<head>
+<title>this is the basic page</title>
+</head>
+<body style="background-color:lemonchiffon;">
+<p> these six headings are </p>
+
+<h1 style="color:orange;font-family: cursive;font-size:30px;text-align: center;"> <b>hii <mark>ram</mark></b></h1>
+<h2 style="color:yellow;font-family: cursive;font-size:30px;text-align: center;"> hii ram</h2>
+<h3 style="color:green;"><b> hii ram</b></h3>
+<h4 style="color:blue;"> hii ram</h4>
+<h5 style="color:pink;"> hii ram</h5>
+<h6 style="color:red;"> hii ram</h6>
+<p><small>this is a small element</small></p>
+<p>Do not forget to buy <mark>milk</mark> today.</p>
+<p>hii jaya <del>whats up </del>baby</p>
+<p>hello<ins> ram </ins></p>
+<p>This text contains <sub>subscript</sub> text.</p>
+<p>n<sup>3</sup></p>
+<img src="photo.jpg" alt="this is a new pic">
+<br>
+<a href="https://www.w3schools.com/html/html_attributes.asp"> this is the website for html learning</a>
+<p>
+	this is a new joining in the training
+<hr> <!--this tag is used to break the html content page
+	I am very happy for this-->
+<br><!--this tag is used for line break-->
+</p>
+</body>
+</html>
